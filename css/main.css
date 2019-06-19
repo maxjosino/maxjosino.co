@@ -90,7 +90,7 @@ body {
  * ------------------------------------------------------------------- */
 a,
 a:visited {
-	color: #6748d9;
+	color: #6E6E6E;
 	-moz-transition: all 0.3s ease-in-out;
 	-o-transition: all 0.3s ease-in-out;
 	-webkit-transition: all 0.3s ease-in-out;
@@ -101,7 +101,7 @@ a:visited {
 
 a:hover,
 a:focus {
-	color: #000000;
+	color: #fff;
 }
 
 /* ===================================================================
@@ -769,11 +769,10 @@ span.luxembourg{
 
 .home-content-tablecell .home-section-links li {
 	display: inline-block;
-	font-family: "HelveticaNeue-Bold", sans-serif;
-	font-size: 1.4rem;
-	text-transform: uppercase;
+	font-family: "HelveticaNeue-Regular", sans-serif;
+	font-size: 1.6rem;
 	letter-spacing: .1rem;
-	color: rgba(255, 255, 255, 0.35);
+	color: #6E6E6E;
 	margin-right: 1.5rem;
 	margin-bottom: .6rem;
 }
@@ -783,12 +782,12 @@ span.luxembourg{
 }
 
 .home-content-tablecell .home-section-links a {
-	font-family: "HelveticaNeue-Regular";
+	font-family: "HelveticaNeue-Bold";
 	font-size: 1.6rem;
 	text-transform: none;
 	letter-spacing: 0;
-	color: #FFFFFF;
-	margin-left: .3rem;
+	/* margin-left: .3rem; */
+	color: #fff;
 }
 
 .scroll-icon {
