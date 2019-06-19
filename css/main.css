@@ -894,11 +894,11 @@ span.luxembourg{
 		background-position: 60% 0;
 	}
 	.home-content-tablecell .row {
-		padding-bottom: 11.4rem;
+		padding-bottom: 6rem;
 	}
 
 	.home-content-tablecell .home-bottom-text {
-		padding-right: 15%;
+		padding-right: 0;
 	}
 
 	.home-content-tablecell h3 {
@@ -906,7 +906,7 @@ span.luxembourg{
 	}
 
 	.home-content-tablecell h1 {
-		font-size: 4rem;
+		font-size: 3.5rem;
 	}
 
 	.home-content-tablecell h1 br {
@@ -949,7 +949,7 @@ span.luxembourg{
 	}
 
 	.home-content-tablecell .home-bottom-text {
-		padding-right: 5%;
+		padding-right: 0;
 	}
 
 
@@ -964,7 +964,7 @@ span.luxembourg{
   .home-content-tablecell h4 {
     font-size: 2.5rem;
   }
-  
+
 	.scroll-icon {
 		right: 10px;
 	}
@@ -983,7 +983,7 @@ span.luxembourg{
 
 @media only screen and (max-width:500px) {
 	.home-content-tablecell .home-bottom-text {
-		padding-right: 5%;
+		padding-right: 0;
 	}
 
 	.home-content-tablecell h3 {
