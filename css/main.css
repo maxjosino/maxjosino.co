@@ -769,9 +769,9 @@ span.luxembourg{
 
 .home-content-tablecell .home-section-links li {
 	display: inline-block;
-	font-family: "HelveticaNeue-Regular", sans-serif;
+	font-family: "HelveticaNeue-Bold", sans-serif;
 	font-size: 1.6rem;
-	letter-spacing: .1rem;
+	/* letter-spacing: .1rem; */
 	color: #6E6E6E;
 	margin-right: 1.5rem;
 	margin-bottom: .6rem;
@@ -788,6 +788,31 @@ span.luxembourg{
 	letter-spacing: 0;
 	/* margin-left: .3rem; */
 	color: #fff;
+  display: inline-block;
+  position: relative;
+}
+
+/*underline-effect-hover*/
+a.underline-effect:after {
+	content: '';
+  position: absolute;
+  left: 0;
+  display: inline-block;
+  height: 1em;
+  width: 100%;
+  border-bottom: 1px solid;
+  margin-top: 10px;
+  opacity: 0;
+	-webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+	transition: opacity 0.35s, transform 0.35s;
+	-webkit-transform: scale(0,1);
+	transform: scale(0,1);
+}
+
+a.underline-effect:hover:after {
+  opacity: 1;
+	-webkit-transform: scale(1);
+	transform: scale(1);
 }
 
 .scroll-icon {
