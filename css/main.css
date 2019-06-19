@@ -323,7 +323,7 @@ ol, ul {
 	margin-left: 1.7rem;
 }
 ul li {
-	padding-left: .4rem;
+	/* padding-left: .4rem; */
 }
 ul ul, ul ol, ol ol, ol ul {
 	margin: .6rem 0 .6rem 1.7rem;
@@ -773,7 +773,7 @@ span.luxembourg{
 	font-size: 1.6rem;
 	/* letter-spacing: .1rem; */
 	color: #6E6E6E;
-	margin-right: 1.5rem;
+	/* margin-right: 1.5rem; */
 	margin-bottom: .6rem;
 }
 
@@ -1025,6 +1025,9 @@ th, td {
   .home-content-tablecell h4 {
     font-size: 2.3rem;
   }
+  .home-content-tablecell .home-section-links {
+    margin: 1.5rem 0 0 0;
+  }
 }
 
 @media only screen and (max-width:400px) {
@@ -1032,7 +1035,6 @@ th, td {
 		min-height: 654px;
 		background-position: 60% 0;
 	}
-
 
 	.home-content-tablecell .home-bottom-text {
 		padding-right: 0;
