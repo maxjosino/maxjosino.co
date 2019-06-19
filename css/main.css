@@ -952,14 +952,19 @@ span.luxembourg{
 		padding-right: 5%;
 	}
 
-	.home-content-tablecell h3 {
-		font-size: 1.7rem;
-	}
 
 	.home-content-tablecell h1 {
 		font-size: 3rem;
 	}
 
+  .home-content-tablecell h3 {
+    font-size: 1.7rem;
+  }
+
+  .home-content-tablecell h4 {
+    font-size: 2.5rem;
+  }
+  
 	.scroll-icon {
 		right: 10px;
 	}
@@ -989,7 +994,7 @@ span.luxembourg{
 		font-size: 3rem;
 	}
   .home-content-tablecell h4 {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
 }
 
