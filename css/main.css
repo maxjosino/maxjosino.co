@@ -78,7 +78,7 @@ body {
 
 body {
 	background: #050505;
-	font-family: "HelveticaNeue-Neue", serif;
+	font-family: "HelveticaNeue-Neue", sans-serif;
 	font-size: 1.6rem;
 	line-height: 3rem;
 	color: #353535;
@@ -110,7 +110,7 @@ a:focus {
  *
  * ------------------------------------------------------------------- */
 h1, h2, h3, h4, h5, h6, .h01, .h02, .h03, .h04, .h05, .h06 {
-	font-family: "HelveticaNeue-Bold", sans-serif;
+  font-family: "HelveticaNeue-Bold", sans-serif;
 	color: #6E6E6E;
 	font-style: normal;
 	text-rendering: optimizeLegibility;
@@ -752,7 +752,7 @@ header .header-logo a {
 }
 
 .home-content-tablecell h1 {
-	font-family: "HelveticaNeue-Bold", serif;
+	font-family: "HelveticaNeue-Bold", sans-serif;
 	font-size: 5.2rem;
 	line-height: 1.5;
 	color:#6E6E6E;
@@ -784,7 +784,7 @@ span.luxembourg{
 }
 
 .home-content-tablecell .home-section-links a {
-	font-family: "HelveticaNeue-Regular", serif;
+	font-family: "HelveticaNeue-Regular";
 	font-size: 1.8rem;
 	text-transform: none;
 	letter-spacing: 0;
