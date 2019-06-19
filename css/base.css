@@ -490,10 +490,7 @@ textarea {
 		padding: 0 18px;
 	}
 
-	.row-portfolio .row-portfolio {
-		margin-left: -18px;
-		margin-right: -18px;
-	}
+
 
 	[class*="col-"] {
 		padding: 0 18px;
@@ -518,19 +515,6 @@ textarea {
 		margin-right: -15px;
 	}
 
-
-	.row-portfolio {
-		width: auto;
-		padding-left: 30px;
-		padding-right: 30px;
-	}
-
-	.row-portfolio .row-portfolio {
-		padding-left: 0;
-		padding-right: 0;
-		margin-left: -15px;
-		margin-right: -15px;
-	}
 
 	[class*="col-"] {
 		padding: 0 15px;
@@ -572,16 +556,6 @@ textarea {
 	}
 
 	.row .row {
-		margin-left: -10px;
-		margin-right: -10px;
-	}
-
-	.row-portfolio {
-		padding-left: 25px;
-		padding-right: 25px;
-	}
-
-	.row-portfolio .row-portfolio {
 		margin-left: -10px;
 		margin-right: -10px;
 	}
@@ -632,6 +606,11 @@ textarea {
 		float: none;
 	}
 
+	.col-five {
+		/*width: 41.66667%;*/
+		width: 100%;
+
+	}
 }
 
 /* ===================================================================
@@ -787,8 +766,16 @@ textarea {
 		clear: both;
 	}
 
-}
+	.col-five {
+		/*width: 41.66667%;*/
+		width: 100%;
+	}
+	h5.experience{
+		margin-bottom:0.5rem;
+	}
 
+
+}
 /* -------------------------------------------------------------------
  * stack on small mobile devices - (_grid.scss)
  * ------------------------------------------------------------------- */

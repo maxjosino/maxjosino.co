@@ -942,12 +942,14 @@ span.luxembourg{
 	}
 
 	.home-content-tablecell .row {
-		padding-top: 9rem;
-		padding-bottom: 3rem;
+		/* padding-top: 9rem; */
+		/* padding-bottom: 3rem; */
+    padding-top: 4rem;
+    padding-bottom: 0rem;
 	}
 
 	.home-content-tablecell .home-bottom-text {
-		padding-right: 10%;
+		padding-right: 5%;
 	}
 
 	.home-content-tablecell h3 {
@@ -955,12 +957,22 @@ span.luxembourg{
 	}
 
 	.home-content-tablecell h1 {
-		font-size: 3.8rem;
+		font-size: 3rem;
 	}
 
 	.scroll-icon {
 		right: 10px;
 	}
+
+  strong{
+    line-height: 0rem;
+}
+  th, td {
+      padding: 1.5rem 1rem;
+      text-align: left;
+      border-bottom: 0px;
+      vertical-align: top;
+  }
 
 }
 
@@ -970,13 +982,15 @@ span.luxembourg{
 	}
 
 	.home-content-tablecell h3 {
-		font-size: 1.5rem;
+		font-size: 1.7rem;
 	}
 
 	.home-content-tablecell h1 {
-		font-size: 3.4rem;
+		font-size: 3rem;
 	}
-
+  .home-content-tablecell h4 {
+    font-size: 3rem;
+  }
 }
 
 @media only screen and (max-width:400px) {
