@@ -153,7 +153,7 @@ h4, .h04 {
 h5, .h05 {
 	font-size: 1.8rem;
 	line-height: 1.7;
-	letter-spacing: .2rem;
+	/* letter-spacing: .2rem; */
 }
 h6, .h06 {
 	font-size: 1.3rem;
