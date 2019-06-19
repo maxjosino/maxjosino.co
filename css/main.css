@@ -732,7 +732,7 @@ header .header-logo a {
 
 .home-content-tablecell {
 	display: table-cell;
-	vertical-align: middle;
+	vertical-align: bottom;
 	z-index: 500;
 }
 
@@ -740,6 +740,12 @@ header .header-logo a {
 	position: relative;
 	padding-top: 4.2rem;
 	padding-bottom: 3rem;
+}
+
+.home-content-tablecell .intro-superior{
+  position: relative;
+  padding-top: 12rem;
+  padding-bottom: 3rem;
 }
 
 .home-content-tablecell h3 {
@@ -757,14 +763,18 @@ header .header-logo a {
 	color:#6E6E6E;
 }
 
-span.luxembourg{
+span.white-text-intro{
+  display: block;
+	color: #fff;
+}
+span.white-text{
 	color: #fff;
 }
 
 .home-content-tablecell .home-section-links {
 	display: inline-block;
 	list-style: none;
-	margin: 4.8rem 0 0 0;
+	margin: 4rem 0 2rem 0;
 }
 
 .home-content-tablecell .home-section-links li {
@@ -881,14 +891,9 @@ th, td {
 	#home {
 		background-position: 60% 0;
 	}
-	.home-content-tablecell h3 {
-		font-size: 2.1rem;
-		background-repeat: no-repeat;
-		background-position: -1010px 0px;
-		-webkit-background-size: cover;
-		-moz-background-size: cover;
-		background-size: cover;
-		position: relative;
+	.home-content-tablecell h2 {
+		font-size: 2.6rem;
+		margin-bottom: 0rem;
 	}
 
 @media only screen and (max-width:1200px) {
@@ -921,7 +926,7 @@ th, td {
 		background-position: 60% 0;
 	}
   .home-content-tablecell .row {
-    padding-top: 4rem;
+    padding-top: 5rem;
     padding-bottom: 0rem;
   }
 
@@ -945,7 +950,7 @@ th, td {
 	}
 
 	.home-content-tablecell .home-section-links {
-		margin: 4.2rem 0 0 0;
+		margin: 2.5rem 0 2.5em 0;
 	}
 
 	.home-content-tablecell .home-section-links li {
@@ -969,7 +974,7 @@ th, td {
 	}
 
 	.home-content-tablecell {
-		vertical-align: middle;
+		vertical-align: bottom;
 	}
 
 	.home-content-tablecell .row {
@@ -1026,7 +1031,7 @@ th, td {
     font-size: 2.3rem;
   }
   .home-content-tablecell .home-section-links {
-    margin: 1.5rem 0 2.5em 0;
+    margin: 2.5rem 0 2.5em 0;
   }
 }
 
