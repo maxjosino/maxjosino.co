@@ -437,7 +437,7 @@ table {
 	width: 100%;
 	max-width: 100%;
 	font-family: "HelveticaNeue-Regular", sans-serif;
-	color:#6E6E6E
+	color:#6E6E6E;
 }
 
 th, td {
@@ -784,7 +784,7 @@ span.luxembourg{
 
 .home-content-tablecell .home-section-links a {
 	font-family: "HelveticaNeue-Regular";
-	font-size: 1.8rem;
+	font-size: 1.6rem;
 	text-transform: none;
 	letter-spacing: 0;
 	color: #FFFFFF;
