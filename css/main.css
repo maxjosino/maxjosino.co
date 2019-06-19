@@ -846,13 +846,15 @@ span.luxembourg{
  * home section
  * ------------------------------------------------------------------- */
 
-@media only screen and (min-width:1201px) {
-	#home {
-		background-position: center;
-	}
+
+
+th, td {
+    padding: 1.5rem 0rem;
+    text-align: left;
+    border-bottom: 0px;
+    vertical-align: text-top;
 }
 
-@media only screen and (max-width:1200px) {
 	#home {
 		background-position: 60% 0;
 	}
@@ -866,10 +868,13 @@ span.luxembourg{
 		position: relative;
 	}
 
-	.home-content-tablecell h1 {
-		font-size: 5rem;
-	}
-
+@media only screen and (max-width:1200px) {
+  .home-content-tablecell h1 {
+      font-family: "HelveticaNeue-Bold", serif;
+      font-size: 4.5rem;
+      line-height: 1.5;
+      color: #6E6E6E;
+  }
 }
 
 @media only screen and (max-width:1024px) {

@@ -646,6 +646,15 @@ textarea {
 /* -------------------------------------------------------------------
  * small screens - (_grid.scss)
  * ------------------------------------------------------------------- */
+ @media only screen and (min-width:1025px) and (max-width:1200px) {
+	 .col-five {
+	     width: 45%;
+	 }
+	 .col-two, .col-1-6 {
+    width: 10%;
+		}
+ }
+
 @media screen and (max-width:1024px) {
 	.block-s-1-6 .bgrid {
 		width: 16.66667%;
