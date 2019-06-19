@@ -384,30 +384,6 @@ textarea {
 
 
 
-.row-portfolio {
-	width: 100%;
-	max-width: 100%;
-	margin: 0 auto;
-}
-
-.row-portfolio:before,
-.row-portfolio:after {
-	content: "";
-	display: table;
-}
-
-.row-portfolio:after {
-	clear: both;
-}
-
-.row-portfolio .row-portfolio {
-	width: auto;
-	max-width: none;
-	margin-left: -20px;
-	margin-right: -20px;
-}
-
-
 [class*="col-"],
 .bgrid {
 	float: left;
@@ -481,20 +457,29 @@ textarea {
  * small screens - (_grid.scss)
  * ------------------------------------------------------------------- */
 @media screen and (max-width:1024px) {
+
 	.row .row {
 		margin-left: -18px;
 		margin-right: -18px;
 	}
+	.row {
+		width: auto;
+		padding-left: 30px;
+		padding-right: 30px;
+	}
 
 	[class*="col-"] {
 		padding: 0 18px;
 	}
 
-
+	.col-five {
+	    width: 100%;
+	}
 
 	[class*="col-"] {
-		padding: 0 18px;
+		padding: 0 10px;
 	}
+
 
 }
 
@@ -518,11 +503,10 @@ textarea {
 	.col-five {
 		/*width: 41.66667%;*/
 		width: 100%;
-
 	}
-	
+
 	[class*="col-"] {
-		padding: 0 15px;
+		padding: 0 10px;
 	}
 
 	.tab-1-4 {
@@ -566,7 +550,7 @@ textarea {
 	}
 
 	[class*="col-"] {
-		padding: 0 10px;
+		/* padding: 0 10px; */
 	}
 
 	.mob-1-4 {
