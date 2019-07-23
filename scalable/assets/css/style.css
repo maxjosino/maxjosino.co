@@ -12,66 +12,24 @@ body {
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
     background-color: #cfdde9;
-
 }
 video {
   width: 100%    !important;
   height: auto   !important;
 }
-/*----------------------------
----------- RESET CSS ---------
-----------------------------*/
 
-a,
-a:hover {
-    color: #666666;
-}
-a,
-a:hover,
-a:focus,
-a:active,{
-    text-decoration: none;
-    border: none;
-    outline: 0;
-}
-.mainmenu li a.appao-btn,
-.appao-btn {
-  color: #fff;
-  padding: 6px 25px;
-  display: inline-block;
-	cursor: pointer;
-	font-weight: bold;
-}
-.btnSketch{
-  background: url(../img/btnSketch.png) no-repeat;
-}
-.btnPrototype{
-  background: url(../img/btnSketch.png) no-repeat;
-}
-
-/*--------------------------------------
--------- HERO AREA CSS START --------
----------------------------------------*/
 section .container{
   height: 100%;
 }
-.hero-area {
-    background-image: url(../img/bgd.jpg);
-    background-repeat: no-repeat;
-    background-size:cover;
-    height: 100vh;
+.preview-area {
+  background: url('../img/bgd.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+  height: 100vh;
 }
 
-/*------------------------------------
---------- HERO AREA CSS END ---------
-------------------------------------*/
-
-/*--------------------------------------
--------- FEATURE AREA CSS START --------
----------------------------------------*/
-.feature-area {
+.prototype-area {
     background: #cfdde9;
 }
-/*--------------------------------------
---------- FEATURE AREA CSS END ---------
----------------------------------------*/

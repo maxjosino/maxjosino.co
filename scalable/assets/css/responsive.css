@@ -1,32 +1,14 @@
 
 @media only screen and (max-width: 991px){
-
-
 	.header {
 		padding: 15px 0;
 	}
-
-
-}
-@media only screen and (max-width: 767px){
-	.hero-area-content {
-		padding-top: 0;
-	}
-
 }
 @media only screen and (max-width: 576px){
 
 }
 @media only screen and (max-width: 420px){
-	.hero-area-content .appao-btn {
-		padding: 5px 18px;
-		margin-right: 5px;
-	}
-
-	.hero-area-content {
-		padding-bottom: 35px;
-	}
-	.hero-area {
+	.preview-area {
 		padding-top: 130px;
 	}
 
