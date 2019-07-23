@@ -1,0 +1,77 @@
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+html,body{
+  height: 100%;
+  margin: 0;
+}
+
+body {
+    line-height: 24px;
+    font-size: 14px;
+    color: #666666;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    background-color: #cfdde9;
+
+}
+video {
+  width: 100%    !important;
+  height: auto   !important;
+}
+/*----------------------------
+---------- RESET CSS ---------
+----------------------------*/
+
+a,
+a:hover {
+    color: #666666;
+}
+a,
+a:hover,
+a:focus,
+a:active,{
+    text-decoration: none;
+    border: none;
+    outline: 0;
+}
+.mainmenu li a.appao-btn,
+.appao-btn {
+  color: #fff;
+  padding: 6px 25px;
+  display: inline-block;
+	cursor: pointer;
+	font-weight: bold;
+}
+.btnSketch{
+  background: url(../img/btnSketch.png) no-repeat;
+}
+.btnPrototype{
+  background: url(../img/btnSketch.png) no-repeat;
+}
+
+/*--------------------------------------
+-------- HERO AREA CSS START --------
+---------------------------------------*/
+section .container{
+  height: 100%;
+}
+.hero-area {
+    background-image: url(../img/bgd.jpg);
+    background-repeat: no-repeat;
+    background-size:cover;
+    height: 100vh;
+}
+
+/*------------------------------------
+--------- HERO AREA CSS END ---------
+------------------------------------*/
+
+/*--------------------------------------
+-------- FEATURE AREA CSS START --------
+---------------------------------------*/
+.feature-area {
+    background: #cfdde9;
+}
+/*--------------------------------------
+--------- FEATURE AREA CSS END ---------
+---------------------------------------*/
