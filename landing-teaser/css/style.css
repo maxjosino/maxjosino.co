@@ -15,7 +15,14 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Nunito', sans-serif;
   font-weight: 900;
 }
-
+a{
+  -moz-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	-webkit-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+	cursor: pointer;
+}
 p {
   padding: 0;
   margin-bottom: 12px;
