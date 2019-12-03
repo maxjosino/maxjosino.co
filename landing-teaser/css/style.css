@@ -109,6 +109,12 @@ a:hover, a:focus {
   font-size: 28px;
 }
 
+#header h4 {
+  color: #343D3D;
+  /* font-weight: 400;
+  font-size: 28px; */
+}
+
 #header hr {
   width: 20%;
   border: 1px solid #c3c9c9;
