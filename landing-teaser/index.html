@@ -6,6 +6,7 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Nunito:400,800&display=swap" rel="stylesheet">
@@ -20,7 +21,32 @@
   <!-- Apple Stylesheet File -->
   <link rel="stylesheet" href="css/apple.css">
 
+  <script>
+  $(document).ready(function(){
+    // Add smooth scrolling to all links
+    $("a").on('click', function(event) {
 
+      // Make sure this.hash has a value before overriding default behavior
+      if (this.hash !== "") {
+        // Prevent default anchor click behavior
+        event.preventDefault();
+
+        // Store hash
+        var hash = this.hash;
+
+        // Using jQuery's animate() method to add smooth page scroll
+        // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+        $('html, body').animate({
+          scrollTop: $(hash).offset().top
+        }, 800, function(){
+
+          // Add hash (#) to URL when done scrolling (default click behavior)
+          window.location.hash = hash;
+        });
+      } // End if
+    });
+  });
+  </script>
 </head>
 
 <body>
@@ -30,7 +56,7 @@
       <div class="row">
         <div class="col-md-6 mt">
           <h4 color="5dca88"><img width="160" src="img/creditas-store.gif" alt="Creditas Store"> </h4>
-          <h2>O iPhone que voce quer, agora vai caber no seu bolso!</h2>
+          <h2>O iPhone que você quer, agora vai caber no seu bolso!</h2>
           <hr>
           <p>Aguarde nosso <strong>lançamento no próximo dia 13</strong> e tenha as melhores condições do mercado. Compre seu iPhone 11 por <strong>R$145,80 por mês</strong>.</p>
           <a href="#saibamaisiphone11">Conheça mais sobre esse modelo</a>
@@ -46,14 +72,14 @@
   </div>
   <!--/Header -->
   <!-- Apple product -->
-  <div>
+  <div class="iphone11area" id="saibamaisiphone11">
     <div id="p1ca550">
 
     <div class="p1ca550-main-content-wrapper p1ca550-layout-orig p1ca550-layout-light">
         <section class="p1ca550-content-container p1ca550-section-intro">
             <div class="p1ca550-row p1ca550-row-gutter p1ca550-row-gutter-intro">
                 <div class="p1ca550-small-12 p1ca550-columns">
-                    <h1 class="p1ca550-main-logo">iPhone 11</h1>
+                    <h1 class="p1ca550-main-logo" id="">iPhone 11</h1>
                 </div>
             </div>
             <div class="p1ca550-row p1ca550-row-gutter p1ca550-heading">

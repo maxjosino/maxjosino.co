@@ -34,7 +34,7 @@ p {
   margin-top: 10px;
 }
 
-html, body {
+html, body, .header, .iphone11area{
   height: 100%;
 }
 
