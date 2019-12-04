@@ -11,9 +11,18 @@ body {
   color: #444;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h6 {
   font-family: 'Nunito', sans-serif;
   font-weight: 900;
+}
+h3 {
+  font-family: 'Nunito-sans', sans-serif;
+  font-weight: 600;
+  color: #343D3D;
+}
+h3 strong{
+  font-family: 'Nunito-sans', sans-serif;
+  font-weight: 700;
 }
 a{
   -moz-transition: all 0.3s ease-in-out;
@@ -30,10 +39,13 @@ p {
   font-weight: 300;
   font-size: 20px;
   line-height: 30px;
-  color: #666;
+  color: #343D3D;
   margin-top: 10px;
 }
 
+p strong{
+ font-family: 'Nunito-sans', sans-serif;
+}
 html, body, .header, .iphone11area{
   height: 100%;
 }
@@ -47,7 +59,7 @@ html, body, .header, .iphone11area{
 }
 
 .mt {
-  margin-top: 14%;
+  margin-top: 8%;
 }
 
 .mb {
@@ -114,7 +126,7 @@ a:hover, a:focus {
 #header h3 {
   color: #343D3D;
   font-weight: 400;
-  font-size: 28px;
+  font-size: 20px;
 }
 
 #header h4 {
