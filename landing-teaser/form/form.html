@@ -1,48 +1,36 @@
-<!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
-<body style="background:#000;">
 
-<form id="form" target="_self" onsubmit="postToGoogle();" action="" autocomplete="off">
-<input id="emailField" name="entry.1652388533" placeholder="Enter your email" type="email" required>
-<button id="send" type="submit" class="common_btn">Register Now</button>
+<body>
+  <form id="test-form">
+
+  <div>
+    <label>Field 1</label>
+    <input type="text" name="form_field_1" placeholder="Field 1"/>
+  </div>
+  <div>
+    <button type="submit"id="submit-form">Submit</button>
+  </div>
+
 </form>
 
-<h3 id="success-msg" style="text-align: center !important; margin-top:190px !important; display:none; color:#fff"> Your Request has been posted to Google Spreadsheet</h3>
-
 <script>
-function postToGoogle() {
-        //
-        //         var emailField = $("#emailField").val();
-        //
-				// if(field2 == ""){
-				// 	alert('Please Fill Your Email');
-				// 	document.getElementById("emailField").focus();
-				// 	return false;
-				// }
-				  $.ajax({
-          url: "https://docs.google.com/forms/d/e/1FAIpQLSfiSWBbSgPTxFXQQ7v22GoeweTWnGBCOIyuN8RMhOotri836w/viewform?usp=sf_link/formResponse?",
-					data: {"entry.1652388533": emailField},
-                    type: "POST",
-                    dataType: "xml",
-                    success: function(d){
-                              alert("max");
-                            },
-					error: function(x, y, z)
-						{
-              alert("max2");
-							$('#success-msg').show();
-							$('#form').hide();
+var $form = $('form#test-form'),
+    url = 'https://script.google.com/a/creditas.com.br/macros/s/AKfycbwR74qCCuA3UizY9moHhnd7FHvsNhrUol0ONzna9sjaa36VdTXh/exec'
 
-						}
-                });
-				// return false;
-            }
+$('#submit-form').on('click', function(e) {
+  e.preventDefault();
+  var jqxhr = $.ajax({
+    url: url,
+    method: "GET",
+    dataType: "json",
+    data: $form.serializeObject()
+  }).success(
+    // do something
+  );
+})
 </script>
 </body>
 </html>
