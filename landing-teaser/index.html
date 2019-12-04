@@ -62,10 +62,7 @@
           <p>Aguarde até o dia <strong>13 de Dezembro</strong> e compre com a menor parcela do Brasil.</p>
           <h3>A partir de <strong>24x R$ 145,80</strong>.x</h3>
           <a href="#saibamaisiphone11">Conheça mais sobre o modelo</a>
-          <form name="submit-to-google-sheet">
-            <input name="email" type="email" placeholder="Email" required>
-            <button type="submit">Cadastrar</button>
-          </form>
+<iframe src="https://script.google.com/a/creditas.com.br/macros/s/AKfycbyWu6yNzpN3yp5Dk88fHXzdj18Z4pNrAn_rvuWYqSg/dev"></iframe>
 
         </div>
 
@@ -359,16 +356,6 @@
     </div>
   </div> -->
 
-  <script>
-    const scriptURL = 'https://script.google.com/a/creditas.com.br/macros/s/AKfycbwM0J1XRGSNcVaIVmEf0GCNVjgukgseHfWspivvQuc-yDynOUA/exec'
-    const form = document.forms['submit-to-google-sheet']
 
-    form.addEventListener('submit', e => {
-      e.preventDefault()
-      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-        .then(response => console.log('Success!', response))
-        .catch(error => console.error('Error!', error.message))
-    })
-  </script>
 </body>
 </html>
