@@ -62,7 +62,18 @@
           <p>Aguarde até o dia <strong>13 de Dezembro</strong> e compre com a menor parcela do Brasil.</p>
           <h3>A partir de <strong>24x R$ 145,80</strong>.x</h3>
           <a href="#saibamaisiphone11">Conheça mais sobre o modelo</a>
+          <div>
+            <form id="test-form">
 
+            <div>
+              <input type="text" name="Endereço de E-mail" placeholder="Digite seu e-mail"/>
+            </div>
+            <div>
+              <button type="submit"id="submit-form">Enviar</button>
+            </div>
+
+          </form>
+          </div>
         </div>
 
         <div class="col-md-6 centered">
@@ -355,6 +366,37 @@
     </div>
   </div> -->
 
+  <script>
+  $.fn.serializeObject = function() {
+  	var o = {};
+  	var a = this.serializeArray();
+  	$.each(a, function() {
+  		if (o[this.name]) {
+  			if (!o[this.name].push) {
+  				o[this.name] = [o[this.name]];
+  			}
+  			o[this.name].push(this.value || '');
+  		} else {
+  			o[this.name] = this.value || '';
+  		}
+  	});
+  	return o;
+  };
 
+  var $form = $('form#test-form'),
+      //url = 'https://script.google.com/macros/s/AKfycbxLarVG8hcqD6DTXAd5FITK9lZhy_zF-DsBtEVCdAOfah5yT04/exec'
+      url = 'https://script.google.com/a/creditas.com.br/macros/s/AKfycbwR74qCCuA3UizY9moHhnd7FHvsNhrUol0ONzna9sjaa36VdTXh/exec'
+  $('#submit-form').on('click', function(e) {
+    e.preventDefault();
+    var jqxhr = $.ajax({
+      url: url,
+      method: "GET",
+      dataType: "jsonp",
+      data: $form.serializeObject()
+    }).success(function(e){console.log(e);}
+      // do something
+    );
+  })
+  </script>
 </body>
 </html>
