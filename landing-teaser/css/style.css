@@ -38,6 +38,9 @@ html, body, .header, .iphone11area{
   height: 100%;
 }
 
+#creditasLogo{
+  width: 160px;
+}
 
 .centered {
   text-align: center
@@ -131,8 +134,14 @@ a:hover, a:focus {
   #header {
     padding-top: 0;
   }
+  #creditasLogo{
+    width: 160px;
+  }
+  .h4 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
   img{
-    margin-top: 14%;
     width: 80%;
   }
   .mt {
