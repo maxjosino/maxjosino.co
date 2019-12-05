@@ -65,14 +65,17 @@
           <p>Aguarde até o dia <strong>13 de Dezembro</strong> e compre com a menor parcela do Brasil.</p>
           <h3>A partir de <strong>24x R$ 145,80</strong>.</h3>
 
-          <div>
+          <div id="container-newsletter">
             <h6>Seja avisado sobre o lançamento!</h6>
             <form id="newsletter-form">
-              <input type="text" name="Endereço de E-mail" placeholder="Digite seu e-mail"/>
+              <input type="text" id="email_field" name="Endereço de E-mail" placeholder="Digite seu e-mail"/>
+              <label id="error_email"></label>
               <button type="submit"id="submit-form">Enviar</button>
             </form>
           </div>
-
+          <div id="newsletter-success">
+            <h6>Obrigado por se cadastrar!</h6>
+          </div>
           <!-- <a href="#saibamaisiphone11">Conheça mais sobre o modelo</a> -->
         </div>
 
@@ -385,16 +388,47 @@
 
   var $form = $('form#newsletter-form'),
       url = 'https://script.google.com/a/creditas.com.br/macros/s/AKfycbwR74qCCuA3UizY9moHhnd7FHvsNhrUol0ONzna9sjaa36VdTXh/exec'
+
+      // $("#email_field").keyup(function(){
+      //
+      //      var email = $("#email").val();
+      //      var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+      //
+      //      if (!filter.test(email)) {
+      //        $("#error_email").text("Este não é um endereço de e-mail válido.");
+      //        email.focus;
+      //        //return false;
+      //     } else {
+      //     	  $("#error_email").text("Ótimo");
+      //     }
+      //
+      //  });
+//
   $('#submit-form').on('click', function(e) {
-    e.preventDefault();
-    var jqxhr = $.ajax({
-      url: url,
-      method: "GET",
-      dataType: "jsonp",
-      data: $form.serializeObject()
-    }).success(function(e){console.log(e);}
-      // do something
-    );
+
+    //email input validation
+    var email = $("#email_field").val();
+        var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        if (!filter.test(email)) {
+          $("#error_email").text("Este não é um endereço de e-mail válido.");
+          return false;
+        } else {
+
+        }
+
+
+    //send
+      e.preventDefault();
+      var jqxhr = $.ajax({
+        url: url,
+        method: "GET",
+        dataType: "jsonp",
+        data: $form.serializeObject(),
+      })
+      $("#container-newsletter").hide();
+      $("#newsletter-success").show();
+
+      alert('msx');
   })
   </script>
 </body>

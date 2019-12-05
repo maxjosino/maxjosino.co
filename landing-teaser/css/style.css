@@ -156,9 +156,9 @@ form input{
   padding: 8px;
   line-height: 24px;
   color:#8A9696;
+  display: block;
 }
 form button{
-  margin-top:2%;
   width: 40%;
   font-size: 18px;
   padding: 9px 9px;
@@ -169,6 +169,19 @@ form button{
   border:none;
   color:#fff;
 }
+
+#newsletter-success{
+  display: none;
+}
+#error_email{
+  font-family: 'Nunito-sans', sans-serif;
+  font-weight: 400;
+  color:red;
+  width: 80%;
+  height:24px;
+  margin-bottom: 0px;
+}
+
 @media (max-width: 768px ) {
   #header {
     padding-top: 0;
