@@ -157,30 +157,36 @@ form input{
   line-height: 24px;
   color:#8A9696;
   display: block;
+  outline: none;
 }
 form button{
+  margin-top:32px;
   width: 40%;
-  font-size: 18px;
-  padding: 9px 9px;
+  font-size: 16px;
+  padding: 10px;
   line-height: 1.2;
   background: #11BB77;
   border-radius: 4px;
   box-shadow: none;
   border:none;
   color:#fff;
+  height: 40px;
+  outline: none;
+
 }
 
 #newsletter-success{
   display: none;
 }
-#error_email{
+/* #error_email{
   font-family: 'Nunito-sans', sans-serif;
   font-weight: 400;
+  font-size: 12 px;
   color:red;
   width: 80%;
-  height:24px;
+  height:40px;
   margin-bottom: 0px;
-}
+} */
 
 @media (max-width: 768px ) {
   #header {

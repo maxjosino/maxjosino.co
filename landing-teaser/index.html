@@ -58,7 +58,7 @@
   <div id="header">
     <div class="container">
       <div class="row">
-        <div class="col-md-6 mt">
+        <div class="col-md-6 mt" style="margin-bottom:10%">
           <h4 color="5dca88"><a href="index.html"><img src="img/creditas-store.gif" alt="Creditas Store" id="creditasLogo"></a></h4>
           <h2>Pensando em trocar de celular até o natal?</h2>
           <hr>
@@ -66,11 +66,10 @@
           <h3>A partir de <strong>24x R$ 145,80</strong>.</h3>
 
           <div id="container-newsletter">
-            <h6>Seja avisado sobre o lançamento!</h6>
+            <h6>Cadastre-se e seja avisado sobre o lançamento!</h6>
             <form id="newsletter-form">
-              <input type="text" id="email_field" name="Endereço de E-mail" placeholder="Digite seu e-mail"/>
-              <label id="error_email"></label>
-              <button type="submit"id="submit-form">Enviar</button>
+              <input id="email_field" name="Endereço de E-mail" type="email" placeholder="Digite seu e-mail" required/>
+              <button type="submit" id="submit-form">Cadastrar</button>
             </form>
           </div>
           <div id="newsletter-success">
@@ -84,12 +83,28 @@
         </div>
       </div>
       <!--/row -->
+      <div class="row">
+        <div class="col-md-12 centered">
+        </div>
+      </div>
+      <!--/row -->
+      <div class="row">
+        <div class="col-md-12 centered">
+        </div>
+      </div>
+      <!--/row -->
+      <div class="row">
+        <div class="col-md-12 centered">
+          <h2>Conheça mais sobre o modelo</h2>
+        </div>
+      </div>
+      <!--/row -->
     </div>
     <!-- /.container -->
   </div>
   <!--/Header -->
   <!-- Apple product -->
-  <div class="iphone11area" id="saibamaisiphone11">
+  <div class="iphone11area .mt-10" id="saibamaisiphone11">
     <div id="p1ca550">
 
     <div class="p1ca550-main-content-wrapper p1ca550-layout-orig p1ca550-layout-light">
@@ -389,35 +404,32 @@
   var $form = $('form#newsletter-form'),
       url = 'https://script.google.com/a/creditas.com.br/macros/s/AKfycbwR74qCCuA3UizY9moHhnd7FHvsNhrUol0ONzna9sjaa36VdTXh/exec'
 
-      // $("#email_field").keyup(function(){
-      //
-      //      var email = $("#email").val();
-      //      var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-      //
-      //      if (!filter.test(email)) {
-      //        $("#error_email").text("Este não é um endereço de e-mail válido.");
-      //        email.focus;
-      //        //return false;
-      //     } else {
-      //     	  $("#error_email").text("Ótimo");
-      //     }
-      //
-      //  });
-//
+      $("#email_field").keyup(function(){
+
+           var email = $("#email_field").val();
+           var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+           if (!filter.test(email)) {
+             $("#email_field").css("border-color","red");
+          } else {
+          	  $("#email_field").css("border-color","#11BB77");
+          }
+
+       });
+
+  //send
   $('#submit-form').on('click', function(e) {
 
     //email input validation
-    var email = $("#email_field").val();
-        var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-        if (!filter.test(email)) {
-          $("#error_email").text("Este não é um endereço de e-mail válido.");
-          return false;
-        } else {
+    // var email = $("#email_field").val();
+    //     var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    //     if (!filter.test(email)) {
+    //       $("#error_email").text("Este não é um endereço de e-mail válido.");
+    //       // email.focus();
+    //       return false;
+    //     } else {
+    //
+    //     }
 
-        }
-
-
-    //send
       e.preventDefault();
       var jqxhr = $.ajax({
         url: url,
@@ -428,7 +440,6 @@
       $("#container-newsletter").hide();
       $("#newsletter-success").show();
 
-      alert('msx');
   })
   </script>
 </body>
