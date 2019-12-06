@@ -69,6 +69,7 @@
             <h6>Cadastre-se e seja avisado sobre o lançamento!</h6>
             <form id="newsletter-form">
               <input id="email_field" name="Endereço de E-mail" type="email" placeholder="Digite seu e-mail" required/>
+              <h7 id="error_email">Este não é um endereço de e-mail válido.</h7>
               <button type="submit" id="submit-form">Cadastrar</button>
             </form>
           </div>
@@ -117,11 +118,6 @@
             <div class="p1ca550-row p1ca550-row-gutter p1ca550-heading">
                 <div class="p1ca550-column p1ca550-small-12">
                     <h2 class="p1ca550-content-section-heading p1ca550-center p1ca550-svg" data-layers="RX-S1_Headline">Tudo. Na medida certa.</h2>
-
-                    <!-- <div class="p1ca550-row p1ca550-desktop-hide">
-                        <div class="p1ca550-small-12 p1ca550-background-image p1ca550-background-image-hero">
-                        </div>
-                    </div> -->
 
                     <p class="p1ca550-section-text p1ca550-center" data-layers="S1_Para_1">Novo sistema de câmera dupla. Bateria que dura o dia todo<sup class="p1ca550-sup">1</sup>. O vidro mais resistente em um smartphone. <br class="p1ca550-desktop-break">E o chip mais rápido da Apple.</p>
                 </div>
@@ -395,6 +391,7 @@
   var $form = $('form#newsletter-form'),
       url = 'https://script.google.com/a/creditas.com.br/macros/s/AKfycbwR74qCCuA3UizY9moHhnd7FHvsNhrUol0ONzna9sjaa36VdTXh/exec'
 
+      //validating the email while user is typing
       $("#email_field").keyup(function(){
 
            var email = $("#email_field").val();
@@ -403,24 +400,26 @@
              $("#email_field").css("border-color","red");
           } else {
           	  $("#email_field").css("border-color","#11BB77");
+              $("#error_email").css("color","white");
+
           }
 
        });
 
-  //send
+  //actions done after click on submit button
   $('#submit-form').on('click', function(e) {
 
-    //email input validation
+    //validating the email before sending
     var email = $("#email_field").val();
         var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
         if (!filter.test(email)) {
-          console.log("Este não é um endereço de e-mail válido");
-          // email.focus();
+          $("#error_email").css("color","red");
           return false;
         } else {
 
         }
 
+    //sending the email
       e.preventDefault();
       var jqxhr = $.ajax({
         url: url,
@@ -428,6 +427,8 @@
         dataType: "jsonp",
         data: $form.serializeObject(),
       })
+
+      //showing success message
       $("#container-newsletter").hide();
       $("#newsletter-success").show();
 
