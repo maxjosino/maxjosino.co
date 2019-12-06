@@ -177,6 +177,7 @@ form button{
 
 #newsletter-success{
   display: none;
+  height: 160px;
 }
 /* #error_email{
   font-family: 'Nunito-sans', sans-serif;
