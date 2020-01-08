@@ -30,7 +30,7 @@
 
    <!-- favicons
 	================================================== -->
-	<link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
+	<!-- <link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
 	<link rel="icon" href="img/favicon/favicon.ico" type="image/x-icon">
   <link rel="apple-touch-icon-precomposed" sizes="57x57" href="img/favicon/apple-touch-icon-57x57.png" />
   <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/favicon/apple-touch-icon-114x114.png" />
@@ -44,7 +44,7 @@
   <link rel="icon" type="image/png" href="img/favicon/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/png" href="img/favicon/favicon-32x32.png" sizes="32x32" />
   <link rel="icon" type="image/png" href="img/favicon/favicon-16x16.png" sizes="16x16" />
-  <link rel="icon" type="image/png" href="fimg/favicon/avicon-128.png" sizes="128x128" />
+  <link rel="icon" type="image/png" href="fimg/favicon/avicon-128.png" sizes="128x128" /> -->
   <meta name="application-name" content="&nbsp;"/>
   <meta name="msapplication-TileColor" content="#FFFFFF" />
   <meta name="msapplication-TileImage" content="img/favicon/mstile-144x144.png" />
@@ -75,7 +75,7 @@
 		   		<div class="col-twelve">
 			  			<div class="home-bottom-text">
 
-			  				<h2 class="animate-intro welcome" ><span>&#x270C;</span>Hello / Olá!</h2>
+			  				<h2 class="animate-intro welcome" >Hello / Olá! <span id="myEmoji"></span></h2>
 				  			<h1 class="animate-intro" >
                                 My name is Max Josino.
                   <span class="white-text-intro"> I’m a Brazilian Product Designer & Developer based in Luxembourg.</span>
@@ -175,6 +175,24 @@
          });
      }, 3000);
   });
+
+//random emoji hello message
+  $(document).ready(function() {
+      var quotes = new Array('✌️','😊','😀','👋','🤙'),
+      randno = quotes[Math.floor( Math.random() * quotes.length )];
+      $('#myEmoji').text( randno );
+  });
+
+//random favicon
+(function() {
+    var arrFavicon = ['link_favicon1', 'link_favicon2', 'link_favicon3']; //put your favicon links here
+
+    var link = document.createElement('link');
+    link.type = 'image/x-icon';
+    link.rel = 'shortcut icon';
+    link.href = arrFavicon[Math.floor(Math.random()*arrFavicon.length)]; //don't need to change here no matter how many favicons you have
+    document.getElementsByTagName('head')[0].appendChild(link);
+}());
    </script>
 
 	 <script>
