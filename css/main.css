@@ -796,8 +796,8 @@ span.white-text{
 	letter-spacing: 0;
 	/* margin-left: .3rem; */
 	color: #fff;
-  display: inline-block;
-  position: relative;
+	display: inline-block;
+	/* position: relative; */
 }
 
 /*underline-effect-hover*/
