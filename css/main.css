@@ -768,6 +768,10 @@ span.white-text-intro{
 span.white-text{
 	color: #fff;
 }
+#myAvatar{
+  width: 50%
+  height:50%;
+}
 
 .home-content-tablecell .home-section-links {
 	display: inline-block;
