@@ -88,10 +88,9 @@ body {
 /* -------------------------------------------------------------------
  * links - (_document-setup)
  * ------------------------------------------------------------------- */
-a,
-a:visited {
-	color: #6E6E6E;
-	-moz-transition: all 0.3s ease-in-out;
+a, a:visited{
+  color:#fff;
+  -moz-transition: all 0.3s ease-in-out;
 	-o-transition: all 0.3s ease-in-out;
 	-webkit-transition: all 0.3s ease-in-out;
 	-ms-transition: all 0.3s ease-in-out;
@@ -99,9 +98,14 @@ a:visited {
 	cursor: pointer;
 }
 
-a:hover,
-a:focus {
-	color: #fff;
+a:focus, a:visited:hover, a:hover {
+  opacity: 0.4;
+	-webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+	transition: opacity 0.35s, transform 0.35s;
+}
+
+a:hover:after {
+  opacity: 1;
 }
 
 /* ===================================================================
@@ -799,32 +803,8 @@ span.white-text{
 	text-transform: none;
 	letter-spacing: 0;
 	/* margin-left: .3rem; */
-	color: #fff;
 	display: inline-block;
 	/* position: relative; */
-}
-
-/*underline-effect-hover*/
-a.underline-effect:after {
-	content: '';
-  position: absolute;
-  left: 0;
-  display: inline-block;
-  height: 1em;
-  width: 100%;
-  border-bottom: 1px solid;
-  margin-top: 10px;
-  opacity: 0;
-	-webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
-	transition: opacity 0.35s, transform 0.35s;
-	-webkit-transform: scale(0,1);
-	transform: scale(0,1);
-}
-
-a.underline-effect:hover:after {
-  opacity: 1;
-	-webkit-transform: scale(1);
-	transform: scale(1);
 }
 
 .scroll-icon {
