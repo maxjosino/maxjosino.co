@@ -17,32 +17,19 @@
  *  01. webfonts and iconfonts - (_document-setup)
  *
  * ------------------------------------------------------------------- */
-/* Helvetica-Neue */
+/* SanCisco */
+
 @font-face {
-    font-family: 'HelveticaNeue-Italic';
-    src: url('../fonts/HelveticaNeue-Italic.ttf') format('truetype');
+    font-family: 'SanFranciscoDisplay-Regular';
+    src: url('../fonts/SanFranciscoDisplay-Regular.otf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'HelveticaNeue-Regular';
-    src: url('../fonts/HelveticaNeue.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'HelveticaNeue-BoldItalic';
-    src: url('../fonts/HelveticaNeue-BoldItalic.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'HelveticaNeue-Bold';
-    src: url('../fonts/HelveticaNeue-Bold.ttf') format('truetype');
-    font-weight: normal;
+    font-family: 'SanFranciscoDisplay-Bold';
+    src: url('../fonts/SanFranciscoDisplay-Bold.otf') format('truetype');
+    font-weight: bold;
     font-style: normal;
 }
 
@@ -77,7 +64,7 @@ body {
 
 body {
 	background: #050505;
-	font-family: "HelveticaNeue-Regular", sans-serif;
+	font-family: "SanFranciscoDisplay-Regular", "Helvetica Neue", Helvetica, sans-serif;
 	font-size: 1.6rem;
 	line-height: 3rem;
 	color: #353535;
@@ -113,7 +100,7 @@ a:hover:after {
  *
  * ------------------------------------------------------------------- */
 h1, h2, h3, h4, h5, h6, .h01, .h02, .h03, .h04, .h05, .h06 {
-  font-family: "HelveticaNeue-Bold", sans-serif;
+  font-family: "SanFranciscoDisplay-Bold", "Helvetica Neue", Helvetica, sans-serif;
 	color: #6E6E6E;
 	font-style: normal;
 	text-rendering: optimizeLegibility;
@@ -171,7 +158,7 @@ p img {
 }
 
 p.lead {
-	font-family: "HelveticaNeue-Bold", sans-serif;
+	font-family: "SanFranciscoDisplay-Bold", "Helvetica Neue", Helvetica, sans-serif;
 	font-size: 2rem;
 	line-height: 1.8;
 	color: #fff;
@@ -195,10 +182,10 @@ em, i, strong, b {
 	font-weight: normal;
 }
 em, i {
-	font-family: "HelveticaNeue-Italic", serif;
+	font-family: "SanFranciscoDisplay-Regular", "Helvetica Neue", Helvetica, sans-serif;
 }
 strong, b {
-	font-family: "HelveticaNeue-Bold", serif;
+	font-family: "SanFranciscoDisplay-Bold", "Helvetica Neue", Helvetica, sans-serif;
 }
 
 small {
@@ -218,14 +205,14 @@ blockquote:before {
 	line-height: 0px;
 	margin: 0;
 	color: rgba(0, 0, 0, 0.3);
-	font-family: arial, sans-serif;
+	font-family: "SanFranciscoDisplay-Regular", "Helvetica Neue", Helvetica, sans-serif;
 	position: absolute;
 	top: 3.6rem;
 	left: 0;
 }
 
 blockquote p {
-	font-family: "HelveticaNeue-Regular", georgia, serif;
+	font-family: "SanFranciscoDisplay-Regular", "Helvetica Neue", Helvetica, sans-serif;
 	font-style: italic;
 	padding: 0;
 	font-size: 1.9rem;
@@ -250,7 +237,7 @@ blockquote cite a:visited {
 }
 
 abbr {
-	font-family: "HelveticaNeue-Bold", serif;
+	font-family: "Helvetica Neue", Helvetica, sans-serif;
 	font-variant: small-caps;
 	text-transform: lowercase;
 	letter-spacing: .05rem;
@@ -440,7 +427,7 @@ table {
 	border-width: 0;
 	width: 100%;
 	max-width: 100%;
-	font-family: "HelveticaNeue-Regular", sans-serif;
+	font-family: "SanFranciscoDisplay-Regular", "Helvetica Neue", Helvetica, sans-serif;
 	color:#6E6E6E;
 }
 
@@ -451,7 +438,7 @@ th, td {
 }
 th {
 	color: #151515;
-	font-family: "HelveticaNeue-Bold", sans-serif;
+	font-family: "SanFranciscoDisplay-Bold", "Helvetica Neue", Helvetica, sans-serif;
 }
 td {
 	line-height: 1.5;
@@ -528,14 +515,14 @@ th:last-child, td:last-child {
 }
 
 .section-intro h1 {
-	font-family: "HelveticaNeue-Bold", serif;
+	font-family: "SanFranciscoDisplay-Bold", "Helvetica Neue", Helvetica, sans-serif;
 	font-size: 4.8rem;
 	line-height: 1.375;
 	color: #ffffff;
 }
 
 .section-intro h3 {
-	font-family: "HelveticaNeue-Bold", sans-serif;
+	font-family: "SanFranciscoDisplay-Bold", "Helvetica Neue", Helvetica, sans-serif;
 	font-size: 2rem;
 	color: #6748d9;
 	text-transform: uppercase;
@@ -751,7 +738,7 @@ min-height: 804px;
 }
 
 .home-content-tablecell h3 {
-	font-family: "HelveticaNeue-Bold", sans-serif;
+	font-family: "SanFranciscoDisplay-Bold", "Helvetica Neue", Helvetica, sans-serif;
 	font-size: 2.2rem;
 	color:#6E6E6E;
 	letter-spacing: .15rem;
@@ -759,7 +746,7 @@ min-height: 804px;
 }
 
 .home-content-tablecell h1 {
-	font-family: "HelveticaNeue-Bold", sans-serif;
+	font-family: "SanFranciscoDisplay-Bold", "Helvetica Neue", Helvetica, sans-serif;
 	font-size: 5.2rem;
 	line-height: 1.5;
 	color:#6E6E6E;
@@ -785,7 +772,7 @@ span.white-text{
 
 .home-content-tablecell .home-section-links li {
 	display: inline-block;
-	font-family: "HelveticaNeue-Bold", sans-serif;
+	font-family: "SanFranciscoDisplay-Bold", "Helvetica Neue", Helvetica, sans-serif;
 	font-size: 1.6rem;
 	/* letter-spacing: .1rem; */
 	color: #6E6E6E;
@@ -798,7 +785,7 @@ span.white-text{
 }
 
 .home-content-tablecell .home-section-links a {
-	font-family: "HelveticaNeue-Bold";
+	font-family: "SanFranciscoDisplay-Bold", "Helvetica Neue", Helvetica, sans-serif;
 	font-size: 1.6rem;
 	text-transform: none;
 	letter-spacing: 0;
@@ -876,7 +863,7 @@ th, td {
 
 @media only screen and (max-width:1200px) {
   .home-content-tablecell h1 {
-      font-family: "HelveticaNeue-Bold", serif;
+      font-family: "SanFranciscoDisplay-Bold", "Helvetica Neue", Helvetica, sans-serif;
       font-size: 4.5rem;
       line-height: 1.5;
       color: #6E6E6E;
@@ -1030,12 +1017,12 @@ th, td {
   }
 
   .home-content-tablecell h5{
-    font-family: 'HelveticaNeue-Regular';
+    font-family: "SanFranciscoDisplay-Regular", "Helvetica Neue", Helvetica, sans-serif;
     /* font-size: 1.8rem; */
   }
 
   .home-content-tablecell h5.experience{
-    font-family: 'HelveticaNeue-Bold';
+    font-family: "SanFranciscoDisplay-Bold", "Helvetica Neue", Helvetica, sans-serif;
     /* font-size: 1.8rem; */
   }
 
@@ -1066,12 +1053,12 @@ th, td {
   }
 
   .home-content-tablecell h5{
-    font-family: 'HelveticaNeue-Regular';
+    font-family: "SanFranciscoDisplay-Regular", "Helvetica Neue", Helvetica, sans-serif;
     font-size: 1.8rem;
   }
 
   .home-content-tablecell h5.experience{
-    font-family: 'HelveticaNeue-Bold';
+    font-family: "SanFranciscoDisplay-Bold", "Helvetica Neue", Helvetica, sans-serif;
     font-size: 1.8rem;
   }
 
