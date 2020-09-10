@@ -41,6 +41,15 @@
 
 	};
 
+	var checkScreenWidth = function(){
+		var smallScreen = window.matchMedia("(max-width: 768px)");
+		if (smallScreen.matches){
+			document.getElementById("footerNotes").className = "col-five";
+		}
+		else
+		document.getElementById("footerNotes").className = "col-four";
+	};
+
 
 
 
@@ -49,6 +58,10 @@
 	(function ssInit() {
 
 		ssIntroAnimation();
+		checkScreenWidth();
+
+		$(window).resize(checkScreenWidth);
+
 
 	})();
 
