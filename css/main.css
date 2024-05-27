@@ -1,5 +1,19 @@
 
-/* SanCisco */
+/* Styles for mobile */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    .name {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    p {
+        font-size: 0.9rem;
+    }
+}
 
 @font-face {
     font-family: 'Geist-Regular';
