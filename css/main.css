@@ -113,6 +113,12 @@ a:hover {
   border-bottom: 1px solid #2a2a2a;
 }
 
+.experience tbody tr.blur {
+  filter: blur(2px);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
 .experience tbody tr:not(:last-child) {
   border-bottom: 1px solid #2a2a2a;
 }
@@ -185,7 +191,11 @@ a:hover {
     padding-bottom: 1.5rem;
     border-bottom: 1px solid #2a2a2a;
   }
-
+  .experience tbody tr.blur {
+    filter: blur(2px);
+    opacity: 0.5;
+    pointer-events: none;
+  }
   .experience td {
     font-size: 1.5rem;
     padding: 0.5rem 0;
