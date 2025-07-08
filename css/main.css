@@ -108,7 +108,7 @@ a:hover {
   border-bottom: 1px solid #2a2a2a;
 }
 
-.experience tbody tr {
+.experience tbody tr:not(:last-child) {
   border-bottom: 1px solid #2a2a2a;
 }
 
@@ -129,13 +129,19 @@ a:hover {
   white-space: nowrap;
 }
 
-.experience a {
-  color: #a6b8ff;
-  text-decoration: none;
+/* -------------------------------
+ * CTA section
+ * ----------------------------- */
+.cta {
+  margin-top: 6rem;
+  padding-top: 3rem;
+  
 }
 
-.experience a:hover {
-  color: #ffffff;
+.cta p {
+  font-size: 1.5rem;
+  color: #bbbbbb;
+  max-width: 56rem;
 }
 
 /* -------------------------------
@@ -189,5 +195,10 @@ a:hover {
     font-size: 1.3rem;
     color: #888;
     margin-bottom: 0.2rem;
+  }
+
+  .cta p {
+    font-size: 1.5rem;
+    max-width: 100%;
   }
 }
