@@ -170,38 +170,61 @@ a:hover {
     line-height: 3rem;
   }
 
-  .experience table,
-  .experience thead,
-  .experience tbody,
-  .experience th,
-  .experience td,
-  .experience tr {
-    display: block;
-    width: 100%;
+  .experience table {
+    border: 0;
   }
 
-  .experience tr {
-    margin-bottom: 2.5rem;
-  }
-
-  .experience th {
+  .experience thead {
     display: none;
   }
 
-  .experience td {
-    font-size: 1.5rem;
-    padding: 0.5rem 0;
+  .experience tr {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #2a2a2a;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
   }
 
-  .experience td:nth-child(1)::before { content: "Company"; }
-  .experience td:nth-child(2)::before { content: "Role"; }
-  .experience td:nth-child(3)::before { content: "Period"; }
+  .experience td {
+    display: block;
+    padding: 0.5rem 0;
+    font-size: 1.5rem;
+  }
 
   .experience td::before {
     display: block;
     font-size: 1.3rem;
     color: #888;
     margin-bottom: 0.2rem;
+  }
+
+  /* Layout: Company + Period em linha */
+  .experience td:nth-child(1)::before {
+    content: "Company";
+  }
+
+  .experience td:nth-child(2)::before {
+    content: "Role";
+  }
+
+  .experience td:nth-child(3)::before {
+    content: "Period";
+  }
+
+  .experience tr {
+    flex-direction: column;
+  }
+
+  .experience td:nth-child(1),
+  .experience td:nth-child(3) {
+    display: inline-block;
+    width: 48%;
+  }
+
+  .experience td:nth-child(2) {
+    width: 100%;
+    margin-top: 1rem;
   }
 
   .cta p {
