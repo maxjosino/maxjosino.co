@@ -170,9 +170,12 @@ a:hover {
     line-height: 3rem;
   }
 
-  .experience table,
   .experience thead {
     display: none;
+  }
+
+  .experience table {
+    width: 100%;
   }
 
   .experience tbody tr {
@@ -184,10 +187,9 @@ a:hover {
   }
 
   .experience td {
-    display: block;
-    width: 100%;
     font-size: 1.5rem;
     padding: 0.5rem 0;
+    color: #eaeaea;
   }
 
   .experience td::before {
