@@ -79,7 +79,7 @@ a:hover {
 }
 
 /* -------------------------------
- * Experience section
+ * Experience section (div-based)
  * ----------------------------- */
 .experience {
   margin-top: 6rem;
@@ -92,46 +92,38 @@ a:hover {
   color: #ffffff;
 }
 
-.experience table {
-  border-collapse: collapse;
-  width: 100%;
+.experience-list {
   max-width: 70rem;
-  text-align: left;
 }
 
-.experience th,
-.experience td {
-  padding: 1rem 1.2rem;
+.experience-item {
+  border-bottom: 1px solid #2a2a2a;
+  padding: 1.2rem 0;
+}
+
+.experience-item:last-child {
+  border-bottom: none;
+}
+
+.row-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.company,
+.period {
   font-size: 1.5rem;
-  line-height: 2.4rem;
-  vertical-align: top;
-}
-
-.experience th {
-  color: #bbbbbb;
   font-weight: 500;
-  border-bottom: 1px solid #2a2a2a;
+  color: #bbbbbb;
 }
 
-.experience tbody tr:not(:last-child) {
-  border-bottom: 1px solid #2a2a2a;
-}
-
-.experience td {
+.role {
+  font-size: 1.5rem;
   color: #eaeaea;
-}
-
-.experience td:nth-child(1) {
-  width: 25%;
-}
-
-.experience td:nth-child(2) {
-  width: 45%;
-}
-
-.experience td:nth-child(3) {
-  width: 30%;
-  white-space: nowrap;
+  margin-top: 0.8rem;
+  line-height: 2.4rem;
 }
 
 /* -------------------------------
@@ -170,61 +162,24 @@ a:hover {
     line-height: 3rem;
   }
 
-  .experience table {
-    border: 0;
+  .experience-item {
+    padding: 2rem 0;
   }
 
-  .experience thead {
-    display: none;
+  .row-top {
+    flex-direction: row;
+    justify-content: space-between;
   }
 
-  .experience tr {
-    display: flex;
-    flex-direction: column;
-    border-bottom: 1px solid #2a2a2a;
-    margin-bottom: 3rem;
-    padding-bottom: 2rem;
-  }
-
-  .experience td {
-    display: block;
-    padding: 0.5rem 0;
-    font-size: 1.5rem;
-  }
-
-  .experience td::before {
-    display: block;
-    font-size: 1.3rem;
-    color: #888;
-    margin-bottom: 0.2rem;
-  }
-
-  /* Layout: Company + Period em linha */
-  .experience td:nth-child(1)::before {
-    content: "Company";
-  }
-
-  .experience td:nth-child(2)::before {
-    content: "Role";
-  }
-
-  .experience td:nth-child(3)::before {
-    content: "Period";
-  }
-
-  .experience tr {
-    flex-direction: column;
-  }
-
-  .experience td:nth-child(1),
-  .experience td:nth-child(3) {
-    display: inline-block;
+  .company,
+  .period {
     width: 48%;
+    font-size: 1.4rem;
   }
 
-  .experience td:nth-child(2) {
-    width: 100%;
+  .role {
     margin-top: 1rem;
+    font-size: 1.5rem;
   }
 
   .cta p {
