@@ -1,85 +1,193 @@
-
-/* Styles for mobile */
-@media (max-width: 600px) {
-  body{width:100%}
-
-    .name {
-        font-size: 1.5rem;}
-
-    p {
-      max-width: 100%;
-      line-height: 3rem;
-    }
+/* -------------------------------
+ * Font faces
+ * ----------------------------- */
+@font-face {
+  font-family: 'Geist-Regular';
+  src: url('../fonts/Geist-Regular.woff2') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'Geist-Regular';
-    src: url('../fonts/Geist-Regular.woff2') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'Geist-Medium';
+  src: url('../fonts/Geist-Medium.woff2') format('truetype');
+  font-weight: bold;
+  font-style: normal;
 }
 
-@font-face {
-    font-family: 'Geist-Medium';
-    src: url('../fonts/Geist-Medium.woff2') format('truetype');
-    font-weight: bold;
-    font-style: normal;
-}
-
-
-/* ===================================================================
- *  02. base style overrides - (_document-setup)
- *
- * ------------------------------------------------------------------- */
+/* -------------------------------
+ * Base styles
+ * ----------------------------- */
 html {
-	font-size: 10px;
-  padding:4em;
-  line-height: 2rem;
+  font-size: 10px;
+  padding: 4em;
+  background-color: #161616;
+  color: #eaeaea;
 }
 
-html,
+html, body {
+  height: 100%;
+}
+
 body {
-	height: 100%;
+  background: #161616;
+  font-family: "Geist-Regular", "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 1.6rem;
+  line-height: 3rem;
+  color: #eaeaea;
+  margin: 0;
+  padding: 0;
 }
 
-body {
-	background: #EEF3F7;
-	font-family: "Geist-Regular", "Helvetica Neue", Helvetica, sans-serif;
-	font-size: 1.6rem;
-	line-height: 3rem;
-	color: #465055;
-	margin: 0;
-	padding: 0;
+/* -------------------------------
+ * Typography
+ * ----------------------------- */
+p {
+  max-width: 56rem;
+  line-height: 3rem;
+  margin-bottom: 2rem;
 }
 
-/* -------------------------------------------------------------------
- * links - (_document-setup)
- * ------------------------------------------------------------------- */
-a, a:visited{
-  color:#808F97;
-  -moz-transition: all 0.3s ease-in-out;
-	-o-transition: all 0.3s ease-in-out;
-	-webkit-transition: all 0.3s ease-in-out;
-	-ms-transition: all 0.3s ease-in-out;
-	transition: all 0.3s ease-in-out;
-	cursor: pointer;
-}
-
-a:focus, a:visited:hover, a:hover {
-  opacity: 1;
-	-webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
-	transition: opacity 0.35s, transform 0.35s;
-  text-decoration: none;
-  color: #080e29;
-}
-
-a:hover:after {
-  opacity: 1;
-}
-
-p {  max-width: 40rem;
-      line-height: 3rem;}
-
-p.name{
+p.name {
   font-family: "Geist-Medium", "Helvetica Neue", Helvetica, sans-serif;
-  color:#3754ED }
+  color: #ffffff;
+  font-size: 2.6rem;
+  margin-bottom: 1rem;
+}
+
+/* -------------------------------
+ * Links
+ * ----------------------------- */
+a,
+a:visited {
+  color: #a6b8ff;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+a:focus,
+a:hover {
+  text-decoration: underline;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+/* -------------------------------
+ * Experience section
+ * ----------------------------- */
+.experience {
+  margin-top: 6rem;
+}
+
+.experience h2 {
+  font-family: "Geist-Medium", "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+  color: #ffffff;
+}
+
+.experience table {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 70rem;
+  text-align: left;
+}
+
+.experience th,
+.experience td {
+  padding: 1rem 1.2rem;
+  font-size: 1.5rem;
+  line-height: 2.4rem;
+  vertical-align: top;
+}
+
+.experience th {
+  color: #bbbbbb;
+  font-weight: 500;
+  border-bottom: 1px solid #2a2a2a;
+}
+
+.experience tbody tr {
+  border-bottom: 1px solid #2a2a2a;
+}
+
+.experience td {
+  color: #eaeaea;
+}
+
+.experience td:nth-child(1) {
+  width: 25%;
+}
+
+.experience td:nth-child(2) {
+  width: 45%;
+}
+
+.experience td:nth-child(3) {
+  width: 30%;
+  white-space: nowrap;
+}
+
+.experience a {
+  color: #a6b8ff;
+  text-decoration: none;
+}
+
+.experience a:hover {
+  color: #ffffff;
+}
+
+/* -------------------------------
+ * Mobile styles
+ * ----------------------------- */
+@media (max-width: 600px) {
+  body {
+    width: 100%;
+    padding: 2em;
+  }
+
+  .name {
+    font-size: 2rem;
+  }
+
+  p {
+    max-width: 100%;
+    line-height: 3rem;
+  }
+
+  /* Experience table on mobile */
+  .experience table,
+  .experience thead,
+  .experience tbody,
+  .experience th,
+  .experience td,
+  .experience tr {
+    display: block;
+    width: 100%;
+  }
+
+  .experience tr {
+    margin-bottom: 2.5rem;
+  }
+
+  .experience th {
+    display: none;
+  }
+
+  .experience td {
+    font-size: 1.5rem;
+    padding: 0.5rem 0;
+  }
+
+  .experience td:nth-child(1)::before { content: "Company"; }
+  .experience td:nth-child(2)::before { content: "Role"; }
+  .experience td:nth-child(3)::before { content: "Period"; }
+
+  .experience td::before {
+    display: block;
+    font-size: 1.3rem;
+    color: #888;
+    margin-bottom: 0.2rem;
+  }
+}

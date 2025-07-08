@@ -1,0 +1,85 @@
+
+/* Styles for mobile */
+@media (max-width: 600px) {
+  body{width:100%}
+
+    .name {
+        font-size: 1.5rem;}
+
+    p {
+      max-width: 100%;
+      line-height: 3rem;
+    }
+}
+
+@font-face {
+    font-family: 'Geist-Regular';
+    src: url('../fonts/Geist-Regular.woff2') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Geist-Medium';
+    src: url('../fonts/Geist-Medium.woff2') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+
+/* ===================================================================
+ *  02. base style overrides - (_document-setup)
+ *
+ * ------------------------------------------------------------------- */
+html {
+	font-size: 10px;
+  padding:4em;
+  line-height: 2rem;
+}
+
+html,
+body {
+	height: 100%;
+}
+
+body {
+	background: #EEF3F7;
+	font-family: "Geist-Regular", "Helvetica Neue", Helvetica, sans-serif;
+	font-size: 1.6rem;
+	line-height: 3rem;
+	color: #465055;
+	margin: 0;
+	padding: 0;
+}
+
+/* -------------------------------------------------------------------
+ * links - (_document-setup)
+ * ------------------------------------------------------------------- */
+a, a:visited{
+  color:#808F97;
+  -moz-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	-webkit-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+	cursor: pointer;
+}
+
+a:focus, a:visited:hover, a:hover {
+  opacity: 1;
+	-webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+	transition: opacity 0.35s, transform 0.35s;
+  text-decoration: none;
+  color: #080e29;
+}
+
+a:hover:after {
+  opacity: 1;
+}
+
+p {  max-width: 40rem;
+      line-height: 3rem;}
+
+p.name{
+  font-family: "Geist-Medium", "Helvetica Neue", Helvetica, sans-serif;
+  color:#3754ED }
