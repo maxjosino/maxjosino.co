@@ -48,7 +48,7 @@ body {
  * Typography
  * ----------------------------- */
 p {
-  max-width: 56rem;
+  max-width: 60rem;
   line-height: 3rem;
   margin-bottom: 2rem;
 }
@@ -95,7 +95,7 @@ a:hover {
 .experience table {
   border-collapse: collapse;
   width: 100%;
-  max-width: 70rem;
+  max-width: 60rem;
   text-align: left;
 }
 
@@ -192,9 +192,7 @@ a:hover {
     border-bottom: 1px solid #2a2a2a;
   }
   .experience tbody tr.blur {
-    filter: blur(2px);
-    opacity: 0.5;
-    pointer-events: none;
+    display: none;
   }
   .experience td {
     font-size: 1.5rem;
@@ -237,3 +235,4 @@ a:hover {
     max-width: 100%;
   }
 }
+
