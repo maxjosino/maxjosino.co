@@ -3,14 +3,14 @@
  * ----------------------------- */
 @font-face {
   font-family: 'Geist-Regular';
-  src: url('../fonts/Geist-Regular.woff2') format('woff2');
+  src: url('../fonts/Geist-Regular.woff2') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Geist-Medium';
-  src: url('../fonts/Geist-Medium.woff2') format('woff2');
+  src: url('../fonts/Geist-Medium.woff2') format('truetype');
   font-weight: bold;
   font-style: normal;
 }
@@ -76,11 +76,6 @@ a:hover {
   text-decoration: underline;
   color: #ffffff;
   transform: translateY(-1px);
-}
-
-a:focus {
-  outline: 2px solid #a6b8ff;
-  outline-offset: 2px;
 }
 
 /* -------------------------------
