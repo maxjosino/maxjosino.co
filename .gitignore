@@ -1,9 +1,19 @@
+# macOS system files
+.DS_Store
+**/.DS_Store
 
-js/.DS_Store
-.DS_Store
-.DS_Store
-.DS_Store
-.DS_Store
-.DS_Store
-.DS_Store
-.DS_Store
+# Build / temp files (se tiver)
+dist/
+build/
+.cache/
+
+# Node (caso tenha algo de tooling)
+node_modules/
+
+# Local env config
+.env
+.env.*
+
+# Files/folders que você mencionou
+_works.html
+_scalablecapital/
