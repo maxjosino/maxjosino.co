@@ -114,8 +114,8 @@ a:hover {
 }
 
 .experience tbody tr.blur {
-  filter: blur(2px);
-  opacity: 0.5;
+  filter: blur(4px);
+  opacity: 0.3;
   pointer-events: none;
 }
 
