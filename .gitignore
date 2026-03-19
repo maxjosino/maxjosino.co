@@ -17,3 +17,4 @@ node_modules/
 # Files/folders que você mencionou
 _works.html
 _scalablecapital/
+.DS_Store

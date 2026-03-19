@@ -128,16 +128,11 @@ a:hover {
 }
 
 .experience td:nth-child(1) {
-  width: 25%;
+  width: 34%;
 }
 
 .experience td:nth-child(2) {
-  width: 45%;
-}
-
-.experience td:nth-child(3) {
-  width: 30%;
-  white-space: nowrap;
+  width: 66%;
 }
 
 /* -------------------------------
@@ -215,14 +210,9 @@ a:hover {
     content: "Role";
   }
 
-  .experience td:nth-child(3)::before {
-    content: "Period";
-  }
-
-  .experience td:nth-child(1),
-  .experience td:nth-child(3) {
-    width: 48%;
-    display: inline-block;
+  .experience td:nth-child(1) {
+    width: 100%;
+    display: block;
   }
 
   .experience td:nth-child(2) {
