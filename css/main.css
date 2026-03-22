@@ -3,16 +3,18 @@
  * ----------------------------- */
 @font-face {
   font-family: 'Geist-Regular';
-  src: url('../fonts/Geist-Regular.woff2') format('truetype');
+  src: url('../fonts/Geist-Regular.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'Geist-Medium';
-  src: url('../fonts/Geist-Medium.woff2') format('truetype');
+  src: url('../fonts/Geist-Medium.woff2') format('woff2');
   font-weight: bold;
   font-style: normal;
+  font-display: swap;
 }
 
 /* -------------------------------
@@ -20,6 +22,25 @@
  * ----------------------------- */
 * {
   box-sizing: border-box;
+}
+
+:root {
+  --space-1: 0.4rem;
+  --space-2: 0.8rem;
+  --space-3: 1.2rem;
+  --space-4: 1.6rem;
+  --space-5: 2.4rem;
+  --space-6: 3.2rem;
+  --space-7: 4.8rem;
+  --space-8: 6.4rem;
+  --radius-lg: 2.4rem;
+  --radius-md: 1.6rem;
+  --border-subtle: rgba(255, 255, 255, 0.1);
+  --border-strong: rgba(166, 184, 255, 0.28);
+  --surface: rgba(255, 255, 255, 0.03);
+  --surface-strong: rgba(255, 255, 255, 0.05);
+  --text-muted: #bbbbbb;
+  --text-link: #a6b8ff;
 }
 
 html {
@@ -37,27 +58,80 @@ html, body {
 body {
   background: #161616;
   font-family: "Geist-Regular", "Helvetica Neue", Helvetica, sans-serif;
+  font-optical-sizing: auto;
+  font-synthesis: none;
   font-size: 1.6rem;
   line-height: 3rem;
   color: #eaeaea;
   margin: 0;
   padding: 0;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100%;
 }
 
 /* -------------------------------
  * Typography
  * ----------------------------- */
+.page {
+  width: min(100%, 72rem);
+  margin: 0 auto;
+  display: grid;
+  gap: var(--space-7);
+  padding-bottom: var(--space-8);
+}
+
+.section-card {
+  padding: var(--space-6);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
+    #161616;
+  box-shadow: 0 2.4rem 6rem rgba(0, 0, 0, 0.22);
+}
+
 p {
   max-width: 60rem;
   line-height: 3rem;
-  margin-bottom: 2rem;
+  margin: 0 0 var(--space-4);
+  text-wrap: pretty;
 }
 
-p.name {
+.hero {
+  padding-top: var(--space-7);
+}
+
+.eyebrow {
+  margin-bottom: var(--space-3);
+  color: var(--text-muted);
+  font-size: 1.3rem;
+  line-height: 1.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.name {
   font-family: "Geist-Regular", "Helvetica Neue", Helvetica, sans-serif;
   color: #ffffff;
-  font-size: 2.4rem;
-  margin-bottom: 1rem;
+  font-size: clamp(3.6rem, 6vw, 5.6rem);
+  line-height: 1;
+  margin: 0 0 var(--space-4);
+}
+
+.lede {
+  font-size: 2rem;
+  line-height: 3.4rem;
+  color: #ffffff;
+  max-width: 54rem;
+  margin-bottom: var(--space-5);
+}
+
+.section-heading {
+  margin-bottom: var(--space-5);
+}
+
+.section-heading h2 {
+  margin: 0;
 }
 
 /* -------------------------------
@@ -65,62 +139,78 @@ p.name {
  * ----------------------------- */
 a,
 a:visited {
-  color: #a6b8ff;
-  text-decoration: none;
-  transition: all 0.3s ease-in-out;
+  color: var(--text-link);
+  text-decoration: underline;
+  text-decoration-color: rgba(166, 184, 255, 0.45);
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
+  transition:
+    color 180ms ease-out,
+    text-decoration-color 180ms ease-out,
+    text-underline-offset 180ms ease-out;
   cursor: pointer;
 }
 
 a:focus,
 a:hover {
-  text-decoration: underline;
   color: #ffffff;
-  transform: translateY(-1px);
+  text-decoration-color: currentColor;
+  text-underline-offset: 0.24em;
+}
+
+a:focus-visible {
+  outline: 2px solid rgba(166, 184, 255, 0.7);
+  outline-offset: 0.3rem;
+  border-radius: 0.2rem;
 }
 
 /* -------------------------------
  * Experience section
  * ----------------------------- */
 .experience {
-  margin-top: 6rem;
+  margin-top: 0;
 }
 
 .experience h2 {
   font-family: "Geist-Medium", "Helvetica Neue", Helvetica, sans-serif;
   font-size: 2.2rem;
-  margin-bottom: 2rem;
+  color: #ffffff;
+  text-wrap: balance;
+}
+
+::selection {
+  background: rgba(166, 184, 255, 0.28);
   color: #ffffff;
 }
 
 .experience table {
   border-collapse: collapse;
   width: 100%;
-  max-width: 60rem;
+  max-width: none;
   text-align: left;
 }
 
 .experience th,
 .experience td {
-  padding: 1rem 1.2rem;
+  padding: var(--space-4) var(--space-3);
   font-size: 1.5rem;
   line-height: 2.4rem;
   vertical-align: top;
 }
 
 .experience th {
-  color: #bbbbbb;
+  color: var(--text-muted);
   font-weight: 500;
-  border-bottom: 1px solid #2a2a2a;
+  border-bottom: 1px solid var(--border-subtle);
 }
 
 .experience tbody tr.blur {
-  filter: blur(4px);
-  opacity: 0.3;
+  opacity: 0.45;
   pointer-events: none;
 }
 
 .experience tbody tr:not(:last-child) {
-  border-bottom: 1px solid #2a2a2a;
+  border-bottom: 1px solid var(--border-subtle);
 }
 
 .experience td {
@@ -139,14 +229,56 @@ a:hover {
  * CTA section
  * ----------------------------- */
 .cta {
-  margin-top: 6rem;
-
+  margin-top: 0;
 }
 
-.cta p {
+.cta-copy {
   font-size: 1.5rem;
-  color: #bbbbbb;
+  color: var(--text-muted);
   max-width: 56rem;
+  margin-bottom: var(--space-5);
+}
+
+.contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.contact-link,
+.contact-link:visited {
+  min-height: 3.8rem;
+  padding: var(--space-2) var(--space-4);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-subtle);
+  border-radius: 999px;
+  background: var(--surface);
+  color: #ffffff;
+  text-decoration: none;
+  text-underline-offset: 0;
+  transition:
+    background-color 180ms ease-out,
+    border-color 180ms ease-out,
+    color 180ms ease-out;
+}
+
+.contact-link:hover,
+.contact-link:focus {
+  background: var(--surface-strong);
+  border-color: var(--border-strong);
+}
+
+.contact-link:focus-visible {
+  outline-offset: 0.2rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  a,
+  a:visited {
+    transition: none;
+  }
 }
 
 /* -------------------------------
@@ -154,7 +286,7 @@ a:hover {
  * ----------------------------- */
 @media (max-width: 600px) {
   html {
-    padding: 2em;
+    padding: var(--space-4);
   }
 
   body {
@@ -163,7 +295,26 @@ a:hover {
   }
 
   .name {
-    font-size: 2rem;
+    font-size: 3.2rem;
+  }
+
+  .page {
+    gap: var(--space-5);
+    padding-bottom: var(--space-6);
+  }
+
+  .section-card {
+    padding: var(--space-5);
+    border-radius: var(--radius-md);
+  }
+
+  .hero {
+    padding-top: var(--space-5);
+  }
+
+  .lede {
+    font-size: 1.8rem;
+    line-height: 3rem;
   }
 
   p {
@@ -182,16 +333,16 @@ a:hover {
   .experience tbody tr {
     display: flex;
     flex-wrap: wrap;
-    margin-bottom: 2.5rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid #2a2a2a;
+    margin-bottom: var(--space-5);
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid var(--border-subtle);
   }
   .experience tbody tr.blur {
     display: none;
   }
   .experience td {
     font-size: 1.5rem;
-    padding: 0.5rem 0;
+    padding: var(--space-2) 0;
     color: #eaeaea;
   }
 
@@ -199,7 +350,7 @@ a:hover {
     display: block;
     font-size: 1.3rem;
     color: #888;
-    margin-bottom: 0.2rem;
+    margin-bottom: var(--space-1);
   }
 
   .experience td:nth-child(1)::before {
@@ -220,8 +371,17 @@ a:hover {
     margin-top: 1rem;
   }
 
-  .cta p {
+  .cta-copy {
     font-size: 1.5rem;
     max-width: 100%;
+  }
+
+  .contact-links {
+    flex-direction: column;
+  }
+
+  .contact-link,
+  .contact-link:visited {
+    width: 100%;
   }
 }
