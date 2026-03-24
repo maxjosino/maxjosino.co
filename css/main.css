@@ -24,25 +24,6 @@
   box-sizing: border-box;
 }
 
-:root {
-  --space-1: 0.4rem;
-  --space-2: 0.8rem;
-  --space-3: 1.2rem;
-  --space-4: 1.6rem;
-  --space-5: 2.4rem;
-  --space-6: 3.2rem;
-  --space-7: 4.8rem;
-  --space-8: 6.4rem;
-  --radius-lg: 2.4rem;
-  --radius-md: 1.6rem;
-  --border-subtle: rgba(255, 255, 255, 0.1);
-  --border-strong: rgba(166, 184, 255, 0.28);
-  --surface: rgba(255, 255, 255, 0.03);
-  --surface-strong: rgba(255, 255, 255, 0.05);
-  --text-muted: #bbbbbb;
-  --text-link: #a6b8ff;
-}
-
 html {
   font-size: 10px;
   padding: 4em;
@@ -66,72 +47,23 @@ body {
   margin: 0;
   padding: 0;
   -webkit-font-smoothing: antialiased;
-  min-height: 100%;
 }
 
 /* -------------------------------
  * Typography
  * ----------------------------- */
-.page {
-  width: min(100%, 72rem);
-  margin: 0 auto;
-  display: grid;
-  gap: var(--space-7);
-  padding-bottom: var(--space-8);
-}
-
-.section-card {
-  padding: var(--space-6);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-lg);
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
-    #161616;
-  box-shadow: 0 2.4rem 6rem rgba(0, 0, 0, 0.22);
-}
-
 p {
   max-width: 60rem;
   line-height: 3rem;
-  margin: 0 0 var(--space-4);
+  margin-bottom: 2rem;
   text-wrap: pretty;
-}
-
-.hero {
-  padding-top: var(--space-7);
-}
-
-.eyebrow {
-  margin-bottom: var(--space-3);
-  color: var(--text-muted);
-  font-size: 1.3rem;
-  line-height: 1.8rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
 }
 
 .name {
   font-family: "Geist-Regular", "Helvetica Neue", Helvetica, sans-serif;
   color: #ffffff;
-  font-size: clamp(3.6rem, 6vw, 5.6rem);
-  line-height: 1;
-  margin: 0 0 var(--space-4);
-}
-
-.lede {
-  font-size: 2rem;
-  line-height: 3.4rem;
-  color: #ffffff;
-  max-width: 54rem;
-  margin-bottom: var(--space-5);
-}
-
-.section-heading {
-  margin-bottom: var(--space-5);
-}
-
-.section-heading h2 {
-  margin: 0;
+  font-size: 2.4rem;
+  margin-bottom: 1rem;
 }
 
 /* -------------------------------
@@ -139,7 +71,7 @@ p {
  * ----------------------------- */
 a,
 a:visited {
-  color: var(--text-link);
+  color: #a6b8ff;
   text-decoration: underline;
   text-decoration-color: rgba(166, 184, 255, 0.45);
   text-decoration-thickness: 0.08em;
@@ -168,12 +100,13 @@ a:focus-visible {
  * Experience section
  * ----------------------------- */
 .experience {
-  margin-top: 0;
+  margin-top: 6rem;
 }
 
 .experience h2 {
   font-family: "Geist-Medium", "Helvetica Neue", Helvetica, sans-serif;
   font-size: 2.2rem;
+  margin-bottom: 2rem;
   color: #ffffff;
   text-wrap: balance;
 }
@@ -186,31 +119,32 @@ a:focus-visible {
 .experience table {
   border-collapse: collapse;
   width: 100%;
-  max-width: none;
+  max-width: 60rem;
   text-align: left;
 }
 
 .experience th,
 .experience td {
-  padding: var(--space-4) var(--space-3);
+  padding: 1rem 1.2rem;
   font-size: 1.5rem;
   line-height: 2.4rem;
   vertical-align: top;
 }
 
 .experience th {
-  color: var(--text-muted);
+  color: #bbbbbb;
   font-weight: 500;
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: 1px solid #2a2a2a;
 }
 
 .experience tbody tr.blur {
-  opacity: 0.45;
+  filter: blur(4px);
+  opacity: 0.3;
   pointer-events: none;
 }
 
 .experience tbody tr:not(:last-child) {
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: 1px solid #2a2a2a;
 }
 
 .experience td {
@@ -229,49 +163,13 @@ a:focus-visible {
  * CTA section
  * ----------------------------- */
 .cta {
-  margin-top: 0;
+  margin-top: 6rem;
 }
 
-.cta-copy {
+.cta p {
   font-size: 1.5rem;
-  color: var(--text-muted);
+  color: #bbbbbb;
   max-width: 56rem;
-  margin-bottom: var(--space-5);
-}
-
-.contact-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-3);
-}
-
-.contact-link,
-.contact-link:visited {
-  min-height: 3.8rem;
-  padding: var(--space-2) var(--space-4);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid var(--border-subtle);
-  border-radius: 999px;
-  background: var(--surface);
-  color: #ffffff;
-  text-decoration: none;
-  text-underline-offset: 0;
-  transition:
-    background-color 180ms ease-out,
-    border-color 180ms ease-out,
-    color 180ms ease-out;
-}
-
-.contact-link:hover,
-.contact-link:focus {
-  background: var(--surface-strong);
-  border-color: var(--border-strong);
-}
-
-.contact-link:focus-visible {
-  outline-offset: 0.2rem;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -286,7 +184,7 @@ a:focus-visible {
  * ----------------------------- */
 @media (max-width: 600px) {
   html {
-    padding: var(--space-4);
+    padding: 2em;
   }
 
   body {
@@ -295,26 +193,7 @@ a:focus-visible {
   }
 
   .name {
-    font-size: 3.2rem;
-  }
-
-  .page {
-    gap: var(--space-5);
-    padding-bottom: var(--space-6);
-  }
-
-  .section-card {
-    padding: var(--space-5);
-    border-radius: var(--radius-md);
-  }
-
-  .hero {
-    padding-top: var(--space-5);
-  }
-
-  .lede {
-    font-size: 1.8rem;
-    line-height: 3rem;
+    font-size: 2rem;
   }
 
   p {
@@ -333,16 +212,16 @@ a:focus-visible {
   .experience tbody tr {
     display: flex;
     flex-wrap: wrap;
-    margin-bottom: var(--space-5);
-    padding-bottom: var(--space-4);
-    border-bottom: 1px solid var(--border-subtle);
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #2a2a2a;
   }
   .experience tbody tr.blur {
     display: none;
   }
   .experience td {
     font-size: 1.5rem;
-    padding: var(--space-2) 0;
+    padding: 0.5rem 0;
     color: #eaeaea;
   }
 
@@ -350,7 +229,7 @@ a:focus-visible {
     display: block;
     font-size: 1.3rem;
     color: #888;
-    margin-bottom: var(--space-1);
+    margin-bottom: 0.2rem;
   }
 
   .experience td:nth-child(1)::before {
@@ -371,17 +250,8 @@ a:focus-visible {
     margin-top: 1rem;
   }
 
-  .cta-copy {
+  .cta p {
     font-size: 1.5rem;
     max-width: 100%;
-  }
-
-  .contact-links {
-    flex-direction: column;
-  }
-
-  .contact-link,
-  .contact-link:visited {
-    width: 100%;
   }
 }
