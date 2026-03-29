@@ -260,6 +260,7 @@
                 background: #a6b8ff;
                 box-shadow: 0 0 0 0.4rem rgba(166, 184, 255, 0.12);
                 flex: 0 0 auto;
+                animation: contributions-pulse 1.8s ease-out infinite;
             }
 
             .contributions-meta {
@@ -309,7 +310,7 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                min-height: 14rem;
+                min-height: 0;
                 border: 1px dashed rgba(166, 184, 255, 0.18);
                 border-radius: 1.2rem;
                 color: #888888;
@@ -488,14 +489,6 @@
                     <tr>
                         <td>Nubank</td>
                         <td>Senior Product Designer / Engineer</td>
-                    </tr>
-                    <tr class="blur">
-                        <td>Guidebook</td>
-                        <td>UI Designer</td>
-                    </tr>
-                    <tr class="blur">
-                        <td>Soda Virtual</td>
-                        <td>Designer</td>
                     </tr>
                 </tbody>
             </table>
@@ -699,6 +692,58 @@
                         "</div>";
                 }
 
+                function getChartMetrics() {
+                    var availableWidth = Math.max(
+                        grid.clientWidth || card.clientWidth || 0,
+                        280
+                    );
+                    var leftGutter = availableWidth < 420 ? 18 : 24;
+                    var pitch = Math.max(
+                        5,
+                        Math.min(13, (availableWidth - leftGutter - 4) / 53)
+                    );
+                    var cellSize = Math.max(
+                        3,
+                        Math.min(10, pitch - (pitch < 8 ? 1.5 : 3))
+                    );
+                    var cornerRadius = Math.max(
+                        1,
+                        Math.min(2, Math.round(cellSize / 3))
+                    );
+                    var chartTop = 16;
+                    var chartHeight = chartTop + 6 * pitch + cellSize + 7;
+                    var cellOffset = (pitch - cellSize) / 2;
+                    var monthFontSize = pitch < 8 ? 7 : 9;
+                    var weekdayFontSize = pitch < 8 ? 7 : 9;
+                    var markerGap = pitch < 8 ? 4 : 2;
+
+                    return {
+                        availableWidth: availableWidth,
+                        leftGutter: leftGutter,
+                        pitch: pitch,
+                        cellSize: cellSize,
+                        cornerRadius: cornerRadius,
+                        chartTop: chartTop,
+                        chartHeight: chartHeight,
+                        cellOffset: cellOffset,
+                        monthFontSize: monthFontSize,
+                        weekdayFontSize: weekdayFontSize,
+                        markerGap: markerGap
+                    };
+                }
+
+                function syncLoadingStateHeight() {
+                    var loadingState = grid.querySelector("[data-contributions-state]");
+                    var metrics;
+
+                    if (!loadingState) {
+                        return;
+                    }
+
+                    metrics = getChartMetrics();
+                    loadingState.style.minHeight = metrics.chartHeight + "px";
+                }
+
                 function buildWeeks(contributions) {
                     var sorted = contributions
                         .slice()
@@ -801,32 +846,10 @@
                     var yearlyTotal = data.total && data.total[currentYear]
                         ? data.total[currentYear]
                         : 0;
-                    var availableWidth = Math.max(
-                        grid.clientWidth || card.clientWidth || 0,
-                        280
-                    );
-                    var leftGutter = availableWidth < 420 ? 18 : 24;
-                    var pitch = Math.max(
-                        5,
-                        Math.min(13, (availableWidth - leftGutter - 4) / weeks.length)
-                    );
-                    var cellSize = Math.max(
-                        3,
-                        Math.min(10, pitch - (pitch < 8 ? 1.5 : 3))
-                    );
-                    var cornerRadius = Math.max(
-                        1,
-                        Math.min(2, Math.round(cellSize / 3))
-                    );
-                    var chartTop = 16;
-                    var chartHeight = chartTop + 6 * pitch + cellSize + 7;
-                    var cellOffset = (pitch - cellSize) / 2;
-                    var monthFontSize = pitch < 8 ? 7 : 9;
-                    var weekdayFontSize = pitch < 8 ? 7 : 9;
-                    var markerGap = pitch < 8 ? 4 : 2;
+                    var metrics = getChartMetrics();
                     var svgNS = "http://www.w3.org/2000/svg";
                     var svg = document.createElementNS(svgNS, "svg");
-                    var width = leftGutter + weeks.length * pitch;
+                    var width = metrics.leftGutter + weeks.length * metrics.pitch;
                     var weekdayRows = [
                         { label: "mon", row: 1 },
                         { label: "wed", row: 3 },
@@ -839,10 +862,10 @@
                         currentYear;
 
                     svg.setAttribute("width", "100%");
-                    svg.setAttribute("height", chartHeight);
+                    svg.setAttribute("height", metrics.chartHeight);
                     svg.setAttribute(
                         "viewBox",
-                        "0 0 " + width + " " + chartHeight
+                        "0 0 " + width + " " + metrics.chartHeight
                     );
                     svg.setAttribute("role", "img");
                     svg.setAttribute(
@@ -856,31 +879,36 @@
 
                         if (
                             previousMarker &&
-                            marker.col - previousMarker.col < markerGap
+                            marker.col - previousMarker.col < metrics.markerGap
                         ) {
                             return;
                         }
 
-                        label.setAttribute("x", leftGutter + marker.col * pitch);
+                        label.setAttribute(
+                            "x",
+                            metrics.leftGutter + marker.col * metrics.pitch
+                        );
                         label.setAttribute("y", "10");
                         label.setAttribute("fill", "#888888");
-                        label.setAttribute("font-size", String(monthFontSize));
+                        label.setAttribute("font-size", String(metrics.monthFontSize));
                         label.setAttribute("font-family", "Geist-Regular, Helvetica Neue, Helvetica, sans-serif");
                         label.textContent = marker.label;
                         svg.appendChild(label);
                     });
 
-                    if (pitch >= 6.5) {
+                    if (metrics.pitch >= 6.5) {
                         weekdayRows.forEach(function (row) {
                         var weekday = document.createElementNS(svgNS, "text");
 
                         weekday.setAttribute("x", "0");
                         weekday.setAttribute(
                             "y",
-                            chartTop + row.row * pitch + cellSize * 0.75
+                            metrics.chartTop +
+                                row.row * metrics.pitch +
+                                metrics.cellSize * 0.75
                         );
                         weekday.setAttribute("fill", "#888888");
-                        weekday.setAttribute("font-size", String(weekdayFontSize));
+                        weekday.setAttribute("font-size", String(metrics.weekdayFontSize));
                         weekday.setAttribute("font-family", "Geist-Regular, Helvetica Neue, Helvetica, sans-serif");
                         weekday.textContent = row.label;
                         svg.appendChild(weekday);
@@ -902,15 +930,30 @@
                             group = document.createElementNS(svgNS, "g");
                             group.setAttribute("class", "contribution-day");
 
-                            cellX = leftGutter + columnIndex * pitch + cellOffset;
-                            cellY = chartTop + rowIndex * pitch + cellOffset;
+                            cellX =
+                                metrics.leftGutter +
+                                columnIndex * metrics.pitch +
+                                metrics.cellOffset;
+                            cellY =
+                                metrics.chartTop +
+                                rowIndex * metrics.pitch +
+                                metrics.cellOffset;
 
                             hitbox = document.createElementNS(svgNS, "rect");
-                            hitbox.setAttribute("x", leftGutter + columnIndex * pitch);
-                            hitbox.setAttribute("y", chartTop + rowIndex * pitch);
-                            hitbox.setAttribute("width", String(pitch));
-                            hitbox.setAttribute("height", String(pitch));
-                            hitbox.setAttribute("rx", String(cornerRadius + 1));
+                            hitbox.setAttribute(
+                                "x",
+                                metrics.leftGutter + columnIndex * metrics.pitch
+                            );
+                            hitbox.setAttribute(
+                                "y",
+                                metrics.chartTop + rowIndex * metrics.pitch
+                            );
+                            hitbox.setAttribute("width", String(metrics.pitch));
+                            hitbox.setAttribute("height", String(metrics.pitch));
+                            hitbox.setAttribute(
+                                "rx",
+                                String(metrics.cornerRadius + 1)
+                            );
                             hitbox.setAttribute("tabindex", canHover ? "0" : "-1");
                             hitbox.setAttribute("class", "contribution-hitbox");
                             hitbox.setAttribute(
@@ -925,9 +968,9 @@
                             rect = document.createElementNS(svgNS, "rect");
                             rect.setAttribute("x", String(cellX));
                             rect.setAttribute("y", String(cellY));
-                            rect.setAttribute("width", String(cellSize));
-                            rect.setAttribute("height", String(cellSize));
-                            rect.setAttribute("rx", String(cornerRadius));
+                            rect.setAttribute("width", String(metrics.cellSize));
+                            rect.setAttribute("height", String(metrics.cellSize));
+                            rect.setAttribute("rx", String(metrics.cornerRadius));
                             rect.setAttribute(
                                 "fill",
                                 palette[day.level] || palette[0]
@@ -963,6 +1006,8 @@
                     grid.innerHTML = "";
                     grid.appendChild(svg);
                 }
+
+                syncLoadingStateHeight();
 
                 fetch(
                     "https://github-contributions-api.jogruber.de/v4/" +
