@@ -236,14 +236,20 @@
                 margin-bottom: 1.8rem;
             }
 
-            .contributions-source {
+            .contributions-source,
+            .contributions-source:visited {
                 display: inline-flex;
                 align-items: center;
                 gap: 0.8rem;
-                color: #ffffff;
+                color: #a6b8ff;
                 text-decoration: none;
                 font-size: 1.3rem;
                 line-height: 1.6rem;
+            }
+
+            .contributions-source:hover,
+            .contributions-source:focus-visible {
+                color: #ffffff;
             }
 
             .contributions-source::before {
@@ -616,12 +622,20 @@
                     "nov",
                     "dec"
                 ];
-                var tooltip = document.createElement("div");
+                var canHover =
+                    typeof window !== "undefined" &&
+                    window.matchMedia &&
+                    window.matchMedia("(hover: hover) and (pointer: fine)")
+                        .matches;
+                var tooltip = null;
 
-                tooltip.className = "contributions-tooltip";
-                tooltip.setAttribute("role", "status");
-                tooltip.setAttribute("aria-hidden", "true");
-                document.body.appendChild(tooltip);
+                if (canHover) {
+                    tooltip = document.createElement("div");
+                    tooltip.className = "contributions-tooltip";
+                    tooltip.setAttribute("role", "status");
+                    tooltip.setAttribute("aria-hidden", "true");
+                    document.body.appendChild(tooltip);
+                }
 
                 function formatDate(dateString) {
                     var date = new Date(dateString + "T12:00:00");
@@ -642,6 +656,10 @@
                 }
 
                 function showTooltip(event, contribution) {
+                    if (!tooltip) {
+                        return;
+                    }
+
                     tooltip.innerHTML =
                         "<strong>" +
                         contribution.count +
@@ -656,11 +674,19 @@
                 }
 
                 function moveTooltip(event) {
+                    if (!tooltip) {
+                        return;
+                    }
+
                     tooltip.style.left = event.clientX + "px";
                     tooltip.style.top = event.clientY + "px";
                 }
 
                 function hideTooltip() {
+                    if (!tooltip) {
+                        return;
+                    }
+
                     tooltip.classList.remove("is-visible");
                     tooltip.setAttribute("aria-hidden", "true");
                 }
@@ -844,7 +870,8 @@
                         svg.appendChild(label);
                     });
 
-                    weekdayRows.forEach(function (row) {
+                    if (pitch >= 6.5) {
+                        weekdayRows.forEach(function (row) {
                         var weekday = document.createElementNS(svgNS, "text");
 
                         weekday.setAttribute("x", "0");
@@ -857,7 +884,8 @@
                         weekday.setAttribute("font-family", "Geist-Regular, Helvetica Neue, Helvetica, sans-serif");
                         weekday.textContent = row.label;
                         svg.appendChild(weekday);
-                    });
+                        });
+                    }
 
                     weeks.forEach(function (week, columnIndex) {
                         week.days.forEach(function (day, rowIndex) {
@@ -883,7 +911,7 @@
                             hitbox.setAttribute("width", String(pitch));
                             hitbox.setAttribute("height", String(pitch));
                             hitbox.setAttribute("rx", String(cornerRadius + 1));
-                            hitbox.setAttribute("tabindex", "0");
+                            hitbox.setAttribute("tabindex", canHover ? "0" : "-1");
                             hitbox.setAttribute("class", "contribution-hitbox");
                             hitbox.setAttribute(
                                 "aria-label",
@@ -906,23 +934,25 @@
                             );
                             rect.setAttribute("class", "contribution-cell");
 
-                            hitbox.addEventListener("mouseenter", function (event) {
-                                showTooltip(event, day);
-                            });
-                            hitbox.addEventListener("mousemove", moveTooltip);
-                            hitbox.addEventListener("mouseleave", hideTooltip);
-                            hitbox.addEventListener("focus", function () {
-                                var bounds = hitbox.getBoundingClientRect();
+                            if (canHover) {
+                                hitbox.addEventListener("mouseenter", function (event) {
+                                    showTooltip(event, day);
+                                });
+                                hitbox.addEventListener("mousemove", moveTooltip);
+                                hitbox.addEventListener("mouseleave", hideTooltip);
+                                hitbox.addEventListener("focus", function () {
+                                    var bounds = hitbox.getBoundingClientRect();
 
-                                showTooltip(
-                                    {
-                                        clientX: bounds.left + bounds.width / 2,
-                                        clientY: bounds.top
-                                    },
-                                    day
-                                );
-                            });
-                            hitbox.addEventListener("blur", hideTooltip);
+                                    showTooltip(
+                                        {
+                                            clientX: bounds.left + bounds.width / 2,
+                                            clientY: bounds.top
+                                        },
+                                        day
+                                    );
+                                });
+                                hitbox.addEventListener("blur", hideTooltip);
+                            }
 
                             group.appendChild(hitbox);
                             group.appendChild(rect);
