@@ -162,6 +162,259 @@
 
         <!-- Author -->
         <meta name="author" content="Max Josino" />
+        <style>
+            .contributions {
+                margin-top: 6rem;
+            }
+
+            .contributions h2 {
+                font-family: "Geist-Medium", "Helvetica Neue", Helvetica,
+                    sans-serif;
+                font-size: 2.2rem;
+                margin-bottom: 1.6rem;
+                color: #ffffff;
+                text-wrap: balance;
+            }
+
+            .contributions-intro {
+                max-width: 56rem;
+                margin-bottom: 2.4rem;
+                color: #bbbbbb;
+                font-size: 1.5rem;
+                line-height: 2.6rem;
+            }
+
+            .contributions-card {
+                position: relative;
+                width: 100%;
+                max-width: 60rem;
+                padding: 2.2rem 2rem 1.8rem;
+                border: 1px solid #2a2a2a;
+                border-radius: 1.6rem;
+                background:
+                    radial-gradient(
+                        circle at top left,
+                        rgba(166, 184, 255, 0.08),
+                        transparent 34%
+                    ),
+                    linear-gradient(
+                        180deg,
+                        rgba(255, 255, 255, 0.02),
+                        rgba(255, 255, 255, 0)
+                    ),
+                    #1b1b1b;
+                overflow: hidden;
+            }
+
+            .contributions-card::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                pointer-events: none;
+                background:
+                    linear-gradient(
+                        90deg,
+                        rgba(255, 255, 255, 0.03),
+                        transparent 18%,
+                        transparent 82%,
+                        rgba(255, 255, 255, 0.03)
+                    );
+                opacity: 0.6;
+            }
+
+            .contributions-header,
+            .contributions-legend {
+                position: relative;
+                z-index: 1;
+                display: flex;
+                align-items: baseline;
+                justify-content: space-between;
+                gap: 1.2rem;
+            }
+
+            .contributions-header {
+                margin-bottom: 1.8rem;
+            }
+
+            .contributions-source {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.8rem;
+                color: #ffffff;
+                text-decoration: none;
+                font-size: 1.3rem;
+                line-height: 1.6rem;
+            }
+
+            .contributions-source::before {
+                content: "";
+                width: 0.8rem;
+                height: 0.8rem;
+                border-radius: 999px;
+                background: #a6b8ff;
+                box-shadow: 0 0 0 0.4rem rgba(166, 184, 255, 0.12);
+                flex: 0 0 auto;
+            }
+
+            .contributions-meta {
+                color: #bbbbbb;
+                font-size: 1.3rem;
+                line-height: 1.6rem;
+                text-align: right;
+            }
+
+            .contributions-grid {
+                position: relative;
+                z-index: 1;
+                overflow: hidden;
+                padding-bottom: 0.2rem;
+            }
+
+            .contributions-grid svg {
+                display: block;
+                width: 100%;
+                height: auto;
+            }
+
+            .contributions-legend {
+                margin-top: 1.6rem;
+                justify-content: flex-end;
+                gap: 0.8rem;
+                color: #888888;
+                font-size: 1.1rem;
+                line-height: 1;
+            }
+
+            .contributions-legend-scale {
+                display: inline-flex;
+                gap: 0.5rem;
+                align-items: center;
+            }
+
+            .contributions-legend-swatch {
+                width: 1rem;
+                height: 1rem;
+                border-radius: 0.3rem;
+            }
+
+            .contributions-state {
+                position: relative;
+                z-index: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 14rem;
+                border: 1px dashed rgba(166, 184, 255, 0.18);
+                border-radius: 1.2rem;
+                color: #888888;
+                font-size: 1.4rem;
+                line-height: 2.2rem;
+                text-align: center;
+                padding: 1.8rem;
+            }
+
+            .contributions-state[data-state="loading"]::before {
+                content: "";
+                width: 1rem;
+                height: 1rem;
+                border-radius: 999px;
+                margin-right: 1rem;
+                background: #a6b8ff;
+                box-shadow: 0 0 0 0 rgba(166, 184, 255, 0.4);
+                animation: contributions-pulse 1.8s ease-out infinite;
+            }
+
+            .contributions-tooltip {
+                position: fixed;
+                z-index: 10;
+                pointer-events: none;
+                padding: 0.8rem 1rem;
+                border-radius: 0.8rem;
+                background: #f2f4ff;
+                color: #121212;
+                font-size: 1.1rem;
+                line-height: 1.4rem;
+                white-space: nowrap;
+                box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.28);
+                transform: translate(-50%, calc(-100% - 1.2rem));
+                opacity: 0;
+                transition: opacity 120ms ease-out;
+            }
+
+            .contributions-tooltip.is-visible {
+                opacity: 1;
+            }
+
+            .contributions-tooltip strong {
+                color: #121212;
+            }
+
+            .contribution-day .contribution-cell {
+                transition:
+                    opacity 140ms ease-out,
+                    stroke 140ms ease-out,
+                    stroke-width 140ms ease-out;
+                pointer-events: none;
+            }
+
+            .contribution-day:hover .contribution-cell,
+            .contribution-day:focus-within .contribution-cell {
+                opacity: 1;
+                stroke: rgba(255, 255, 255, 0.3);
+                stroke-width: 1;
+            }
+
+            .contribution-hitbox {
+                fill: transparent;
+            }
+
+            .contribution-hitbox:focus-visible {
+                outline: none;
+            }
+
+            @keyframes contributions-pulse {
+                0% {
+                    box-shadow: 0 0 0 0 rgba(166, 184, 255, 0.38);
+                }
+                70% {
+                    box-shadow: 0 0 0 1.3rem rgba(166, 184, 255, 0);
+                }
+                100% {
+                    box-shadow: 0 0 0 0 rgba(166, 184, 255, 0);
+                }
+            }
+
+            @media (max-width: 600px) {
+                .contributions-card {
+                    padding: 1.8rem 1.4rem 1.4rem;
+                    border-radius: 1.2rem;
+                }
+
+                .contributions-header {
+                    align-items: flex-start;
+                    flex-direction: column;
+                    margin-bottom: 1.4rem;
+                }
+
+                .contributions-meta {
+                    text-align: left;
+                }
+
+                .contributions-legend {
+                    justify-content: flex-start;
+                    flex-wrap: wrap;
+                }
+            }
+
+            @media (prefers-reduced-motion: reduce) {
+                .contributions-tooltip,
+                .contribution-cell,
+                .contributions-state[data-state="loading"]::before {
+                    transition: none;
+                    animation: none;
+                }
+            }
+        </style>
     </head>
 
     <body>
@@ -242,6 +495,74 @@
             </table>
         </section>
 
+        <section
+            class="contributions"
+            aria-labelledby="contributions-title"
+        >
+            <h2 id="contributions-title">Contributions</h2>
+            <p class="contributions-intro">
+                A live snapshot of shipping work across product, systems, and
+                code.
+            </p>
+
+            <div
+                class="contributions-card"
+                data-github-username="maxjosino"
+                data-github-profile="https://github.com/maxjosino"
+            >
+                <div class="contributions-header">
+                    <a
+                        class="contributions-source"
+                        href="https://github.com/maxjosino"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <span>github/maxjosino</span>
+                    </a>
+                    <div class="contributions-meta" data-contributions-summary>
+                        Loading contributions...
+                    </div>
+                </div>
+
+                <div class="contributions-grid" data-contributions-grid>
+                    <div
+                        class="contributions-state"
+                        data-contributions-state
+                        data-state="loading"
+                    >
+                        Fetching the contribution graph.
+                    </div>
+                </div>
+
+                <div class="contributions-legend" aria-hidden="true">
+                    <span>Less</span>
+                    <div class="contributions-legend-scale">
+                        <span
+                            class="contributions-legend-swatch"
+                            style="background: rgba(255, 255, 255, 0.05)"
+                        ></span>
+                        <span
+                            class="contributions-legend-swatch"
+                            style="background: rgba(166, 184, 255, 0.22)"
+                        ></span>
+                        <span
+                            class="contributions-legend-swatch"
+                            style="background: rgba(166, 184, 255, 0.42)"
+                        ></span>
+                        <span
+                            class="contributions-legend-swatch"
+                            style="background: rgba(166, 184, 255, 0.62)"
+                        ></span>
+                        <span
+                            class="contributions-legend-swatch"
+                            style="background: rgba(166, 184, 255, 0.9)"
+                        ></span>
+                    </div>
+                    <span>More</span>
+                </div>
+            </div>
+        </section>
+
         <section class="cta">
             <p>
                 Open to chat about the product you're building and early-stage
@@ -261,5 +582,382 @@
                 >.
             </p>
         </section>
+
+        <script>
+            (function () {
+                var card = document.querySelector(".contributions-card");
+
+                if (!card) {
+                    return;
+                }
+
+                var username = card.getAttribute("data-github-username");
+                var summary = card.querySelector("[data-contributions-summary]");
+                var grid = card.querySelector("[data-contributions-grid]");
+                var state = card.querySelector("[data-contributions-state]");
+                var palette = [
+                    "rgba(255, 255, 255, 0.05)",
+                    "rgba(166, 184, 255, 0.22)",
+                    "rgba(166, 184, 255, 0.42)",
+                    "rgba(166, 184, 255, 0.62)",
+                    "rgba(166, 184, 255, 0.9)"
+                ];
+                var monthLabels = [
+                    "jan",
+                    "feb",
+                    "mar",
+                    "apr",
+                    "may",
+                    "jun",
+                    "jul",
+                    "aug",
+                    "sep",
+                    "oct",
+                    "nov",
+                    "dec"
+                ];
+                var tooltip = document.createElement("div");
+
+                tooltip.className = "contributions-tooltip";
+                tooltip.setAttribute("role", "status");
+                tooltip.setAttribute("aria-hidden", "true");
+                document.body.appendChild(tooltip);
+
+                function formatDate(dateString) {
+                    var date = new Date(dateString + "T12:00:00");
+
+                    return date.toLocaleDateString("en-US", {
+                        month: "short",
+                        day: "numeric",
+                        year: "numeric"
+                    });
+                }
+
+                function toDateKey(date) {
+                    var year = date.getFullYear();
+                    var month = String(date.getMonth() + 1).padStart(2, "0");
+                    var day = String(date.getDate()).padStart(2, "0");
+
+                    return year + "-" + month + "-" + day;
+                }
+
+                function showTooltip(event, contribution) {
+                    tooltip.innerHTML =
+                        "<strong>" +
+                        contribution.count +
+                        "</strong> contribution" +
+                        (contribution.count === 1 ? "" : "s") +
+                        " on " +
+                        formatDate(contribution.date);
+                    tooltip.style.left = event.clientX + "px";
+                    tooltip.style.top = event.clientY + "px";
+                    tooltip.classList.add("is-visible");
+                    tooltip.setAttribute("aria-hidden", "false");
+                }
+
+                function moveTooltip(event) {
+                    tooltip.style.left = event.clientX + "px";
+                    tooltip.style.top = event.clientY + "px";
+                }
+
+                function hideTooltip() {
+                    tooltip.classList.remove("is-visible");
+                    tooltip.setAttribute("aria-hidden", "true");
+                }
+
+                function renderError(message) {
+                    summary.textContent = "Unable to load right now";
+                    grid.innerHTML =
+                        '<div class="contributions-state" data-state="error">' +
+                        message +
+                        "</div>";
+                }
+
+                function buildWeeks(contributions) {
+                    var sorted = contributions
+                        .slice()
+                        .sort(function (a, b) {
+                            return (
+                                new Date(a.date).getTime() -
+                                new Date(b.date).getTime()
+                            );
+                        });
+                    var today = new Date();
+                    var lastYear = new Date(today);
+                    var map = new Map();
+                    var alignedStart;
+                    var weeks = [];
+                    var cursor;
+
+                    today = new Date(
+                        today.getFullYear(),
+                        today.getMonth(),
+                        today.getDate()
+                    );
+                    lastYear.setDate(today.getDate() - 364);
+                    lastYear = new Date(
+                        lastYear.getFullYear(),
+                        lastYear.getMonth(),
+                        lastYear.getDate()
+                    );
+                    sorted.forEach(function (item) {
+                        map.set(item.date, item);
+                    });
+
+                    alignedStart = new Date(lastYear);
+                    alignedStart.setDate(
+                        lastYear.getDate() - lastYear.getDay()
+                    );
+
+                    cursor = new Date(alignedStart);
+
+                    while (cursor <= today) {
+                        var week = { days: [] };
+                        var dayIndex;
+
+                        for (dayIndex = 0; dayIndex < 7; dayIndex += 1) {
+                            var isoDate = toDateKey(cursor);
+
+                            if (cursor >= lastYear && cursor <= today) {
+                                week.days.push(
+                                    map.get(isoDate) || {
+                                        date: isoDate,
+                                        count: 0,
+                                        level: 0
+                                    }
+                                );
+                            } else {
+                                week.days.push(null);
+                            }
+
+                            cursor.setDate(cursor.getDate() + 1);
+                        }
+
+                        weeks.push(week);
+                    }
+
+                    return weeks;
+                }
+
+                function buildMonthMarkers(weeks) {
+                    var markers = [];
+                    var lastMonth = -1;
+
+                    weeks.forEach(function (week, columnIndex) {
+                        var firstVisibleDay = week.days.find(function (day) {
+                            return day !== null;
+                        });
+
+                        if (!firstVisibleDay) {
+                            return;
+                        }
+
+                        var month = new Date(
+                            firstVisibleDay.date + "T12:00:00"
+                        ).getMonth();
+
+                        if (month !== lastMonth) {
+                            markers.push({
+                                col: columnIndex,
+                                label: monthLabels[month]
+                            });
+                            lastMonth = month;
+                        }
+                    });
+
+                    return markers;
+                }
+
+                function renderGraph(data) {
+                    var weeks = buildWeeks(data.contributions || []);
+                    var markers = buildMonthMarkers(weeks);
+                    var currentYear = new Date().getFullYear();
+                    var yearlyTotal = data.total && data.total[currentYear]
+                        ? data.total[currentYear]
+                        : 0;
+                    var availableWidth = Math.max(
+                        grid.clientWidth || card.clientWidth || 0,
+                        280
+                    );
+                    var leftGutter = availableWidth < 420 ? 18 : 24;
+                    var pitch = Math.max(
+                        5,
+                        Math.min(13, (availableWidth - leftGutter - 4) / weeks.length)
+                    );
+                    var cellSize = Math.max(
+                        3,
+                        Math.min(10, pitch - (pitch < 8 ? 1.5 : 3))
+                    );
+                    var cornerRadius = Math.max(
+                        1,
+                        Math.min(2, Math.round(cellSize / 3))
+                    );
+                    var chartTop = 16;
+                    var chartHeight = chartTop + 6 * pitch + cellSize + 7;
+                    var cellOffset = (pitch - cellSize) / 2;
+                    var monthFontSize = pitch < 8 ? 7 : 9;
+                    var weekdayFontSize = pitch < 8 ? 7 : 9;
+                    var markerGap = pitch < 8 ? 4 : 2;
+                    var svgNS = "http://www.w3.org/2000/svg";
+                    var svg = document.createElementNS(svgNS, "svg");
+                    var width = leftGutter + weeks.length * pitch;
+                    var weekdayRows = [
+                        { label: "mon", row: 1 },
+                        { label: "wed", row: 3 },
+                        { label: "fri", row: 5 }
+                    ];
+
+                    summary.textContent =
+                        yearlyTotal +
+                        " contributions in " +
+                        currentYear;
+
+                    svg.setAttribute("width", "100%");
+                    svg.setAttribute("height", chartHeight);
+                    svg.setAttribute(
+                        "viewBox",
+                        "0 0 " + width + " " + chartHeight
+                    );
+                    svg.setAttribute("role", "img");
+                    svg.setAttribute(
+                        "aria-label",
+                        "GitHub contribution chart for the last 12 months"
+                    );
+
+                    markers.forEach(function (marker, markerIndex) {
+                        var label = document.createElementNS(svgNS, "text");
+                        var previousMarker = markers[markerIndex - 1];
+
+                        if (
+                            previousMarker &&
+                            marker.col - previousMarker.col < markerGap
+                        ) {
+                            return;
+                        }
+
+                        label.setAttribute("x", leftGutter + marker.col * pitch);
+                        label.setAttribute("y", "10");
+                        label.setAttribute("fill", "#888888");
+                        label.setAttribute("font-size", String(monthFontSize));
+                        label.setAttribute("font-family", "Geist-Regular, Helvetica Neue, Helvetica, sans-serif");
+                        label.textContent = marker.label;
+                        svg.appendChild(label);
+                    });
+
+                    weekdayRows.forEach(function (row) {
+                        var weekday = document.createElementNS(svgNS, "text");
+
+                        weekday.setAttribute("x", "0");
+                        weekday.setAttribute(
+                            "y",
+                            chartTop + row.row * pitch + cellSize * 0.75
+                        );
+                        weekday.setAttribute("fill", "#888888");
+                        weekday.setAttribute("font-size", String(weekdayFontSize));
+                        weekday.setAttribute("font-family", "Geist-Regular, Helvetica Neue, Helvetica, sans-serif");
+                        weekday.textContent = row.label;
+                        svg.appendChild(weekday);
+                    });
+
+                    weeks.forEach(function (week, columnIndex) {
+                        week.days.forEach(function (day, rowIndex) {
+                            var group;
+                            var hitbox;
+                            var rect;
+                            var cellX;
+                            var cellY;
+
+                            if (!day) {
+                                return;
+                            }
+
+                            group = document.createElementNS(svgNS, "g");
+                            group.setAttribute("class", "contribution-day");
+
+                            cellX = leftGutter + columnIndex * pitch + cellOffset;
+                            cellY = chartTop + rowIndex * pitch + cellOffset;
+
+                            hitbox = document.createElementNS(svgNS, "rect");
+                            hitbox.setAttribute("x", leftGutter + columnIndex * pitch);
+                            hitbox.setAttribute("y", chartTop + rowIndex * pitch);
+                            hitbox.setAttribute("width", String(pitch));
+                            hitbox.setAttribute("height", String(pitch));
+                            hitbox.setAttribute("rx", String(cornerRadius + 1));
+                            hitbox.setAttribute("tabindex", "0");
+                            hitbox.setAttribute("class", "contribution-hitbox");
+                            hitbox.setAttribute(
+                                "aria-label",
+                                day.count +
+                                    " contribution" +
+                                    (day.count === 1 ? "" : "s") +
+                                    " on " +
+                                    formatDate(day.date)
+                            );
+
+                            rect = document.createElementNS(svgNS, "rect");
+                            rect.setAttribute("x", String(cellX));
+                            rect.setAttribute("y", String(cellY));
+                            rect.setAttribute("width", String(cellSize));
+                            rect.setAttribute("height", String(cellSize));
+                            rect.setAttribute("rx", String(cornerRadius));
+                            rect.setAttribute(
+                                "fill",
+                                palette[day.level] || palette[0]
+                            );
+                            rect.setAttribute("class", "contribution-cell");
+
+                            hitbox.addEventListener("mouseenter", function (event) {
+                                showTooltip(event, day);
+                            });
+                            hitbox.addEventListener("mousemove", moveTooltip);
+                            hitbox.addEventListener("mouseleave", hideTooltip);
+                            hitbox.addEventListener("focus", function () {
+                                var bounds = hitbox.getBoundingClientRect();
+
+                                showTooltip(
+                                    {
+                                        clientX: bounds.left + bounds.width / 2,
+                                        clientY: bounds.top
+                                    },
+                                    day
+                                );
+                            });
+                            hitbox.addEventListener("blur", hideTooltip);
+
+                            group.appendChild(hitbox);
+                            group.appendChild(rect);
+                            svg.appendChild(group);
+                        });
+                    });
+
+                    grid.innerHTML = "";
+                    grid.appendChild(svg);
+                }
+
+                fetch(
+                    "https://github-contributions-api.jogruber.de/v4/" +
+                        encodeURIComponent(username)
+                )
+                    .then(function (response) {
+                        if (!response.ok) {
+                            throw new Error("Network response was not ok");
+                        }
+
+                        return response.json();
+                    })
+                    .then(function (data) {
+                        if (!data || !Array.isArray(data.contributions)) {
+                            throw new Error("Invalid contribution payload");
+                        }
+
+                        renderGraph(data);
+                    })
+                    .catch(function () {
+                        renderError(
+                            "The live graph could not be loaded. Open the GitHub profile directly for the latest activity."
+                        );
+                    });
+            })();
+        </script>
     </body>
 </html>
