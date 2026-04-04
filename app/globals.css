@@ -409,28 +409,43 @@ p {
   --experience-hover: #820ad1;
 }
 
+.brand-link,
+.brand-link:visited,
 .experience-company-link,
 .experience-company-link:visited {
   color: inherit;
   text-decoration: none;
 }
 
+.brand-link:hover,
+.brand-link:focus,
 .experience-company-link:hover,
 .experience-company-link:focus {
   color: inherit;
   text-decoration: none;
 }
 
+.brand-link.is-ground:hover,
+.brand-link.is-ground:focus,
 .experience tbody tr.is-ground:hover .experience-company-link,
 .experience tbody tr.is-ground:focus-within .experience-company-link {
   color: #00d85d;
 }
 
+.brand-link.is-fast:hover,
+.brand-link.is-fast:focus {
+  color: #fbb7d0;
+}
+
+.brand-link.is-creditas:hover,
+.brand-link.is-creditas:focus,
 .experience tbody tr.is-creditas:hover .experience-company-link,
 .experience tbody tr.is-creditas:focus-within .experience-company-link {
   color: #8edb00;
 }
 
+.brand-link.is-nubank:hover,
+.brand-link.is-nubank:focus,
 .experience tbody tr.is-nubank:hover .experience-company-link,
 .experience tbody tr.is-nubank:focus-within .experience-company-link {
   color: #820ad1;
