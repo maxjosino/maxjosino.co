@@ -1,0 +1,767 @@
+@font-face {
+  font-family: "Geist-Regular";
+  src: url("/fonts/Geist-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist-Medium";
+  src: url("/fonts/Geist-Medium.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+html {
+  font-size: 10px;
+  padding: 4em;
+  background-color: #161616;
+  color: #eaeaea;
+  overflow-x: hidden;
+}
+
+body {
+  background: #161616;
+  font-family: "Geist-Regular", "Helvetica Neue", Helvetica, sans-serif;
+  font-optical-sizing: auto;
+  font-synthesis: none;
+  font-size: 1.6rem;
+  line-height: 3rem;
+  color: #eaeaea;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+p {
+  max-width: 60rem;
+  line-height: 3rem;
+  margin-bottom: 2rem;
+  text-wrap: pretty;
+}
+
+.name {
+  margin-bottom: 1rem;
+  color: #ffffff;
+  font-family: "Geist-Regular", "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 2.4rem;
+}
+
+a,
+a:visited {
+  color: #a6b8ff;
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-color: rgba(166, 184, 255, 0.45);
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
+  transition:
+    color 180ms ease-out,
+    text-decoration-color 180ms ease-out,
+    text-underline-offset 180ms ease-out;
+}
+
+a:focus,
+a:hover {
+  color: #ffffff;
+  text-decoration-color: currentColor;
+  text-underline-offset: 0.24em;
+}
+
+a:focus-visible {
+  outline: 2px solid rgba(166, 184, 255, 0.7);
+  outline-offset: 0.3rem;
+  border-radius: 0.2rem;
+}
+
+.spotify-section,
+.experience,
+.contributions {
+  margin-top: 6rem;
+}
+
+.cta {
+  margin-top: 6rem;
+}
+
+.spotify-section h2,
+.experience h2 {
+  font-family: "Geist-Medium", "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+  color: #ffffff;
+  text-wrap: balance;
+}
+
+::selection {
+  background: rgba(166, 184, 255, 0.28);
+  color: #ffffff;
+}
+
+.spotify-section {
+  max-width: 60rem;
+}
+
+.spotify-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+  width: 100%;
+  min-height: 10rem;
+  padding: 1.8rem;
+  border: 1px solid #2a2a2a;
+  border-radius: 1.6rem;
+  background:
+    radial-gradient(circle at top left, rgba(166, 184, 255, 0.08), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0)),
+    #1b1b1b;
+  box-shadow: 0 1.2rem 3rem rgba(0, 0, 0, 0.24);
+  overflow: hidden;
+}
+
+.spotify-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.03),
+      transparent 18%,
+      transparent 82%,
+      rgba(255, 255, 255, 0.03)
+    );
+  opacity: 0.6;
+}
+
+.spotify-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.spotify-card__art {
+  position: relative;
+  flex: 0 0 auto;
+  width: 6.4rem;
+  height: 6.4rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #3f4657 0%, #111214 100%);
+  box-shadow: 0 1rem 2.4rem rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+}
+
+.spotify-card__art[data-playing="true"] {
+  animation: spotify-spin 4s linear infinite;
+}
+
+.spotify-card__art img {
+  position: absolute;
+  inset: 0.5rem;
+  width: calc(100% - 1rem);
+  height: calc(100% - 1rem);
+  border-radius: 999px;
+  object-fit: cover;
+}
+
+.spotify-card__art::before,
+.spotify-card__art::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  pointer-events: none;
+}
+
+.spotify-card__art::before {
+  background:
+    conic-gradient(
+      transparent 0%,
+      rgba(255, 255, 255, 0.07) 10%,
+      transparent 20%,
+      rgba(255, 255, 255, 0.04) 30%,
+      transparent 40%,
+      rgba(255, 255, 255, 0.09) 50%,
+      transparent 60%,
+      rgba(255, 255, 255, 0.05) 70%,
+      transparent 80%,
+      rgba(255, 255, 255, 0.03) 90%,
+      transparent 100%
+    );
+  mix-blend-mode: screen;
+}
+
+.spotify-card__art::after {
+  inset: 0.1rem;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.spotify-card__art-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: #bbbbbb;
+  font-size: 2rem;
+}
+
+.spotify-card__content {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.spotify-card__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 0.9rem;
+  color: #bbbbbb;
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.spotify-card__status-dot {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 999px;
+  background: rgba(187, 187, 187, 0.4);
+}
+
+.spotify-card__status-dot[data-playing="true"] {
+  background: #35c759;
+  box-shadow: 0 0 0 0.4rem rgba(53, 199, 89, 0.14);
+}
+
+.spotify-card__title,
+.spotify-card__artist,
+.spotify-card__meta {
+  min-width: 0;
+}
+
+.spotify-card__title {
+  display: inline-block;
+  max-width: 100%;
+  color: #ffffff;
+  font-family: "Geist-Medium", "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 1.6rem;
+  line-height: 1.35;
+  text-decoration: none;
+}
+
+.spotify-card__title,
+.spotify-card__artist,
+.spotify-card__meta {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.spotify-card__artist {
+  color: #bbbbbb;
+  font-size: 1.3rem;
+  line-height: 1.6;
+}
+
+.spotify-card__meta {
+  margin-top: 0.4rem;
+  color: #888888;
+  font-size: 1.2rem;
+  line-height: 1.4;
+}
+
+.spotify-card__icon-link,
+.spotify-card__icon-link:visited {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 4rem;
+  height: 4rem;
+  color: #888888;
+  text-decoration: none;
+  transition:
+    transform 180ms ease-out,
+    color 180ms ease-out,
+    opacity 180ms ease-out;
+}
+
+.spotify-card__icon-link:hover,
+.spotify-card__icon-link:focus-visible {
+  color: #35c759;
+  transform: scale(1.08);
+}
+
+.spotify-card__icon-link svg {
+  width: 2.4rem;
+  height: 2.4rem;
+}
+
+.spotify-card__skeleton {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+  width: 100%;
+}
+
+.spotify-card__skeleton-art,
+.spotify-card__skeleton-line {
+  animation: skeleton-pulse 1.4s ease-in-out infinite;
+}
+
+.spotify-card__skeleton-art {
+  width: 6.4rem;
+  height: 6.4rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.spotify-card__skeleton-copy {
+  flex: 1 1 auto;
+}
+
+.spotify-card__skeleton-line {
+  height: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.spotify-card__skeleton-line:last-child {
+  margin-bottom: 0;
+}
+
+.spotify-card__skeleton-line.is-short {
+  width: 12rem;
+}
+
+.spotify-card__skeleton-line.is-medium {
+  width: 22rem;
+  max-width: 100%;
+}
+
+.spotify-card__skeleton-line.is-smaller {
+  width: 15rem;
+}
+
+.experience table {
+  width: 100%;
+  max-width: 60rem;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.experience th,
+.experience td {
+  padding: 1rem 1.2rem;
+  font-size: 1.5rem;
+  line-height: 2.4rem;
+  vertical-align: top;
+}
+
+.experience th {
+  border-bottom: 1px solid #2a2a2a;
+  color: #bbbbbb;
+  font-weight: 500;
+}
+
+.experience tbody tr:not(:last-child) {
+  border-bottom: 1px solid #2a2a2a;
+}
+
+.experience tbody tr.blur {
+  filter: blur(4px);
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.experience td {
+  color: #eaeaea;
+}
+
+.experience td:nth-child(1) {
+  width: 34%;
+}
+
+.experience td:nth-child(2) {
+  width: 66%;
+}
+
+.contributions h2 {
+  font-family: "Geist-Medium", "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 2.2rem;
+  margin-bottom: 1.6rem;
+  color: #ffffff;
+  text-wrap: balance;
+}
+
+.contributions-intro {
+  max-width: 56rem;
+  margin-bottom: 2.4rem;
+  color: #bbbbbb;
+  font-size: 1.5rem;
+  line-height: 2.6rem;
+}
+
+.contributions-card {
+  position: relative;
+  width: 100%;
+  max-width: 60rem;
+  padding: 2.2rem 2rem 1.8rem;
+  border: 1px solid #2a2a2a;
+  border-radius: 1.6rem;
+  background:
+    radial-gradient(circle at top left, rgba(166, 184, 255, 0.08), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0)),
+    #1b1b1b;
+  overflow: hidden;
+}
+
+.contributions-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.03),
+      transparent 18%,
+      transparent 82%,
+      rgba(255, 255, 255, 0.03)
+    );
+  opacity: 0.6;
+}
+
+.contributions-header,
+.contributions-legend {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.2rem;
+}
+
+.contributions-header {
+  margin-bottom: 1.8rem;
+}
+
+.contributions-source,
+.contributions-source:visited {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  color: #a6b8ff;
+  font-size: 1.3rem;
+  line-height: 1.6rem;
+  text-decoration: none;
+}
+
+.contributions-source::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 999px;
+  background: #a6b8ff;
+  box-shadow: 0 0 0 0.4rem rgba(166, 184, 255, 0.12);
+}
+
+.contributions-meta {
+  color: #bbbbbb;
+  font-size: 1.3rem;
+  line-height: 1.6rem;
+  text-align: right;
+}
+
+.contributions-grid {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  padding-bottom: 0.2rem;
+}
+
+.contributions-grid svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.contributions-legend {
+  margin-top: 1.6rem;
+  justify-content: flex-end;
+  gap: 0.8rem;
+  color: #888888;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.contributions-legend-scale {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.contributions-legend-swatch {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 0.3rem;
+}
+
+.contributions-state {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 14rem;
+  padding: 1.8rem;
+  border: 1px dashed rgba(166, 184, 255, 0.18);
+  border-radius: 1.2rem;
+  color: #888888;
+  font-size: 1.4rem;
+  line-height: 2.2rem;
+  text-align: center;
+}
+
+.contributions-state[data-state="loading"]::before {
+  content: "";
+  width: 1rem;
+  height: 1rem;
+  margin-right: 1rem;
+  border-radius: 999px;
+  background: #a6b8ff;
+  box-shadow: 0 0 0 0 rgba(166, 184, 255, 0.4);
+  animation: contributions-pulse 1.8s ease-out infinite;
+}
+
+.contributions-tooltip {
+  position: fixed;
+  z-index: 10;
+  padding: 0.8rem 1rem;
+  border-radius: 0.8rem;
+  background: #f2f4ff;
+  color: #121212;
+  font-size: 1.1rem;
+  line-height: 1.4rem;
+  white-space: nowrap;
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.28);
+  pointer-events: none;
+  transform: translate(-50%, calc(-100% - 1.2rem));
+  opacity: 0;
+  transition: opacity 120ms ease-out;
+}
+
+.contributions-tooltip.is-visible {
+  opacity: 1;
+}
+
+.contributions-tooltip strong {
+  color: #121212;
+}
+
+.contribution-day .contribution-cell {
+  pointer-events: none;
+  transition:
+    opacity 140ms ease-out,
+    stroke 140ms ease-out,
+    stroke-width 140ms ease-out;
+}
+
+.contribution-day:hover .contribution-cell,
+.contribution-day:focus-within .contribution-cell {
+  opacity: 1;
+  stroke: rgba(255, 255, 255, 0.3);
+  stroke-width: 1;
+}
+
+.contribution-hitbox {
+  fill: transparent;
+  cursor: pointer;
+}
+
+.contribution-hitbox:focus-visible {
+  outline: none;
+}
+
+.cta p {
+  max-width: 56rem;
+  font-size: 1.5rem;
+  color: #bbbbbb;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@keyframes contributions-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(166, 184, 255, 0.38);
+  }
+  70% {
+    box-shadow: 0 0 0 1.3rem rgba(166, 184, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(166, 184, 255, 0);
+  }
+}
+
+@keyframes spotify-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes skeleton-pulse {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 600px) {
+  html {
+    padding: 2em;
+  }
+
+  body {
+    padding: 0;
+    margin: 0;
+  }
+
+  .name {
+    font-size: 2rem;
+  }
+
+  p {
+    max-width: 100%;
+    line-height: 3rem;
+  }
+
+  .spotify-card {
+    padding: 1.6rem 1.4rem;
+    border-radius: 1.2rem;
+  }
+
+  .spotify-card__title {
+    font-size: 1.5rem;
+  }
+
+  .experience thead {
+    display: none;
+  }
+
+  .experience table {
+    width: 100%;
+  }
+
+  .experience tbody tr {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #2a2a2a;
+  }
+
+  .experience tbody tr.blur {
+    display: none;
+  }
+
+  .experience td {
+    font-size: 1.5rem;
+    padding: 0.5rem 0;
+    color: #eaeaea;
+  }
+
+  .experience td::before {
+    display: block;
+    font-size: 1.3rem;
+    color: #888;
+    margin-bottom: 0.2rem;
+  }
+
+  .experience td:nth-child(1)::before {
+    content: "Company";
+  }
+
+  .experience td:nth-child(2)::before {
+    content: "Role";
+  }
+
+  .experience td:nth-child(1) {
+    width: 100%;
+    display: block;
+  }
+
+  .experience td:nth-child(2) {
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .contributions-card {
+    padding: 1.8rem 1.4rem 1.4rem;
+    border-radius: 1.2rem;
+  }
+
+  .contributions-header {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 1.4rem;
+  }
+
+  .contributions-meta {
+    text-align: left;
+  }
+
+  .contributions-legend {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .cta p {
+    font-size: 1.5rem;
+    max-width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  a,
+  a:visited,
+  .spotify-card__icon-link,
+  .contributions-tooltip,
+  .contribution-cell,
+  .contributions-state[data-state="loading"]::before,
+  .spotify-card__art[data-playing="true"],
+  .spotify-card__skeleton-art,
+  .spotify-card__skeleton-line {
+    transition: none;
+    animation: none;
+  }
+}

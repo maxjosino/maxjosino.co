@@ -9,6 +9,9 @@ build/
 
 # Node (caso tenha algo de tooling)
 node_modules/
+.next/
+out/
+*.tsbuildinfo
 
 # Local env config
 .env
@@ -17,4 +20,5 @@ node_modules/
 # Files/folders que você mencionou
 _works.html
 _scalablecapital/
+.DS_Store
 .DS_Store
