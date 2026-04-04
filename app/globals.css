@@ -14,53 +14,56 @@
   font-display: swap;
 }
 
+:root {
+  --bg: #161616;
+  --surface: #1b1b1b;
+  --line: #2b2b2b;
+  --line-strong: #313131;
+  --text: #eaeaea;
+  --text-soft: #bbbbbb;
+  --muted: #888888;
+  --accent: #a6b8ff;
+  --shell-width: 69rem;
+  --shell-side-gap: clamp(0.8rem, 1.6vw, 1.6rem);
+  --section-pad: 1.2rem;
+}
+
 * {
   box-sizing: border-box;
 }
 
 html,
 body {
-  height: 100%;
+  min-height: 100%;
 }
 
 html {
   font-size: 10px;
-  padding: 4em;
-  background-color: #161616;
-  color: #eaeaea;
+  background-color: var(--bg);
+  color: var(--text);
   overflow-x: hidden;
 }
 
 body {
-  background: #161616;
+  margin: 0;
+  background: var(--bg);
   font-family: "Geist-Regular", "Helvetica Neue", Helvetica, sans-serif;
   font-optical-sizing: auto;
   font-synthesis: none;
   font-size: 1.6rem;
   line-height: 3rem;
-  color: #eaeaea;
-  margin: 0;
-  padding: 0;
+  color: var(--text);
   -webkit-font-smoothing: antialiased;
 }
 
-p {
-  max-width: 60rem;
-  line-height: 3rem;
-  margin-bottom: 2rem;
-  text-wrap: pretty;
-}
-
-.name {
-  margin-bottom: 1rem;
+::selection {
+  background: rgba(166, 184, 255, 0.28);
   color: #ffffff;
-  font-family: "Geist-Regular", "Helvetica Neue", Helvetica, sans-serif;
-  font-size: 2.4rem;
 }
 
 a,
 a:visited {
-  color: #a6b8ff;
+  color: var(--accent);
   cursor: pointer;
   text-decoration: underline;
   text-decoration-color: rgba(166, 184, 255, 0.45);
@@ -85,28 +88,129 @@ a:focus-visible {
   border-radius: 0.2rem;
 }
 
-.spotify-section,
-.experience,
-.contributions {
-  margin-top: 6rem;
+p {
+  max-width: 60rem;
+  line-height: 3rem;
+  margin-bottom: 2rem;
+  text-wrap: pretty;
 }
 
-.cta {
-  margin-top: 6rem;
+.site-shell {
+  position: relative;
+  width: min(100%, calc(var(--shell-width) + var(--shell-side-gap) * 2));
+  margin: 0 auto;
+  padding: 3.2rem var(--shell-side-gap) 6rem;
 }
 
-.spotify-section h2,
-.experience h2 {
+.site-shell::before,
+.site-shell::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  pointer-events: none;
+  z-index: 0;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    var(--line-strong) 0px,
+    var(--line-strong) 6px,
+    transparent 6px,
+    transparent 14px
+  );
+  background-size: 1px 100%;
+  background-repeat: no-repeat;
+}
+
+.site-shell::before {
+  left: var(--shell-side-gap);
+}
+
+.site-shell::after {
+  right: var(--shell-side-gap);
+}
+
+.site-shell > section {
+  position: relative;
+  margin: 0;
+  padding: 2.4rem var(--section-pad) 2.8rem;
+  background-image:
+    repeating-linear-gradient(
+      to bottom,
+      var(--line-strong) 0px,
+      var(--line-strong) 6px,
+      transparent 6px,
+      transparent 14px
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      var(--line-strong) 0px,
+      var(--line-strong) 6px,
+      transparent 6px,
+      transparent 14px
+    );
+  background-size: 1px 100%, 1px 100%;
+  background-position: left top, right top;
+  background-repeat: no-repeat;
+}
+
+.site-shell > section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: calc(50% - 50vw);
+  right: calc(50% - 50vw);
+  height: 1px;
+  background-image: repeating-linear-gradient(
+    to right,
+    var(--line-strong) 0px,
+    var(--line-strong) 6px,
+    transparent 6px,
+    transparent 14px
+  );
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+}
+
+.site-shell > section:last-child::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: calc(50% - 50vw);
+  right: calc(50% - 50vw);
+  height: 1px;
+  background-image: repeating-linear-gradient(
+    to right,
+    var(--line-strong) 0px,
+    var(--line-strong) 6px,
+    transparent 6px,
+    transparent 14px
+  );
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+}
+
+.name {
+  margin-bottom: 1rem;
+  color: #ffffff;
+  font-family: "Geist-Medium", "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 2.4rem;
+  line-height: 1.08;
+}
+
+.section-title {
   font-family: "Geist-Medium", "Helvetica Neue", Helvetica, sans-serif;
   font-size: 2.2rem;
-  margin-bottom: 2rem;
+  margin: 0 0 2rem;
   color: #ffffff;
   text-wrap: balance;
 }
 
-::selection {
-  background: rgba(166, 184, 255, 0.28);
-  color: #ffffff;
+.spotify-section,
+.experience,
+.contributions,
+.cta {
+  margin-top: 0;
 }
 
 .spotify-section {
@@ -369,12 +473,6 @@ a:focus-visible {
   font-size: 1.5rem;
   line-height: 2.4rem;
   vertical-align: top;
-}
-
-.experience th {
-  border-bottom: 1px solid #2a2a2a;
-  color: #bbbbbb;
-  font-weight: 500;
 }
 
 .experience tbody tr:not(:last-child) {
@@ -646,14 +744,18 @@ a:focus-visible {
   }
 }
 
-@media (max-width: 600px) {
-  html {
-    padding: 2em;
+@media (max-width: 720px) {
+  .site-shell {
+    width: 100%;
+    padding: 2rem 0.8rem 4.8rem;
   }
 
-  body {
-    padding: 0;
-    margin: 0;
+  .site-shell::before {
+    left: 0.8rem;
+  }
+
+  .site-shell::after {
+    right: 0.8rem;
   }
 
   .name {
@@ -665,13 +767,8 @@ a:focus-visible {
     line-height: 3rem;
   }
 
-  .spotify-card {
-    padding: 1.6rem 1.4rem;
-    border-radius: 1.2rem;
-  }
-
-  .spotify-card__title {
-    font-size: 1.5rem;
+  .now-playing__copy {
+    font-size: 1.35rem;
   }
 
   .experience thead {
@@ -754,13 +851,10 @@ a:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   a,
   a:visited,
-  .spotify-card__icon-link,
   .contributions-tooltip,
   .contribution-cell,
   .contributions-state[data-state="loading"]::before,
-  .spotify-card__art[data-playing="true"],
-  .spotify-card__skeleton-art,
-  .spotify-card__skeleton-line {
+  .now-playing__skeleton-line {
     transition: none;
     animation: none;
   }
