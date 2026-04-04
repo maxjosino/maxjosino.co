@@ -50,6 +50,32 @@ export const emptySpotifyTrack: SpotifyTrackPayload = {
   playedAt: null
 };
 
+export const fallbackSpotifyTrack: SpotifyTrackPayload = {
+  title: "Goth",
+  artist: "Sidewalks and Skeletons",
+  album: null,
+  albumImageUrl: null,
+  songUrl: "https://open.spotify.com/track/0uMZbmAAgOhdMrv25iPEH6?si=de1fcfb202634fb9",
+  isPlaying: false,
+  playedAt: null
+};
+
+async function fetchWithTimeout(input: RequestInfo | URL, init: RequestInit = {}, timeoutMs = 4000) {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => {
+    controller.abort();
+  }, timeoutMs);
+
+  try {
+    return await fetch(input, {
+      ...init,
+      signal: controller.signal
+    });
+  } finally {
+    clearTimeout(timeoutId);
+  }
+}
+
 function normalizeTrack(track: SpotifyTrack | null | undefined, isPlaying: boolean, playedAt: string | null) {
   if (!track?.name) {
     return emptySpotifyTrack;
@@ -75,7 +101,7 @@ async function getAccessToken() {
     return null;
   }
 
-  const response = await fetch("https://accounts.spotify.com/api/token", {
+  const response = await fetchWithTimeout("https://accounts.spotify.com/api/token", {
     method: "POST",
     cache: "no-store",
     headers: {
@@ -97,7 +123,7 @@ async function getAccessToken() {
 }
 
 async function fetchSpotifyResource(path: string, accessToken: string) {
-  return fetch(`https://api.spotify.com/v1${path}`, {
+  return fetchWithTimeout(`https://api.spotify.com/v1${path}`, {
     cache: "no-store",
     headers: {
       Authorization: `Bearer ${accessToken}`
