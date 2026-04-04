@@ -1,5 +1,25 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+import { ThemeToggle } from "@/components/theme-toggle";
 import "./globals.css";
+
+const themeInitScript = `
+(() => {
+  const storageKey = "theme";
+  const darkThemeColor = "#161616";
+  const lightThemeColor = "#f3efe4";
+  const root = document.documentElement;
+  const storedTheme = window.localStorage.getItem(storageKey);
+  const theme = storedTheme === "light" ? "light" : "dark";
+  root.classList.remove("light", "dark");
+  root.classList.add(theme);
+  root.setAttribute("data-theme", theme);
+  root.style.colorScheme = theme;
+  const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+  if (metaThemeColor) {
+    metaThemeColor.setAttribute("content", theme === "dark" ? darkThemeColor : lightThemeColor);
+  }
+})();
+`;
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://maxjosino.co"),
@@ -48,15 +68,23 @@ export const metadata: Metadata = {
   }
 };
 
+export const viewport: Viewport = {
+  themeColor: "#161616"
+};
+
 export default function RootLayout({
   children
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
       <body>
         <main className="site-shell">{children}</main>
+        <ThemeToggle />
       </body>
     </html>
   );

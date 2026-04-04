@@ -26,11 +26,11 @@ interface TooltipState {
 }
 
 const PALETTE = [
-  "rgba(255, 255, 255, 0.05)",
-  "rgba(166, 184, 255, 0.22)",
-  "rgba(166, 184, 255, 0.42)",
-  "rgba(166, 184, 255, 0.62)",
-  "rgba(166, 184, 255, 0.9)"
+  "var(--contribution-level-0)",
+  "var(--contribution-level-1)",
+  "var(--contribution-level-2)",
+  "var(--contribution-level-3)",
+  "var(--contribution-level-4)"
 ];
 
 const MONTH_LABELS = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
@@ -342,7 +342,7 @@ export function ContributionsSection() {
                     key={`${marker.label}-${marker.col}`}
                     x={chart.leftGutter + marker.col * chart.pitch}
                     y="10"
-                    fill="#888888"
+                    fill="var(--contribution-axis)"
                     fontSize={chart.monthFontSize}
                     fontFamily="Geist-Regular, Helvetica Neue, Helvetica, sans-serif"
                   >
@@ -357,7 +357,7 @@ export function ContributionsSection() {
                       key={row.label}
                       x="0"
                       y={chart.chartTop + row.row * chart.pitch + chart.cellSize * 0.75}
-                      fill="#888888"
+                      fill="var(--contribution-axis)"
                       fontSize={chart.weekdayFontSize}
                       fontFamily="Geist-Regular, Helvetica Neue, Helvetica, sans-serif"
                     >
