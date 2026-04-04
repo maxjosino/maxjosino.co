@@ -1,7 +1,5 @@
-"use client";
-
-import { useEffect, useMemo, useState } from "react";
-import type { SpotifyTrackPayload } from "@/lib/spotify";
+import { fallbackSpotifyTrack } from "@/lib/spotify";
+import batGif from "@/img/bat.gif";
 
 function SpotifyIcon() {
   return (
@@ -11,171 +9,76 @@ function SpotifyIcon() {
   );
 }
 
-function SpotifySkeleton() {
+function PinIcon() {
   return (
-    <div className="spotify-card spotify-card--loading" aria-hidden="true">
-      <div className="spotify-card__skeleton">
-        <div className="spotify-card__skeleton-art" />
-        <div className="spotify-card__skeleton-copy">
-          <div className="spotify-card__skeleton-line is-short" />
-          <div className="spotify-card__skeleton-line is-medium" />
-          <div className="spotify-card__skeleton-line is-smaller" />
-        </div>
-      </div>
-    </div>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" aria-hidden="true">
+      <path
+        d="M12 21s6-5.45 6-11a6 6 0 1 0-12 0c0 5.55 6 11 6 11Z"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <circle cx="12" cy="10" r="2.5" />
+    </svg>
   );
 }
 
-function formatPlayedAt(value: string | null) {
-  if (!value) {
-    return null;
-  }
-
-  const date = new Date(value);
-
-  if (Number.isNaN(date.getTime())) {
-    return null;
-  }
-
-  return new Intl.DateTimeFormat("en-US", {
-    hour: "numeric",
-    minute: "2-digit"
-  }).format(date);
-}
-
 export function SpotifyCard() {
-  const [track, setTrack] = useState<SpotifyTrackPayload | null>(null);
-  const [lastValidTrack, setLastValidTrack] = useState<SpotifyTrackPayload | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    let mounted = true;
-
-    const loadTrack = async (initial = false) => {
-      try {
-        const response = await fetch("/api/spotify", {
-          cache: "no-store"
-        });
-
-        if (!response.ok) {
-          return;
-        }
-
-        const payload = (await response.json()) as SpotifyTrackPayload;
-
-        if (!mounted) {
-          return;
-        }
-
-        setTrack(payload);
-
-        if (payload.title) {
-          setLastValidTrack(payload);
-        } else if (initial) {
-          setLastValidTrack(null);
-        }
-      } catch {
-        // Keep the last valid payload on screen when Spotify is temporarily unavailable.
-      } finally {
-        if (mounted && initial) {
-          setIsLoading(false);
-        }
-      }
-    };
-
-    void loadTrack(true);
-
-    const intervalId = window.setInterval(() => {
-      void loadTrack();
-    }, 15000);
-
-    return () => {
-      mounted = false;
-      window.clearInterval(intervalId);
-    };
-  }, []);
-
-  const displayTrack = useMemo(() => {
-    if (track?.title) {
-      return track;
-    }
-
-    return lastValidTrack;
-  }, [lastValidTrack, track]);
-
-  if (isLoading) {
-    return (
-      <section className="spotify-section" aria-labelledby="spotify-title">
-        <h2 className="section-title" id="spotify-title">
-          Listening
-        </h2>
-        <SpotifySkeleton />
-      </section>
-    );
-  }
-
-  const statusLabel = displayTrack?.isPlaying
-    ? "Now playing"
-    : displayTrack?.title
-      ? "Last played"
-      : "Not listening";
-  const playedAt = displayTrack?.isPlaying ? null : formatPlayedAt(displayTrack?.playedAt ?? null);
+  const displayTrack = fallbackSpotifyTrack;
 
   return (
-    <section className="spotify-section" aria-labelledby="spotify-title">
-      <h2 className="section-title" id="spotify-title">
-        Listening
-      </h2>
-
-      <div className="spotify-card">
-        <div className="spotify-card__art" data-playing={displayTrack?.isPlaying ? "true" : "false"} aria-hidden="true">
-          {displayTrack?.albumImageUrl ? (
-            <img src={displayTrack.albumImageUrl} alt="Album art" />
-          ) : (
-            <div className="spotify-card__art-fallback">♪</div>
-          )}
-        </div>
-
-        <div className="spotify-card__content">
-          <span className="spotify-card__eyebrow">
-            <span
-              className="spotify-card__status-dot"
-              data-playing={displayTrack?.isPlaying ? "true" : "false"}
-            />
-            <span>{statusLabel}</span>
+    <section className="spotify-section" aria-label="Last played">
+      <div className="now-playing">
+        <div className="now-playing__body">
+          <span className="now-playing__icon" aria-hidden="true">
+            <SpotifyIcon />
           </span>
 
-          {displayTrack?.songUrl && displayTrack.title ? (
-            <a
-              className="spotify-card__title"
-              href={displayTrack.songUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {displayTrack.title}
-            </a>
-          ) : (
-            <span className="spotify-card__title">Nothing playing</span>
-          )}
+          <p className="now-playing__copy">
+            <span className="now-playing__label">Last played</span>
 
-          {displayTrack?.artist ? (
-            <div className="spotify-card__artist">{displayTrack.artist}</div>
-          ) : null}
+            {displayTrack?.songUrl ? (
+              <>
+                <a
+                  className="now-playing__track"
+                  href={displayTrack.songUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {displayTrack.title}
+                </a>
 
-          {playedAt ? <div className="spotify-card__meta">Last played at {playedAt}</div> : null}
+                {displayTrack?.artist ? (
+                  <>
+                    {" by "}
+                    <a
+                      className="now-playing__track"
+                      href={displayTrack.songUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {displayTrack.artist}
+                    </a>
+                  </>
+                ) : null}
+              </>
+            ) : (
+              <span className="now-playing__track">
+                {displayTrack?.title}
+                {displayTrack?.artist ? ` by ${displayTrack.artist}` : ""}
+              </span>
+            )}
+          </p>
         </div>
 
-        {displayTrack?.songUrl ? (
-          <a
-            className="spotify-card__icon-link"
-            href={displayTrack.songUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Open in Spotify"
-          >
-            <SpotifyIcon />
-          </a>
-        ) : null}
+        <div className="now-playing__art">
+          <span className="now-playing__location">
+            <span className="now-playing__location-icon" aria-hidden="true">
+              <PinIcon />
+            </span>
+            <span className="now-playing__location-label">Berlin &amp; NYC</span>
+          </span>
+          <img className="now-playing__bat" src={batGif.src} alt="" />
+        </div>
       </div>
     </section>
   );

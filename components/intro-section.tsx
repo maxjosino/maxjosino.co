@@ -10,7 +10,12 @@ export function IntroSection() {
 
       <p>
         I’m the first hire and Founding Product Designer at{" "}
-        <a href="https://joinground.com/" target="_blank" rel="noopener noreferrer">
+        <a
+          className="brand-link is-ground"
+          href="https://joinground.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Ground
         </a>
         , helping build an AI-powered platform for DTC brands across product design, systems, and
@@ -20,6 +25,7 @@ export function IntroSection() {
       <p>
         Previously, I was an early design hire at{" "}
         <a
+          className="brand-link is-nubank"
           href="https://www.crunchbase.com/organization/nubank"
           target="_blank"
           rel="noopener noreferrer"
@@ -30,7 +36,8 @@ export function IntroSection() {
         company grew from a startup into one of the world’s largest digital banks, serving more
         than 100 million users. Later, at{" "}
         <a
-          href="https://www.crunchbase.com/organization/gofast"
+          className="brand-link is-fast"
+          href="https://www.linkedin.com/company/fast"
           target="_blank"
           rel="noopener noreferrer"
         >
