@@ -37,7 +37,7 @@ export function IntroSection() {
         than 100 million users. Later, at{" "}
         <a
           className="brand-link is-fast"
-          href="https://www.linkedin.com/company/fast/"
+          href="https://www.linkedin.com/company/fast"
           target="_blank"
           rel="noopener noreferrer"
         >
