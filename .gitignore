@@ -10,6 +10,7 @@ build/
 # Node (caso tenha algo de tooling)
 node_modules/
 .next/
+.next-dev/
 out/
 *.tsbuildinfo
 

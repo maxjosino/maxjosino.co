@@ -1,15 +1,9 @@
 "use client";
 
-import type { MutableRefObject } from "react";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { playThemeToggleSound } from "@/lib/ui-sound";
 
 type Theme = "dark" | "light";
-
-declare global {
-  interface Window {
-    webkitAudioContext?: typeof AudioContext;
-  }
-}
 
 const DARK_THEME_COLOR = "#161616";
 const LIGHT_THEME_COLOR = "#f3efe4";
@@ -59,38 +53,6 @@ function setDocumentTheme(theme: Theme) {
   metaThemeColor?.setAttribute("content", theme === "dark" ? DARK_THEME_COLOR : LIGHT_THEME_COLOR);
 }
 
-function playToggleSound(theme: Theme, audioContextRef: MutableRefObject<AudioContext | null>) {
-  const AudioContextClass = window.AudioContext ?? window.webkitAudioContext;
-
-  if (!AudioContextClass) {
-    return;
-  }
-
-  const audioContext = audioContextRef.current ?? new AudioContextClass();
-  audioContextRef.current = audioContext;
-
-  if (audioContext.state === "suspended") {
-    void audioContext.resume();
-  }
-
-  const now = audioContext.currentTime;
-  const gainNode = audioContext.createGain();
-  gainNode.connect(audioContext.destination);
-
-  const oscillator = audioContext.createOscillator();
-  oscillator.type = theme === "dark" ? "triangle" : "sine";
-  oscillator.frequency.setValueAtTime(theme === "dark" ? 720 : 980, now);
-  oscillator.frequency.exponentialRampToValueAtTime(theme === "dark" ? 420 : 700, now + 0.08);
-
-  gainNode.gain.setValueAtTime(0.0001, now);
-  gainNode.gain.exponentialRampToValueAtTime(0.045, now + 0.008);
-  gainNode.gain.exponentialRampToValueAtTime(0.0001, now + 0.09);
-
-  oscillator.connect(gainNode);
-  oscillator.start(now);
-  oscillator.stop(now + 0.09);
-}
-
 export function ThemeToggle() {
   const [theme, setTheme] = useState<Theme>("dark");
   const [mounted, setMounted] = useState(false);
@@ -116,7 +78,7 @@ export function ThemeToggle() {
         navigator.vibrate(16);
       }
 
-      playToggleSound(nextTheme, audioContextRef);
+      playThemeToggleSound(nextTheme, audioContextRef);
 
       const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       if (!prefersReducedMotion && typeof document.startViewTransition === "function") {
