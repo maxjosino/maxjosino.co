@@ -134,6 +134,7 @@ export function ContributionsSection() {
   const cardRef = useRef<HTMLDivElement>(null);
   const [data, setData] = useState<ContributionsPayload | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
   const [availableWidth, setAvailableWidth] = useState(0);
   const [tooltip, setTooltip] = useState<TooltipState>({
     contribution: null,
@@ -143,7 +144,11 @@ export function ContributionsSection() {
   });
 
   useEffect(() => {
+    let mounted = true;
     const controller = new AbortController();
+    const timeoutId = window.setTimeout(() => {
+      controller.abort();
+    }, 5000);
 
     const loadContributions = async () => {
       try {
@@ -165,10 +170,22 @@ export function ContributionsSection() {
           throw new Error("Invalid contribution payload");
         }
 
+        if (!mounted) {
+          return;
+        }
+
         setData(payload);
         setError(null);
       } catch (loadError) {
+        if (!mounted) {
+          return;
+        }
+
         if (controller.signal.aborted) {
+          setError(
+            "The live graph could not be loaded. Open the GitHub profile directly for the latest activity."
+          );
+          setData(null);
           return;
         }
 
@@ -176,12 +193,19 @@ export function ContributionsSection() {
           "The live graph could not be loaded. Open the GitHub profile directly for the latest activity."
         );
         setData(null);
+      } finally {
+        window.clearTimeout(timeoutId);
+        if (mounted) {
+          setIsLoading(false);
+        }
       }
     };
 
     void loadContributions();
 
     return () => {
+      mounted = false;
+      window.clearTimeout(timeoutId);
       controller.abort();
     };
   }, []);
@@ -281,7 +305,11 @@ export function ContributionsSection() {
             <span>github/{GITHUB_USERNAME}</span>
           </a>
           <div className="contributions-meta">
-            {chart ? `${chart.yearlyTotal} contributions in ${chart.currentYear}` : "Loading contributions..."}
+            {chart
+              ? `${chart.yearlyTotal} contributions in ${chart.currentYear}`
+              : isLoading
+                ? "Loading contributions..."
+                : "GitHub activity snapshot unavailable"}
           </div>
         </div>
 
@@ -290,9 +318,9 @@ export function ContributionsSection() {
             <div className="contributions-state" data-state="error">
               {error}
             </div>
-          ) : !chart ? (
+          ) : isLoading || !chart ? (
             <div className="contributions-state" data-state="loading">
-              Fetching the contribution graph.
+              {isLoading ? "Fetching the contribution graph." : "Preparing activity snapshot."}
             </div>
           ) : (
             <svg

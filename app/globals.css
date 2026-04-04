@@ -408,31 +408,16 @@ p {
 .contributions-card {
   position: relative;
   width: 100%;
-  max-width: 60rem;
-  padding: 2.2rem 2rem 1.8rem;
-  border: 1px solid #2a2a2a;
-  border-radius: 1.6rem;
-  background:
-    radial-gradient(circle at top left, rgba(166, 184, 255, 0.08), transparent 34%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0)),
-    #1b1b1b;
-  overflow: hidden;
+  max-width: none;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  overflow: visible;
 }
 
 .contributions-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    linear-gradient(
-      90deg,
-      rgba(255, 255, 255, 0.03),
-      transparent 18%,
-      transparent 82%,
-      rgba(255, 255, 255, 0.03)
-    );
-  opacity: 0.6;
+  content: none;
 }
 
 .contributions-header,
@@ -508,7 +493,7 @@ p {
 .contributions-legend-swatch {
   width: 1rem;
   height: 1rem;
-  border-radius: 0.3rem;
+  border-radius: 0.2rem;
 }
 
 .contributions-state {
@@ -520,7 +505,6 @@ p {
   min-height: 14rem;
   padding: 1.8rem;
   border: 1px dashed rgba(166, 184, 255, 0.18);
-  border-radius: 1.2rem;
   color: #888888;
   font-size: 1.4rem;
   line-height: 2.2rem;
@@ -716,7 +700,7 @@ p {
 
   .contributions-card {
     padding: 1.8rem 1.4rem 1.4rem;
-    border-radius: 1.2rem;
+    border-radius: 1rem;
   }
 
   .contributions-header {
