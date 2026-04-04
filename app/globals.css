@@ -89,9 +89,8 @@ a:focus-visible {
 }
 
 p {
-  max-width: 60rem;
   line-height: 3rem;
-  margin-bottom: 2rem;
+  margin: 0 0 2rem;
   text-wrap: pretty;
 }
 
@@ -642,9 +641,9 @@ p {
 }
 
 .cta p {
-  max-width: 56rem;
   font-size: 1.5rem;
   color: #bbbbbb;
+  margin-bottom: 0;
 }
 
 .visually-hidden {
