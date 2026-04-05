@@ -33,6 +33,11 @@
   --tooltip-text: #121212;
   --tooltip-shadow: rgba(0, 0, 0, 0.28);
   --cell-stroke-hover: rgba(255, 255, 255, 0.3);
+  --experience-row-hover-bg: #1a1a1a;
+  --ground-brand: #00d85d;
+  --fast-brand: #fbb7d0;
+  --creditas-brand: #8edb00;
+  --nubank-brand: #9b3ff3;
   --contribution-axis: var(--muted);
   --contribution-level-0: rgba(255, 255, 255, 0.07);
   --contribution-level-1: rgba(166, 184, 255, 0.24);
@@ -62,6 +67,11 @@ html.light {
   --tooltip-text: #f6f1e7;
   --tooltip-shadow: rgba(15, 14, 12, 0.18);
   --cell-stroke-hover: rgba(25, 24, 22, 0.22);
+  --experience-row-hover-bg: #eee8dc;
+  --ground-brand: #009a46;
+  --fast-brand: #c86f93;
+  --creditas-brand: #5f9800;
+  --nubank-brand: #820ad1;
   --contribution-level-0: rgba(25, 24, 22, 0.14);
   --contribution-level-1: rgba(53, 88, 214, 0.26);
   --contribution-level-2: rgba(53, 88, 214, 0.42);
@@ -75,6 +85,7 @@ html.light {
 
 html,
 body {
+  height: 100%;
   min-height: 100%;
 }
 
@@ -92,6 +103,8 @@ html.light {
 
 body {
   margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
   background: var(--bg);
   font-family: "Geist-Regular", "Helvetica Neue", Helvetica, sans-serif;
   font-optical-sizing: auto;
@@ -143,6 +156,8 @@ p {
 .site-shell {
   position: relative;
   width: min(100%, calc(var(--shell-width) + var(--shell-side-gap) * 2));
+  min-height: 100vh;
+  min-height: 100dvh;
   margin: 0 auto;
   padding: 3.2rem var(--shell-side-gap) 6rem;
 }
@@ -418,8 +433,11 @@ p {
 
 .experience tbody tr {
   --experience-hover: var(--text-strong);
+  background: transparent;
   cursor: pointer;
-  transition: color 180ms ease-out;
+  transition:
+    color 180ms ease-out,
+    background-color 260ms ease-out;
 }
 
 .experience tbody tr.blur {
@@ -433,25 +451,31 @@ p {
   transition: color 180ms ease-out;
 }
 
+.experience tbody tr:hover,
+.experience tbody tr:focus-within {
+  background-color: var(--experience-row-hover-bg);
+  transition: background-color 140ms ease-out;
+}
+
 .experience tbody tr:hover td,
 .experience tbody tr:focus-within td {
   color: var(--experience-hover);
 }
 
 .experience tbody tr.is-ground {
-  --experience-hover: #00d85d;
+  --experience-hover: var(--ground-brand);
 }
 
 .experience tbody tr.is-fast {
-  --experience-hover: #fbb7d0;
+  --experience-hover: var(--fast-brand);
 }
 
 .experience tbody tr.is-creditas {
-  --experience-hover: #8edb00;
+  --experience-hover: var(--creditas-brand);
 }
 
 .experience tbody tr.is-nubank {
-  --experience-hover: #820ad1;
+  --experience-hover: var(--nubank-brand);
 }
 
 .brand-link,
@@ -474,26 +498,26 @@ p {
 .brand-link.is-ground:focus,
 .experience tbody tr.is-ground:hover .experience-company-link,
 .experience tbody tr.is-ground:focus-within .experience-company-link {
-  color: #00d85d;
+  color: var(--ground-brand);
 }
 
 .brand-link.is-fast:hover,
 .brand-link.is-fast:focus {
-  color: #fbb7d0;
+  color: var(--fast-brand);
 }
 
 .brand-link.is-creditas:hover,
 .brand-link.is-creditas:focus,
 .experience tbody tr.is-creditas:hover .experience-company-link,
 .experience tbody tr.is-creditas:focus-within .experience-company-link {
-  color: #8edb00;
+  color: var(--creditas-brand);
 }
 
 .brand-link.is-nubank:hover,
 .brand-link.is-nubank:focus,
 .experience tbody tr.is-nubank:hover .experience-company-link,
 .experience tbody tr.is-nubank:focus-within .experience-company-link {
-  color: #820ad1;
+  color: var(--nubank-brand);
 }
 
 .experience td:nth-child(1) {
@@ -568,6 +592,7 @@ p {
   border-radius: 999px;
   background: var(--accent);
   box-shadow: 0 0 0 0.4rem rgb(var(--accent-rgb) / 0.12);
+  animation: contributions-pulse 1.8s ease-out infinite;
 }
 
 .contributions-meta {
@@ -818,6 +843,28 @@ p {
   }
 }
 
+@keyframes theme-fade-out {
+  from {
+    opacity: 1;
+    filter: blur(0);
+  }
+  to {
+    opacity: 0;
+    filter: blur(2px);
+  }
+}
+
+@keyframes theme-fade-in {
+  from {
+    opacity: 0;
+    filter: blur(2px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
 @media (max-width: 720px) {
   .site-shell {
     width: 100%;
@@ -854,9 +901,10 @@ p {
   }
 
   .experience tbody tr {
-    display: flex;
-    flex-wrap: wrap;
-    margin-bottom: 2.5rem;
+    display: grid;
+    grid-template-columns: minmax(10rem, 0.9fr) minmax(0, 1.4fr);
+    column-gap: 1.6rem;
+    margin-bottom: 1.5rem;
     padding-bottom: 1.5rem;
     border-bottom: 1px solid var(--line);
   }
@@ -867,7 +915,6 @@ p {
 
   .experience tbody tr.is-nubank {
     margin-bottom: 0;
-    padding-bottom: 0;
     border-bottom: 0;
   }
 
@@ -893,17 +940,17 @@ p {
   }
 
   .experience td:nth-child(1) {
-    width: 100%;
+    width: auto;
     display: block;
   }
 
   .experience td:nth-child(2) {
-    width: 100%;
-    margin-top: 1rem;
+    width: auto;
+    margin-top: 0;
   }
 
   .contributions-card {
-    padding: 1.8rem 1.4rem 1.4rem;
+    padding: 1.8rem 0 1.4rem;
     border-radius: 1rem;
   }
 
@@ -953,6 +1000,13 @@ p {
 
 ::view-transition-old(root),
 ::view-transition-new(root) {
-  animation-duration: 220ms;
-  animation-timing-function: ease;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  animation: theme-fade-out 280ms cubic-bezier(0.32, 0, 0.67, 0);
+}
+
+::view-transition-new(root) {
+  animation: theme-fade-in 420ms cubic-bezier(0.22, 1, 0.36, 1);
 }
