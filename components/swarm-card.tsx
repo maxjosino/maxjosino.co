@@ -1,5 +1,4 @@
 import { getLatestSwarmCheckin } from "@/lib/foursquare";
-import batGif from "@/img/bat.gif";
 
 function SwarmIcon() {
   return (
@@ -11,21 +10,6 @@ function SwarmIcon() {
       <path
         className="swarm-icon__filled"
         d="M232,56V176a8,8,0,0,1-2.76,6c-15.28,13.23-29.89,18-43.82,18-18.91,0-36.57-8.74-53-16.85C105.87,170,82.79,158.61,56,179.77V224a8,8,0,0,1-16,0V56a8,8,0,0,1,2.77-6h0c36-31.18,68.31-15.21,96.79-1.12C167,62.46,190.79,74.2,218.76,50A8,8,0,0,1,232,56Z"
-      />
-    </svg>
-  );
-}
-
-function PinIcon() {
-  return (
-    <svg className="swarm-pin" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true">
-      <path
-        className="swarm-pin__outline"
-        d="M128,64a40,40,0,1,0,40,40A40,40,0,0,0,128,64Zm0,64a24,24,0,1,1,24-24A24,24,0,0,1,128,128Zm0-112a88.1,88.1,0,0,0-88,88c0,31.4,14.51,64.68,42,96.25a254.19,254.19,0,0,0,41.45,38.3,8,8,0,0,0,9.18,0A254.19,254.19,0,0,0,174,200.25c27.45-31.57,42-64.85,42-96.25A88.1,88.1,0,0,0,128,16Zm0,206c-16.53-13-72-60.75-72-118a72,72,0,0,1,144,0C200,161.23,144.53,209,128,222Z"
-      />
-      <path
-        className="swarm-pin__filled"
-        d="M128,16a88.1,88.1,0,0,0-88,88c0,75.3,80,132.17,83.41,134.55a8,8,0,0,0,9.18,0C136,236.17,216,179.3,216,104A88.1,88.1,0,0,0,128,16Zm0,56a32,32,0,1,1-32,32A32,32,0,0,1,128,72Z"
       />
     </svg>
   );
@@ -81,16 +65,6 @@ export async function SwarmCard() {
 
             {meta ? <span className="now-playing__meta">{` · ${meta}`}</span> : null}
           </p>
-        </div>
-
-        <div className="now-playing__art">
-          <span className="now-playing__location">
-            <span className="now-playing__location-icon" aria-hidden="true">
-              <PinIcon />
-            </span>
-            <span className="now-playing__location-label">Berlin &amp; NYC</span>
-          </span>
-          <img className="now-playing__bat" src={batGif.src} alt="" />
         </div>
       </div>
     </section>

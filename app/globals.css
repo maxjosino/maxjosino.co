@@ -270,6 +270,7 @@ p {
 
 .spotify-section,
 .swarm-section,
+.location-section,
 .experience,
 .contributions,
 .cta {
@@ -281,7 +282,8 @@ p {
 }
 
 .site-shell > section.spotify-section,
-.site-shell > section.swarm-section {
+.site-shell > section.swarm-section,
+.site-shell > section.location-section {
   padding-top: 1.2rem;
   padding-bottom: 1.2rem;
 }
@@ -294,8 +296,13 @@ p {
   --activity-accent: var(--swarm-accent);
 }
 
+.location-section {
+  --activity-accent: var(--muted);
+}
+
 .site-shell > section.spotify-section,
-.site-shell > section.swarm-section {
+.site-shell > section.swarm-section,
+.site-shell > section.location-section {
   background-image: repeating-linear-gradient(
     to bottom,
     var(--line-strong) 0px,
@@ -348,8 +355,8 @@ p {
 
 .swarm-icon__outline,
 .swarm-icon__filled,
-.swarm-pin__outline,
-.swarm-pin__filled {
+.pin-icon__outline,
+.pin-icon__filled {
   transition:
     opacity 180ms ease-out,
     transform 180ms ease-out;
@@ -364,22 +371,24 @@ p {
   opacity: 0;
 }
 
-.swarm-pin {
+.pin-icon {
   overflow: visible;
 }
 
-.swarm-pin__outline {
+.pin-icon__outline {
   opacity: 1;
 }
 
-.swarm-pin__filled {
+.pin-icon__filled {
   opacity: 0;
 }
 
 .spotify-section:hover .now-playing__icon,
 .spotify-section:focus-within .now-playing__icon,
 .swarm-section:hover .now-playing__icon,
-.swarm-section:focus-within .now-playing__icon {
+.swarm-section:focus-within .now-playing__icon,
+.location-section:hover .now-playing__icon,
+.location-section:focus-within .now-playing__icon {
   color: var(--activity-accent);
 }
 
@@ -391,18 +400,6 @@ p {
 
 .swarm-section:hover .swarm-icon__filled,
 .swarm-section:focus-within .swarm-icon__filled {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.swarm-section:hover .swarm-pin__outline,
-.swarm-section:focus-within .swarm-pin__outline {
-  opacity: 0;
-  transform: scale(0.96);
-}
-
-.swarm-section:hover .swarm-pin__filled,
-.swarm-section:focus-within .swarm-pin__filled {
   opacity: 1;
   transform: scale(1);
 }
@@ -464,30 +461,6 @@ p {
   flex: 0 0 auto;
 }
 
-.now-playing__location {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: var(--muted);
-  font-size: 1.35rem;
-  line-height: 1;
-  letter-spacing: 0.01em;
-  white-space: nowrap;
-}
-
-.now-playing__location-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.45rem;
-  height: 1.45rem;
-  flex: 0 0 auto;
-}
-
-.now-playing__location-icon svg {
-  width: 1.45rem;
-  height: 1.45rem;
-}
 
 .experience table {
   width: 100%;
