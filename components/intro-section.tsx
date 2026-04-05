@@ -1,7 +1,22 @@
+import avatarMini from "@/img/avatar_mini.png";
+import meSocial from "@/img/me-social.png";
+
 export function IntroSection() {
   return (
     <section className="intro-section">
-      <p className="name">Max Josino</p>
+      <div className="intro-name-row">
+        <p className="name">Max Josino</p>
+
+        <span className="intro-photo-trigger" tabIndex={0}>
+          <img className="intro-photo-trigger__icon" src={avatarMini.src} alt="" aria-hidden="true" />
+
+          <span className="intro-photo-preview" aria-hidden="true">
+            <span className="intro-photo-frame">
+              <img className="intro-photo" src={meSocial.src} alt="" />
+            </span>
+          </span>
+        </span>
+      </div>
 
       <p>
         I’m a Founding Product Designer working across product design and design engineering.

@@ -244,6 +244,74 @@ p {
   line-height: 1.08;
 }
 
+.intro-name-row {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.intro-name-row .name {
+  margin-bottom: 0;
+}
+
+.intro-photo-trigger {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  outline: none;
+}
+
+.intro-photo-trigger__icon {
+  display: block;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 0.2rem;
+  object-fit: cover;
+}
+
+.intro-photo-preview {
+  position: absolute;
+  top: calc(100% + 0.8rem);
+  left: 50%;
+  z-index: 3;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(0.4rem);
+  transition:
+    opacity 180ms ease-out,
+    transform 180ms ease-out;
+}
+
+.intro-photo-trigger:hover .intro-photo-preview,
+.intro-photo-trigger:focus-visible .intro-photo-preview,
+.intro-photo-trigger:focus .intro-photo-preview {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.intro-photo-frame {
+  display: inline-flex;
+  width: fit-content;
+  height: fit-content;
+  padding: 0.4rem;
+  border-radius: 0.8rem;
+  border: 1px solid var(--line-strong);
+}
+
+.intro-photo {
+  display: block;
+  width: 11.2rem;
+  height: 11.2rem;
+  border-radius: 0.4rem;
+  object-fit: cover;
+}
+
 .section-title {
   font-weight: 700;
   font-size: 2.2rem;
