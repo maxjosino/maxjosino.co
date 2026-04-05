@@ -12,14 +12,24 @@ function SpotifyIcon() {
   );
 }
 
+function SpotifyNowPlayingLabel() {
+  return (
+    <span className="now-playing__label">
+      Now playing
+      <span className="spotify-now-playing-dots" aria-hidden="true">
+        <span className="spotify-now-playing-dots__dot">.</span>
+        <span className="spotify-now-playing-dots__dot">.</span>
+        <span className="spotify-now-playing-dots__dot">.</span>
+      </span>
+    </span>
+  );
+}
+
 export async function SpotifyCard() {
   const latestTrack = await getSpotifyTrack();
   const displayTrack = latestTrack.title ? latestTrack : fallbackSpotifyTrack;
   const isPlayingNow = Boolean(latestTrack.title && latestTrack.isPlaying);
   const cardLabel = isPlayingNow ? "Now playing" : "Last played";
-  const trackText = [displayTrack?.title, displayTrack?.artist ? `by ${displayTrack.artist}` : null]
-    .filter(Boolean)
-    .join(" ");
 
   return (
     <section className="spotify-section" aria-label={cardLabel}>
@@ -30,8 +40,12 @@ export async function SpotifyCard() {
           </span>
 
           <p className="now-playing__copy spotify-card__copy">
-            <span className="now-playing__label">{cardLabel}</span>
-            <SpotifyTrackText href={displayTrack?.songUrl ?? null} text={trackText} />
+            {isPlayingNow ? <SpotifyNowPlayingLabel /> : <span className="now-playing__label">{cardLabel}</span>}
+            <SpotifyTrackText
+              href={displayTrack?.songUrl ?? null}
+              title={displayTrack?.title ?? fallbackSpotifyTrack.title ?? ""}
+              artist={displayTrack?.artist ?? null}
+            />
           </p>
         </div>
       </div>
