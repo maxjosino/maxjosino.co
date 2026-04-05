@@ -85,6 +85,7 @@ html.light {
 
 html,
 body {
+  height: 100%;
   min-height: 100%;
 }
 
@@ -102,6 +103,8 @@ html.light {
 
 body {
   margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
   background: var(--bg);
   font-family: "Geist-Regular", "Helvetica Neue", Helvetica, sans-serif;
   font-optical-sizing: auto;
@@ -153,6 +156,8 @@ p {
 .site-shell {
   position: relative;
   width: min(100%, calc(var(--shell-width) + var(--shell-side-gap) * 2));
+  min-height: 100vh;
+  min-height: 100dvh;
   margin: 0 auto;
   padding: 3.2rem var(--shell-side-gap) 6rem;
 }
