@@ -996,7 +996,7 @@ p {
 
   .experience td {
     font-size: 1.5rem;
-    padding: 0.5rem 0;
+    padding: 0.5rem 0.5rem;
     color: var(--text);
   }
 
