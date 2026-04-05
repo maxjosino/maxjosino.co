@@ -40,7 +40,7 @@ const themeInitScript = `
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://maxjosino.co"),
-  title: "Max Josino - Founding Product Designer",
+  title: "Max Josino - Founding Product Designer & Engineer",
   description:
     "Founding Product Designer working across product design, design systems, and design engineering.",
   authors: [{ name: "Max Josino" }],
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    title: "Max Josino - Founding Product Designer",
+    title: "Max Josino - Founding Product Designer & Engineer",
     description:
       "Founding Product Designer working across product design, design systems, and design engineering.",
     siteName: "Max Josino",
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Max Josino - Founding Product Designer",
+    title: "Max Josino - Founding Product Designer & Engineer",
     description:
       "Founding Product Designer working across product design, design systems, and design engineering.",
     site: "@maxjosino",
