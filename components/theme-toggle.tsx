@@ -4,7 +4,6 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { playThemeToggleSound } from "@/lib/ui-sound";
 
 type Theme = "dark" | "light";
-type ThemePreference = Theme | null;
 
 const DARK_THEME_COLOR = "#161616";
 const LIGHT_THEME_COLOR = "#f3efe4";
@@ -34,25 +33,13 @@ function SunIcon() {
   );
 }
 
-function getStoredTheme(): ThemePreference {
-  if (typeof window === "undefined") {
-    return null;
-  }
-
-  const storedTheme = window.localStorage.getItem("theme");
-  if (storedTheme === "light" || storedTheme === "dark") {
-    return storedTheme;
-  }
-
-  return null;
-}
-
-function getSystemTheme(): Theme {
+function getStoredTheme(): Theme {
   if (typeof window === "undefined") {
     return "dark";
   }
 
-  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  const storedTheme = window.localStorage.getItem("theme");
+  return storedTheme === "light" ? "light" : "dark";
 }
 
 function setDocumentTheme(theme: Theme) {
@@ -68,46 +55,21 @@ function setDocumentTheme(theme: Theme) {
 
 export function ThemeToggle() {
   const [theme, setTheme] = useState<Theme>("dark");
-  const [themePreference, setThemePreference] = useState<ThemePreference>(null);
   const [mounted, setMounted] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    const storedTheme = getStoredTheme();
-    const initialTheme = storedTheme ?? getSystemTheme();
-    setThemePreference(storedTheme);
+    const initialTheme = getStoredTheme();
     setTheme(initialTheme);
     setDocumentTheme(initialTheme);
     setMounted(true);
   }, []);
-
-  useEffect(() => {
-    if (themePreference !== null) {
-      return;
-    }
-
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-
-    const syncSystemTheme = (event?: MediaQueryListEvent) => {
-      const nextTheme = event?.matches ?? mediaQuery.matches ? "dark" : "light";
-      setTheme(nextTheme);
-      setDocumentTheme(nextTheme);
-    };
-
-    syncSystemTheme();
-    mediaQuery.addEventListener("change", syncSystemTheme);
-
-    return () => {
-      mediaQuery.removeEventListener("change", syncSystemTheme);
-    };
-  }, [themePreference]);
 
   const toggleTheme = useMemo(
     () => () => {
       const nextTheme: Theme = theme === "dark" ? "light" : "dark";
       const applyTheme = () => {
         setTheme(nextTheme);
-        setThemePreference(nextTheme);
         window.localStorage.setItem("theme", nextTheme);
         setDocumentTheme(nextTheme);
       };
