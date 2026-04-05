@@ -26,7 +26,8 @@ const themeInitScript = `
   const lightThemeColor = "#f3efe4";
   const root = document.documentElement;
   const storedTheme = window.localStorage.getItem(storageKey);
-  const theme = storedTheme === "light" ? "light" : "dark";
+  const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  const theme = storedTheme === "light" || storedTheme === "dark" ? storedTheme : systemTheme;
   root.classList.remove("light", "dark");
   root.classList.add(theme);
   root.setAttribute("data-theme", theme);
