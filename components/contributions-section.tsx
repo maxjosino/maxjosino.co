@@ -34,11 +34,6 @@ const PALETTE = [
 ];
 
 const MONTH_LABELS = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
-const WEEKDAY_ROWS = [
-  { label: "mon", row: 1 },
-  { label: "wed", row: 3 },
-  { label: "fri", row: 5 }
-];
 
 function formatDate(dateString: string) {
   return new Intl.DateTimeFormat("en-US", {
@@ -239,7 +234,7 @@ export function ContributionsSection() {
     const weeks = buildWeeks(data.contributions);
     const markers = buildMonthMarkers(weeks);
     const widthBase = Math.max(availableWidth || 0, 280);
-    const leftGutter = widthBase < 420 ? 18 : 24;
+    const leftGutter = 4;
     const pitch = Math.max(5, Math.min(13, (widthBase - leftGutter - 4) / weeks.length));
     const cellSize = Math.max(3, Math.min(10, pitch - (pitch < 8 ? 1.5 : 3)));
     const cornerRadius = Math.max(1, Math.min(2, Math.round(cellSize / 3)));
@@ -247,7 +242,6 @@ export function ContributionsSection() {
     const height = chartTop + 6 * pitch + cellSize + 7;
     const cellOffset = (pitch - cellSize) / 2;
     const monthFontSize = pitch < 8 ? 7 : 9;
-    const weekdayFontSize = pitch < 8 ? 7 : 9;
     const markerGap = pitch < 8 ? 4 : 2;
 
     return {
@@ -262,7 +256,6 @@ export function ContributionsSection() {
       height,
       monthFontSize,
       markerGap,
-      weekdayFontSize,
       width: leftGutter + weeks.length * pitch,
       yearlyTotal: getYearlyTotal(data),
       currentYear: new Date().getFullYear()
@@ -350,21 +343,6 @@ export function ContributionsSection() {
                   </text>
                 );
               })}
-
-              {chart.pitch >= 6.5
-                ? WEEKDAY_ROWS.map((row) => (
-                    <text
-                      key={row.label}
-                      x="0"
-                      y={chart.chartTop + row.row * chart.pitch + chart.cellSize * 0.75}
-                      fill="var(--contribution-axis)"
-                      fontSize={chart.weekdayFontSize}
-                      fontFamily="Geist-Regular, Helvetica Neue, Helvetica, sans-serif"
-                    >
-                      {row.label}
-                    </text>
-                  ))
-                : null}
 
               {chart.weeks.map((week, columnIndex) =>
                 week.days.map((day, rowIndex) => {
