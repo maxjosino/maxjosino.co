@@ -428,8 +428,11 @@ p {
 
 .experience tbody tr {
   --experience-hover: var(--text-strong);
+  background: transparent;
   cursor: pointer;
-  transition: color 180ms ease-out;
+  transition:
+    color 180ms ease-out,
+    background-color 260ms ease-out;
 }
 
 .experience tbody tr.blur {
@@ -440,14 +443,11 @@ p {
 
 .experience td {
   color: var(--text);
-  background: transparent;
-  transition:
-    color 180ms ease-out,
-    background-color 260ms ease-out;
+  transition: color 180ms ease-out;
 }
 
-.experience tbody tr:hover td,
-.experience tbody tr:focus-within td {
+.experience tbody tr:hover,
+.experience tbody tr:focus-within {
   background-color: var(--experience-row-hover-bg);
   transition: background-color 140ms ease-out;
 }
@@ -874,9 +874,10 @@ p {
   }
 
   .experience tbody tr {
-    display: flex;
-    flex-wrap: wrap;
-    margin-bottom: 2.5rem;
+    display: grid;
+    grid-template-columns: minmax(10rem, 0.9fr) minmax(0, 1.4fr);
+    column-gap: 1.6rem;
+    margin-bottom: 1.5rem;
     padding-bottom: 1.5rem;
     border-bottom: 1px solid var(--line);
   }
@@ -887,7 +888,6 @@ p {
 
   .experience tbody tr.is-nubank {
     margin-bottom: 0;
-    padding-bottom: 0;
     border-bottom: 0;
   }
 
@@ -913,13 +913,13 @@ p {
   }
 
   .experience td:nth-child(1) {
-    width: 100%;
+    width: auto;
     display: block;
   }
 
   .experience td:nth-child(2) {
-    width: 100%;
-    margin-top: 1rem;
+    width: auto;
+    margin-top: 0;
   }
 
   .contributions-card {
