@@ -1,4 +1,4 @@
-import { fallbackSpotifyTrack } from "@/lib/spotify";
+import { fallbackSpotifyTrack, getSpotifyTrack } from "@/lib/spotify";
 
 function SpotifyIcon() {
   return (
@@ -11,8 +11,9 @@ function SpotifyIcon() {
   );
 }
 
-export function SpotifyCard() {
-  const displayTrack = fallbackSpotifyTrack;
+export async function SpotifyCard() {
+  const latestTrack = await getSpotifyTrack();
+  const displayTrack = latestTrack.title ? latestTrack : fallbackSpotifyTrack;
 
   return (
     <section className="spotify-section" aria-label="Last played">

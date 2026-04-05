@@ -1,3 +1,5 @@
+import "server-only";
+
 export interface SpotifyTrackPayload {
   title: string | null;
   artist: string | null;
@@ -40,6 +42,18 @@ interface SpotifyRecentlyPlayedResponse {
   }>;
 }
 
+interface SpotifyTokenResponse {
+  access_token?: string;
+  refresh_token?: string;
+  scope?: string;
+  token_type?: string;
+  expires_in?: number;
+}
+
+const defaultSpotifyRedirectUri = "http://127.0.0.1:3000/api/spotify/callback";
+
+export const spotifyScopes = ["user-read-currently-playing", "user-read-recently-played"] as const;
+
 export const emptySpotifyTrack: SpotifyTrackPayload = {
   title: null,
   artist: null,
@@ -76,6 +90,15 @@ async function fetchWithTimeout(input: RequestInfo | URL, init: RequestInit = {}
   }
 }
 
+function getSpotifyConfig() {
+  return {
+    clientId: process.env.SPOTIFY_CLIENT_ID ?? null,
+    clientSecret: process.env.SPOTIFY_CLIENT_SECRET ?? null,
+    refreshToken: process.env.SPOTIFY_REFRESH_TOKEN ?? null,
+    redirectUri: process.env.SPOTIFY_REDIRECT_URI ?? defaultSpotifyRedirectUri
+  };
+}
+
 function normalizeTrack(track: SpotifyTrack | null | undefined, isPlaying: boolean, playedAt: string | null) {
   if (!track?.name) {
     return emptySpotifyTrack;
@@ -92,10 +115,58 @@ function normalizeTrack(track: SpotifyTrack | null | undefined, isPlaying: boole
   } satisfies SpotifyTrackPayload;
 }
 
+function getSpotifyBasicAuthorization(clientId: string, clientSecret: string) {
+  return `Basic ${Buffer.from(`${clientId}:${clientSecret}`).toString("base64")}`;
+}
+
+export function getSpotifyAuthorizationUrl(state: string) {
+  const { clientId, redirectUri } = getSpotifyConfig();
+
+  if (!clientId) {
+    return null;
+  }
+
+  const params = new URLSearchParams({
+    client_id: clientId,
+    response_type: "code",
+    redirect_uri: redirectUri,
+    state,
+    scope: spotifyScopes.join(" ")
+  });
+
+  return `https://accounts.spotify.com/authorize?${params.toString()}`;
+}
+
+export async function exchangeSpotifyAuthorizationCode(code: string) {
+  const { clientId, clientSecret, redirectUri } = getSpotifyConfig();
+
+  if (!clientId || !clientSecret) {
+    return null;
+  }
+
+  const response = await fetchWithTimeout("https://accounts.spotify.com/api/token", {
+    method: "POST",
+    cache: "no-store",
+    headers: {
+      Authorization: getSpotifyBasicAuthorization(clientId, clientSecret),
+      "Content-Type": "application/x-www-form-urlencoded"
+    },
+    body: new URLSearchParams({
+      code,
+      redirect_uri: redirectUri,
+      grant_type: "authorization_code"
+    })
+  });
+
+  if (!response.ok) {
+    return null;
+  }
+
+  return (await response.json()) as SpotifyTokenResponse;
+}
+
 async function getAccessToken() {
-  const clientId = process.env.SPOTIFY_CLIENT_ID;
-  const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
-  const refreshToken = process.env.SPOTIFY_REFRESH_TOKEN;
+  const { clientId, clientSecret, refreshToken } = getSpotifyConfig();
 
   if (!clientId || !clientSecret || !refreshToken) {
     return null;
@@ -105,7 +176,7 @@ async function getAccessToken() {
     method: "POST",
     cache: "no-store",
     headers: {
-      Authorization: `Basic ${Buffer.from(`${clientId}:${clientSecret}`).toString("base64")}`,
+      Authorization: getSpotifyBasicAuthorization(clientId, clientSecret),
       "Content-Type": "application/x-www-form-urlencoded"
     },
     body: new URLSearchParams({
@@ -118,7 +189,7 @@ async function getAccessToken() {
     return null;
   }
 
-  const data = (await response.json()) as { access_token?: string };
+  const data = (await response.json()) as SpotifyTokenResponse;
   return data.access_token ?? null;
 }
 

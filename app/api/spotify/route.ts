@@ -1,11 +1,14 @@
 import { NextResponse } from "next/server";
-import { fallbackSpotifyTrack } from "@/lib/spotify";
+import { fallbackSpotifyTrack, getSpotifyTrack } from "@/lib/spotify";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export async function GET() {
-  return NextResponse.json(fallbackSpotifyTrack, {
+  const latestTrack = await getSpotifyTrack();
+  const payload = latestTrack.title ? latestTrack : fallbackSpotifyTrack;
+
+  return NextResponse.json(payload, {
     headers: {
       "Cache-Control": "no-store, max-age=0"
     }
