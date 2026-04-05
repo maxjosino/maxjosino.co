@@ -302,7 +302,11 @@ p {
 }
 
 .location-section {
-  --activity-accent: var(--swarm-accent);
+  --activity-accent: #f06d3a;
+}
+
+html.light .location-section {
+  --activity-accent: #cf5426;
 }
 
 .site-shell > section.spotify-section,

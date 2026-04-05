@@ -1,6 +1,6 @@
 export function IntroSection() {
   return (
-    <section>
+    <section className="intro-section">
       <p className="name">Max Josino</p>
 
       <p>
