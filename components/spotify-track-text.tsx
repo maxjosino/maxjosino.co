@@ -4,12 +4,27 @@ import { useEffect, useRef, useState } from "react";
 
 interface SpotifyTrackTextProps {
   href: string | null;
-  text: string;
+  title: string;
+  artist: string | null;
 }
 
 const mobileBreakpointQuery = "(max-width: 720px)";
 
-export function SpotifyTrackText({ href, text }: SpotifyTrackTextProps) {
+function SpotifyTrackTextContent({ title, artist }: { title: string; artist: string | null }) {
+  return (
+    <>
+      <span className="spotify-track-marquee__title">{title}</span>
+      {artist ? (
+        <>
+          <span className="spotify-track-marquee__joiner"> by </span>
+          <span className="spotify-track-marquee__artist">{artist}</span>
+        </>
+      ) : null}
+    </>
+  );
+}
+
+export function SpotifyTrackText({ href, title, artist }: SpotifyTrackTextProps) {
   const viewportRef = useRef<HTMLSpanElement | null>(null);
   const segmentRef = useRef<HTMLSpanElement | null>(null);
   const [isOverflowing, setIsOverflowing] = useState(false);
@@ -50,14 +65,16 @@ export function SpotifyTrackText({ href, text }: SpotifyTrackTextProps) {
       mediaQuery.removeEventListener("change", measure);
       window.removeEventListener("resize", measure);
     };
-  }, [text]);
+  }, [artist, title]);
 
   const content = href ? (
     <a className="now-playing__track spotify-track-marquee__content" href={href} target="_blank" rel="noopener noreferrer">
-      {text}
+      <SpotifyTrackTextContent title={title} artist={artist} />
     </a>
   ) : (
-    <span className="now-playing__track spotify-track-marquee__content">{text}</span>
+    <span className="now-playing__track spotify-track-marquee__content">
+      <SpotifyTrackTextContent title={title} artist={artist} />
+    </span>
   );
 
   const duplicatedContent = href ? (
@@ -69,11 +86,11 @@ export function SpotifyTrackText({ href, text }: SpotifyTrackTextProps) {
       tabIndex={-1}
       aria-hidden="true"
     >
-      {text}
+      <SpotifyTrackTextContent title={title} artist={artist} />
     </a>
   ) : (
     <span className="now-playing__track spotify-track-marquee__content" aria-hidden="true">
-      {text}
+      <SpotifyTrackTextContent title={title} artist={artist} />
     </span>
   );
 
