@@ -4,8 +4,7 @@ export function IntroSection() {
       <p className="name">Max Josino</p>
 
       <p>
-        I’m a Founding Product Designer working across product design, design systems, and design
-        engineering.
+        I’m a Founding Product Designer working across product design and design engineering.
       </p>
 
       <p>
