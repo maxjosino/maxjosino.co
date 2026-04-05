@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     url: "https://maxjosino.co",
     images: [
       {
-        url: "/img/social-card.png",
+        url: "/img/social-card.jpg",
         width: 1200,
         height: 628,
         alt: "Portrait of Max Josino"
@@ -70,7 +70,7 @@ export const metadata: Metadata = {
       "Founding Product Designer working across product design, design systems, and design engineering.",
     site: "@maxjosino",
     creator: "@maxjosino",
-    images: ["/img/social-card.png"]
+    images: ["/img/social-card.jpg"]
   },
   icons: {
     icon: [
