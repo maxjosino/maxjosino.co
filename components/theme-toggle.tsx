@@ -56,7 +56,7 @@ function setDocumentTheme(theme: Theme) {
 export function ThemeToggle() {
   const [theme, setTheme] = useState<Theme>("dark");
   const [mounted, setMounted] = useState(false);
-  const audioContextRef = useRef<AudioContext | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     const initialTheme = getStoredTheme();
@@ -78,7 +78,7 @@ export function ThemeToggle() {
         navigator.vibrate(16);
       }
 
-      playThemeToggleSound(nextTheme, audioContextRef);
+      playThemeToggleSound(audioRef);
 
       const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       if (!prefersReducedMotion && typeof document.startViewTransition === "function") {

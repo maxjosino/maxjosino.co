@@ -1,52 +1,19 @@
 import type { MutableRefObject } from "react";
 
-declare global {
-  interface Window {
-    webkitAudioContext?: typeof AudioContext;
-  }
-}
+export function playThemeToggleSound(audioRef: MutableRefObject<HTMLAudioElement | null>) {
+  const audio = audioRef.current ?? new Audio("/sounds/mouse-click.mp3");
 
-function getAudioContext(audioContextRef: MutableRefObject<AudioContext | null>) {
-  const AudioContextClass = window.AudioContext ?? window.webkitAudioContext;
+  audio.preload = "auto";
+  audio.volume = 0.55;
+  audioRef.current = audio;
 
-  if (!AudioContextClass) {
-    return null;
-  }
-
-  const audioContext = audioContextRef.current ?? new AudioContextClass();
-  audioContextRef.current = audioContext;
-
-  if (audioContext.state === "suspended") {
-    void audioContext.resume();
+  try {
+    audio.currentTime = 0;
+  } catch {
+    // Some browsers can throw if the media metadata has not loaded yet.
   }
 
-  return audioContext;
-}
-
-export function playThemeToggleSound(
-  theme: "dark" | "light",
-  audioContextRef: MutableRefObject<AudioContext | null>
-) {
-  const audioContext = getAudioContext(audioContextRef);
-
-  if (!audioContext) {
-    return;
-  }
-
-  const now = audioContext.currentTime;
-  const gainNode = audioContext.createGain();
-  gainNode.connect(audioContext.destination);
-
-  const oscillator = audioContext.createOscillator();
-  oscillator.type = theme === "dark" ? "triangle" : "sine";
-  oscillator.frequency.setValueAtTime(theme === "dark" ? 720 : 980, now);
-  oscillator.frequency.exponentialRampToValueAtTime(theme === "dark" ? 420 : 700, now + 0.08);
-
-  gainNode.gain.setValueAtTime(0.0001, now);
-  gainNode.gain.exponentialRampToValueAtTime(0.045, now + 0.008);
-  gainNode.gain.exponentialRampToValueAtTime(0.0001, now + 0.09);
-
-  oscillator.connect(gainNode);
-  oscillator.start(now);
-  oscillator.stop(now + 0.09);
+  void audio.play().catch(() => {
+    // Ignore blocked playback attempts so the theme interaction still completes.
+  });
 }
