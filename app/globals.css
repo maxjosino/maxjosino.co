@@ -28,6 +28,7 @@
   --text-strong-rgb: 255 255 255;
   --selection-fg: #ffffff;
   --spotify-green: #1db954;
+  --swarm-accent: #6425f5;
   --soft-fill: rgba(255, 255, 255, 0.08);
   --tooltip-bg: #f2f4ff;
   --tooltip-text: #121212;
@@ -62,6 +63,7 @@ html.light {
   --text-strong: #0f0e0c;
   --text-strong-rgb: 15 14 12;
   --selection-fg: #0f0e0c;
+  --swarm-accent: #6425f5;
   --soft-fill: rgba(15, 14, 12, 0.08);
   --tooltip-bg: #191816;
   --tooltip-text: #f6f1e7;
@@ -267,18 +269,33 @@ p {
 }
 
 .spotify-section,
+.swarm-section,
 .experience,
 .contributions,
 .cta {
   margin-top: 0;
 }
 
-.site-shell > section.spotify-section {
+.site-shell > section.experience {
+  background-image: none;
+}
+
+.site-shell > section.spotify-section,
+.site-shell > section.swarm-section {
   padding-top: 1.2rem;
   padding-bottom: 1.2rem;
 }
 
-.site-shell > section.spotify-section {
+.spotify-section {
+  --activity-accent: var(--spotify-green);
+}
+
+.swarm-section {
+  --activity-accent: var(--swarm-accent);
+}
+
+.site-shell > section.spotify-section,
+.site-shell > section.swarm-section {
   background-image: repeating-linear-gradient(
     to bottom,
     var(--line-strong) 0px,
@@ -325,9 +342,69 @@ p {
   height: 1.8rem;
 }
 
+.swarm-icon {
+  overflow: visible;
+}
+
+.swarm-icon__outline,
+.swarm-icon__filled,
+.swarm-pin__outline,
+.swarm-pin__filled {
+  transition:
+    opacity 180ms ease-out,
+    transform 180ms ease-out;
+  transform-origin: center;
+}
+
+.swarm-icon__outline {
+  opacity: 1;
+}
+
+.swarm-icon__filled {
+  opacity: 0;
+}
+
+.swarm-pin {
+  overflow: visible;
+}
+
+.swarm-pin__outline {
+  opacity: 1;
+}
+
+.swarm-pin__filled {
+  opacity: 0;
+}
+
 .spotify-section:hover .now-playing__icon,
-.spotify-section:focus-within .now-playing__icon {
-  color: var(--spotify-green);
+.spotify-section:focus-within .now-playing__icon,
+.swarm-section:hover .now-playing__icon,
+.swarm-section:focus-within .now-playing__icon {
+  color: var(--activity-accent);
+}
+
+.swarm-section:hover .swarm-icon__outline,
+.swarm-section:focus-within .swarm-icon__outline {
+  opacity: 0;
+  transform: scale(0.96);
+}
+
+.swarm-section:hover .swarm-icon__filled,
+.swarm-section:focus-within .swarm-icon__filled {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.swarm-section:hover .swarm-pin__outline,
+.swarm-section:focus-within .swarm-pin__outline {
+  opacity: 0;
+  transform: scale(0.96);
+}
+
+.swarm-section:hover .swarm-pin__filled,
+.swarm-section:focus-within .swarm-pin__filled {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .now-playing__copy {
@@ -392,7 +469,7 @@ p {
   align-items: center;
   gap: 0.5rem;
   color: var(--muted);
-  font-size: 1.2rem;
+  font-size: 1.35rem;
   line-height: 1;
   letter-spacing: 0.01em;
   white-space: nowrap;
@@ -402,14 +479,14 @@ p {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 1.3rem;
-  height: 1.3rem;
+  width: 1.45rem;
+  height: 1.45rem;
   flex: 0 0 auto;
 }
 
 .now-playing__location-icon svg {
-  width: 1.3rem;
-  height: 1.3rem;
+  width: 1.45rem;
+  height: 1.45rem;
 }
 
 .experience table {
