@@ -17,7 +17,6 @@ out/
 # Local env config
 .env
 .env.*
-!.env.example
 
 # Files/folders que você mencionou
 _works.html
