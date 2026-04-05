@@ -288,6 +288,11 @@ p {
   padding-bottom: 1.2rem;
 }
 
+.site-shell > section.location-section {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
 .spotify-section {
   --activity-accent: var(--spotify-green);
 }
@@ -297,7 +302,7 @@ p {
 }
 
 .location-section {
-  --activity-accent: var(--muted);
+  --activity-accent: var(--swarm-accent);
 }
 
 .site-shell > section.spotify-section,
@@ -400,6 +405,18 @@ p {
 
 .swarm-section:hover .swarm-icon__filled,
 .swarm-section:focus-within .swarm-icon__filled {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.location-section:hover .pin-icon__outline,
+.location-section:focus-within .pin-icon__outline {
+  opacity: 0;
+  transform: scale(0.96);
+}
+
+.location-section:hover .pin-icon__filled,
+.location-section:focus-within .pin-icon__filled {
   opacity: 1;
   transform: scale(1);
 }
