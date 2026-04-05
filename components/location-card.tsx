@@ -25,7 +25,7 @@ export function LocationCard() {
           </span>
 
           <p className="now-playing__copy">
-            <span className="now-playing__label">Based in</span>
+            <span className="now-playing__label">Between</span>
             <span className="now-playing__track">Berlin &amp; NYC</span>
           </p>
         </div>
