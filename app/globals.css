@@ -486,7 +486,8 @@ html.light .location-section {
 }
 
 .spotify-card__copy {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
   align-items: baseline;
   gap: 0.4rem;
   min-width: 0;
@@ -506,6 +507,7 @@ html.light .location-section {
   display: inline-flex;
   gap: 0.02rem;
   margin-left: 0.02rem;
+  margin-right: 0.2rem;
 }
 
 .spotify-now-playing-dots__dot {
@@ -539,14 +541,17 @@ html.light .location-section {
 }
 
 .spotify-track-marquee {
-  display: inline-flex;
+  display: block;
+  width: 100%;
   min-width: 0;
-  flex: 1 1 auto;
 }
 
 .spotify-track-marquee__viewport {
+  display: block;
+  width: 100%;
   min-width: 0;
   max-width: 100%;
+  overflow: hidden;
 }
 
 .spotify-track-marquee__rail {
@@ -560,11 +565,13 @@ html.light .location-section {
 }
 
 .spotify-track-marquee__content {
+  display: inline-flex;
   min-width: 0;
 }
 
 .spotify-track-marquee__joiner {
   color: var(--muted);
+  margin: 0 0.28rem;
 }
 
 .now-playing__skeleton-line {
@@ -1076,27 +1083,32 @@ html.light .location-section {
 
   .spotify-card__copy {
     gap: 0.35rem;
+    align-items: center;
   }
 
   .spotify-track-marquee__viewport {
-    display: block;
-    width: min(100%, 22rem);
-    overflow: hidden;
+    width: 100%;
+  }
+
+  .spotify-track-marquee__rail,
+  .spotify-track-marquee__segment,
+  .spotify-track-marquee__content {
+    width: max-content;
+    min-width: max-content;
+    white-space: nowrap;
   }
 
   .spotify-track-marquee.is-overflowing .spotify-track-marquee__rail {
     width: max-content;
     gap: 2.4rem;
-    animation: spotify-marquee 12s linear infinite;
+    animation: spotify-marquee 32s linear infinite;
   }
 
   .spotify-track-marquee.is-overflowing .spotify-track-marquee__segment {
     flex: 0 0 auto;
-    white-space: nowrap;
   }
 
   .spotify-track-marquee.is-overflowing .spotify-track-marquee__content {
-    white-space: nowrap;
     text-decoration: none;
   }
 
