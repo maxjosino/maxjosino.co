@@ -485,9 +485,17 @@ html.light .location-section {
   line-height: 1.7;
 }
 
+.spotify-card__copy {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  min-width: 0;
+}
+
 .now-playing__label {
   color: var(--muted);
   margin-right: 0.6rem;
+  flex: 0 0 auto;
 }
 
 .now-playing__track,
@@ -505,6 +513,31 @@ html.light .location-section {
 
 .now-playing__meta {
   color: var(--text-soft);
+}
+
+.spotify-track-marquee {
+  display: inline-flex;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.spotify-track-marquee__viewport {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.spotify-track-marquee__rail {
+  display: inline-flex;
+  min-width: 0;
+}
+
+.spotify-track-marquee__segment {
+  display: inline-flex;
+  min-width: 0;
+}
+
+.spotify-track-marquee__content {
+  min-width: 0;
 }
 
 .now-playing__skeleton-line {
@@ -1014,6 +1047,32 @@ html.light .location-section {
     font-size: 1.35rem;
   }
 
+  .spotify-card__copy {
+    gap: 0.35rem;
+  }
+
+  .spotify-track-marquee__viewport {
+    display: block;
+    width: min(100%, 22rem);
+    overflow: hidden;
+  }
+
+  .spotify-track-marquee.is-overflowing .spotify-track-marquee__rail {
+    width: max-content;
+    gap: 2.4rem;
+    animation: spotify-marquee 12s linear infinite;
+  }
+
+  .spotify-track-marquee.is-overflowing .spotify-track-marquee__segment {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  .spotify-track-marquee.is-overflowing .spotify-track-marquee__content {
+    white-space: nowrap;
+    text-decoration: none;
+  }
+
   .experience thead {
     display: none;
   }
@@ -1106,6 +1165,15 @@ html.light .location-section {
   }
 }
 
+@keyframes spotify-marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-100% - 2.4rem));
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   a,
   a:visited,
@@ -1113,6 +1181,7 @@ html.light .location-section {
   .contribution-cell,
   .contributions-state[data-state="loading"]::before,
   .now-playing__skeleton-line,
+  .spotify-track-marquee__rail,
   .theme-toggle,
   .theme-toggle__icon {
     transition: none;

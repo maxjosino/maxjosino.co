@@ -1,4 +1,5 @@
 import { fallbackSpotifyTrack, getSpotifyTrack } from "@/lib/spotify";
+import { SpotifyTrackText } from "@/components/spotify-track-text";
 
 function SpotifyIcon() {
   return (
@@ -14,6 +15,9 @@ function SpotifyIcon() {
 export async function SpotifyCard() {
   const latestTrack = await getSpotifyTrack();
   const displayTrack = latestTrack.title ? latestTrack : fallbackSpotifyTrack;
+  const trackText = [displayTrack?.title, displayTrack?.artist ? `by ${displayTrack.artist}` : null]
+    .filter(Boolean)
+    .join(" ");
 
   return (
     <section className="spotify-section" aria-label="Last played">
@@ -23,40 +27,9 @@ export async function SpotifyCard() {
             <SpotifyIcon />
           </span>
 
-          <p className="now-playing__copy">
+          <p className="now-playing__copy spotify-card__copy">
             <span className="now-playing__label">Last played</span>
-
-            {displayTrack?.songUrl ? (
-              <>
-                <a
-                  className="now-playing__track"
-                  href={displayTrack.songUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {displayTrack.title}
-                </a>
-
-                {displayTrack?.artist ? (
-                  <>
-                    {" by "}
-                    <a
-                      className="now-playing__track"
-                      href={displayTrack.songUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {displayTrack.artist}
-                    </a>
-                  </>
-                ) : null}
-              </>
-            ) : (
-              <span className="now-playing__track">
-                {displayTrack?.title}
-                {displayTrack?.artist ? ` by ${displayTrack.artist}` : ""}
-              </span>
-            )}
+            <SpotifyTrackText href={displayTrack?.songUrl ?? null} text={trackText} />
           </p>
         </div>
       </div>
