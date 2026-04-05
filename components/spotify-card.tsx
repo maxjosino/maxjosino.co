@@ -15,12 +15,14 @@ function SpotifyIcon() {
 export async function SpotifyCard() {
   const latestTrack = await getSpotifyTrack();
   const displayTrack = latestTrack.title ? latestTrack : fallbackSpotifyTrack;
+  const isPlayingNow = Boolean(latestTrack.title && latestTrack.isPlaying);
+  const cardLabel = isPlayingNow ? "Now playing" : "Last played";
   const trackText = [displayTrack?.title, displayTrack?.artist ? `by ${displayTrack.artist}` : null]
     .filter(Boolean)
     .join(" ");
 
   return (
-    <section className="spotify-section" aria-label="Last played">
+    <section className="spotify-section" aria-label={cardLabel}>
       <div className="now-playing">
         <div className="now-playing__body">
           <span className="now-playing__icon" aria-hidden="true">
@@ -28,7 +30,7 @@ export async function SpotifyCard() {
           </span>
 
           <p className="now-playing__copy spotify-card__copy">
-            <span className="now-playing__label">Last played</span>
+            <span className="now-playing__label">{cardLabel}</span>
             <SpotifyTrackText href={displayTrack?.songUrl ?? null} text={trackText} />
           </p>
         </div>
