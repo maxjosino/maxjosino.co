@@ -15,20 +15,6 @@ function SwarmIcon() {
   );
 }
 
-function formatCheckinDate(createdAt: string | null) {
-  if (!createdAt) {
-    return null;
-  }
-
-  const date = new Date(createdAt);
-
-  if (Number.isNaN(date.getTime())) {
-    return null;
-  }
-
-  return new Intl.DateTimeFormat("en", { dateStyle: "medium" }).format(date);
-}
-
 export async function SwarmCard() {
   const latestCheckin = await getLatestSwarmCheckin();
 
@@ -36,8 +22,7 @@ export async function SwarmCard() {
     return null;
   }
 
-  const formattedDate = formatCheckinDate(latestCheckin.createdAt);
-  const meta = [latestCheckin.city, formattedDate].filter(Boolean).join(" · ");
+  const meta = latestCheckin.city;
 
   return (
     <section className="swarm-section" aria-label="Last check-in">
